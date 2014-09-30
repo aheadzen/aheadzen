@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .sorting-container a, ul.dt-sc-tabs li a { color:#785a69; }	
+
+ul.dt-sc-tabs-vertical-frame li.current a, ul.dt-sc-tabs-vertical-frame li, .dt-sc-pr-tb-col:hover, .dt-sc-pr-tb-col.selected .dt-sc-tb-content li, .dt-sc-pr-tb-col.selected, ul.dt-sc-tabs-frame li a.current, .flickr_badge_image:hover, .woocommerce-tabs ul.tabs li.active a { border-color: #b8628e; }
+.button,.border-title span, ul.dt-sc-tabs-vertical-frame li.current a, .dt-sc-button, .dt-sc-pr-tb-col .dt-sc-button, .demo-btn a.demo, .demo-btn a.purchase:hover, .border-title span, ul.dt-sc-tabs-vertical-frame li.current a, .dt-sc-pr-tb-col:hover, .dt-sc-pr-tb-col.selected, .testimonial-wrapper .nav-numbers li.active a, .copyright, .mean-container .mean-nav, .mean-container a.meanmenu-reveal, .dt-sc-toggle-frame h5.dt-sc-toggle-accordion.active, .dt-sc-toggle-frame h5.dt-sc-toggle.active, ul.dt-sc-tabs-frame li a.current, .searchform #searchsubmit, .mailchimp .nl-submit, .portfolio-arrows a, .bx-controls-direction a, #commentform p.form-submit input[type="submit"], input[type="submit"], .post-meta.sticky span.featured-post, .pagination a:hover, .pagination ul li.active-page, .single_add_to_cart_button, .woocommerce .shop_table.cart th, .product .summary .quantity input[type="button"], .product-quantity .quantity input[type="button"], .woocommerce-tabs ul.tabs li.active a, .shipping-calculator-form button[type="submit"], .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content, .woocommerce-page .widget_price_filter .price_slider_wrapper .ui-widget-content, .price_slider_amount button, .woocommerce span.onsale, .products .product .product-details .button, a.add_to_wishlist, .yith-wcwl-wishlistexistsbrowse.show a, .yith-wcwl-wishlistaddedbrowse.show a, .sticky .date {  background:#a23b6f; *background:#a23b6f; background:#a23b6f\0/; }
+
+.copyright .social-media li a { background: #842856; }
+.copyright .social-media li a:hover { background:#691b42; }
+
+#main-menu > ul > li:hover > a, #main-menu > ul > li.current_page_item > a, #main-menu > ul > li.current-menu-item > a  { color:#cd73a0; } 
+
+a, .contact-info h4, .contact-info a, .support-info span.call, .portfolio-title h4 a, .demo-btn span, .border-title, .dt-sc-pr-tb-col:hover .dt-sc-buy-now .dt-sc-button, .dt-sc-pr-tb-col.selected .dt-sc-buy-now .dt-sc-button, .dt-sc-tb-header .dt-sc-price, .sorting-container a:hover, .sorting-container a.active-sort, .tp-caption.custom_title2, h5.dt-sc-toggle-accordion.active a, h5.dt-sc-toggle.active a, ul.dt-sc-tabs li a.current, footer a:hover, .portfolio .image-overlay a span, .portfolio:hover .portfolio-detail .views, .portfolio:hover .portfolio-detail .views a.likeThis, #secondary a:hover, #secondary ul li a:hover, #main-menu ul ul li a:hover, .summary h1.product_title.entry-title { color:#a23b6f; }
+
+/***** Woo *****/
+.woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit,  .woocommerce-page button.button, .woocommerce-page input.button, .single-product .product .onsale, .single-product .product .out-of-stock, .woocommerce .add_to_cart_button, .woocommerce-page .add_to_cart_button { color:#fff; }
+
+ul.products li .featured-tag, .featured-tag { background: url(images/featured-tag.png) no-repeat; }
+
+.recent-posts-widget ul li a.thumb, .recent-portfolio-widget ul li a.thumb, .woocommerce ul.cart_list li img, .woocommerce ul.product_list_widget li img, .woocommerce-page ul.cart_list li img, .woocommerce-page ul.product_list_widget li img { border-color: #dfdede; }
+.recent-posts-widget ul li a.thumb:hover, .recent-portfolio-widget ul li a.thumb:hover, .woocommerce ul.cart_list li img:hover, .woocommerce ul.product_list_widget li img:hover, .woocommerce-page ul.cart_list li img:hover, .woocommerce-page ul.product_list_widget li img:hover { border-color:#a23b6f; }
+
+/*----*****---- << Header >> ----*****----*/
+#header { 
+	border-bottom:5px solid #691b42;
+	/* fallback/image non-cover color */
+	background-color: #842856; 
+	/* Safari 4+, Chrome 1-9 */
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a23b6f), to(#842856));
+	/* Safari 5.1+, Mobile Safari, Chrome 10+ */
+	background-image: -webkit-linear-gradient(top, #a23b6f, #842856); 
+	/* Firefox 3.6+ */
+	background-image: -moz-linear-gradient(top, #a23b6f, #842856);
+	/* IE 10+ */
+	background-image: -ms-linear-gradient(top, #a23b6f, #842856);
+	/* Opera 11.10+ */
+	background-image: -o-linear-gradient(top, #a23b6f, #842856);
+	/*filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#a23b6f, endColorstr=#842856);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#a23b6f, endColorstr=#842856)";*/
+}
+
+/*----*****---- << dt-sc-button >> ----*****----*/
+.button { text-shadow:1px 1px 0px rgba(0, 0, 0, 0.4); color:#ffffff; border-left:1px solid #842856; border-top:1px solid #842856		; }
+.button:hover { background:#691b42; border-left:1px solid #691b42; border-top:1px solid #691b42; }
+
+/*----*****---- << Main title >> ----*****----*/
+.main-title { background: #a23b6f; box-shadow:0 -7px 6px #842856 inset; }
+
+/*----*****---- << Services >> ----*****----*/
+.service:hover [class^="icon-"], .service:hover h4 { color:#a23b6f; }
+.service:after{ border-right:5px solid #a23b6f; }
+.service { border-bottom:5px solid #a23b6f; }
+
+/*----*****---- << Testimonial >> ----*****----*/
+
+.testimonial-wrapper figure.testimonial-thumb > .item-mask { background:url(images/hexa-bg.png) center center no-repeat; }
+
+/*----*****---- << Portfolio >> ----*****----*/
+.image-overlay { background:rgba(162, 59, 111, 0.9); background:#a23b6f\0/; *background:#a23b6f; }
+.portfolio:hover .portfolio-detail { background:rgba(162, 59, 111, 0.9); background:#a23b6f\0/; *background:#a23b6f; }
+.sorting-container a:hover, .sorting-container a.active-sort { border-bottom-color:#a23b6f; }
+.portfolio:hover .image-overlay a span:hover { color:#842856; }
+
+/*----*****---- << Contact >> ----*****----*/
+.location h4.map-title { background:#a23b6f; }

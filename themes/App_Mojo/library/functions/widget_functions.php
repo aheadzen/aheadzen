@@ -2535,7 +2535,6 @@ if(!class_exists('aheadzen_image_slider_widget')){
 			$mimg5 = empty($instance['mimg5']) ? '' : $instance['mimg5'];
 			$wmimg = empty($instance['wmimg']) ? '100%' : $instance['wmimg'];
 			$hmimg = empty($instance['hmimg']) ? 'auto' : $instance['hmimg'];
-			//$description = empty($instance['description']) ? get_bloginfo( 'description' ) : $instance['description'];
 			echo $before_widget;		
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -2567,27 +2566,34 @@ if(!class_exists('aheadzen_image_slider_widget')){
 					<?php aheadzen_inline_image($this->get_field_id('mimg2'));?>
 					</li>
 					<?php
-					}?>
+					}else if($_GET['editing']){ ?>
+					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
+					<?php }?>
 					<?php if($mimg3){?>
 					<li>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg3'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg3;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg3'));?>
 					</li>
-					<?php
-					}?>
+					<?php }elseif($_GET['editing']){ ?>
+					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
+					<?php }?>					
 					<?php if($mimg4){?>
 					<li><img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg4'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg4;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg4'));?>
 					</li>
 					<?php
-					}?>					
+					}elseif($_GET['editing']){ ?>
+					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
+					<?php }?>					
 					<?php if($mimg5){?>
 					<li>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg5'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg5;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg5'));?>
 					</li>
 					<?php
-					}?>					
+					}elseif($_GET['editing']){ ?>
+					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
+					<?php }?>					
 				</ul>			
 		</div>
 <script class="secret-source">
@@ -2618,29 +2624,25 @@ jQuery(document).ready(function($) {
 			$mimg5 = ($instance['mimg5']);
 			$wmimg = ($instance['wmim']);
 			$hmimg = ($instance['hmimg']);
-			//$sitename = ($instance['sitename']);
-			//$description = ($instance['description']);
-			//$hide_description = ($instance['hide_description']);
+			
+			$title = ($instance['title']);
+			$titlesize = strip_tags($instance['titlesize']);
+			$align = strip_tags($instance['align']);
+			
 			if(!$wmimg){$wmimg='100%';}
 			if(!$hmimg){$hmimg='auto';}
 	?>
-	<?php
+	<p><label for="<?php  echo $this->get_field_id('title'); ?>"><?php _e('Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />	
+	</label></p>	
+	<?php 
+	aheadzen_title_text_align_dl_fun($this->get_field_id('align'),$this->get_field_name('align'),$align);
+	aheadzen_title_font_size_dl_fun($this->get_field_id('titlesize'),$this->get_field_name('titlesize'),$titlesize);
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg1'),$this->get_field_name('mimg1'),$mimg1,__('Select Image','aheadzen'));
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg2'),$this->get_field_name('mimg2'),$mimg2,__('Select Image','aheadzen'));
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg3'),$this->get_field_name('mimg3'),$mimg3,__('Select Image','aheadzen'));
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg4'),$this->get_field_name('mimg4'),$mimg4,__('Select Image','aheadzen'));
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg5'),$this->get_field_name('mimg5'),$mimg5,__('Select Image','aheadzen'));
-	?>
-	
-	<?php /*?>
-	<p><label for="<?php  echo $this->get_field_id('description'); ?>">
-	<?php _e('Site Tagline','aheadzen');?>: 
-	<input class="widefat" id="<?php  echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" type="text" value="<?php echo esc_attr($description); ?>" />	
-	</label>
-	</p>
-	<?php */?>
-    
-	<?php
+
 	}}
 	register_widget('aheadzen_image_slider_widget');
 }

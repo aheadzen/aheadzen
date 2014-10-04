@@ -1,7 +1,10 @@
 *
-!*.*
+!*.php
+!*.js
+!*.css
+!*.png
+!*.ico
 !*themes/
 !*themes/App_Mojo*/
-
 !*plugins/
 !*plugins/js_wizard_aheadzen/

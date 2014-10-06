@@ -446,7 +446,9 @@ if(!function_exists('wpw_template_include'))
 			$user_login = '';
 			$user_email = '';
 			if ( !get_option('users_can_register') ) {
-				wp_redirect(site_url().'?ptype=login&page1=sign_up&emsg=regnewusr');
+				$frm_detail = aheadzen_get_registration_form_shortcode_page_detail();
+				$contacts_url =  $frm_detail['url'].'/';
+				wp_redirect($contacts_url.'?emsg=regnewusr');
 				exit();
 			}
 			
@@ -603,7 +605,10 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				echo '<div class="box error-box">'.implode('<br>',$emsg_array1).'</div>';
 				$_SESSION['emsg_array'] = array();
 			}
-			
+			if($_GET['emsg']=='regnewusr')
+			{
+				echo '<div class="box error-box">New user registration for your site is disabled, please contact your site administrator.</div>';
+			}
 			$sitename = $_GET['sitename'];
 			?>
 			<style>

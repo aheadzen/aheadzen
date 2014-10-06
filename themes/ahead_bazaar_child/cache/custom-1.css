@@ -1,19 +1,8 @@
-.slider-polaroid.slider .slide-content h2, .slider-polaroid.slider .slide-content h2, .text-polaroid h2 { font-size: 24px; font-family: 'Oswald', sans-serif; color: #CC9833; font-style: normal; font-weight: 800; }
-.slider-polaroid.slider .slide-content p, .slider-polaroid.slider .slide-content p, .text-polaroid p { font-size: 12px; font-family: 'Play', sans-serif; color: #4a4a4a; font-style: normal; font-weight: 400; }
-.slider-thumbnails.slider.thumbnails .showcase-caption p { font-size: 13px; font-family: 'Play', sans-serif; color: #585555; font-style: normal; font-weight: 400; }
-.slider-thumbnails.slider.thumbnails div.showcase-tooltip { font-size: 12px; font-family: 'Muli', sans-serif; color: #000; font-style: normal; font-weight: 400; }
-.slider-227.slider ul li .slider-caption h2, .slider-227.slider ul li .slider-caption h2 a { font-size: 17px; font-family: 'Open Sans', sans-serif; color: #ffffff; font-style: normal; font-weight: 700; }
-.slider-227.slider ul li .slider-caption p { font-size: 12px; font-family: 'Open Sans', sans-serif; color: #ffffff; font-style: normal; font-weight: 400; }
-.slider-227.slider ul li .slider-caption .special-font { font-size: 24px; font-family: 'Shadows Into Light', sans-serif; color: #ffffff; font-style: normal; font-weight: 400; }
-.slider-elastic .ei-title h2, .slider-elastic .ei-title h2 a { font-size: 40px; font-family: 'Playfair Display', sans-serif; color: #000000; font-style: italic; font-weight: normal; }
-.slider-elastic .ei-title h3, .slider-elastic .ei-title h3 a { font-size: 40px; font-family: 'Open Sans Condensed', sans-serif; color: #4D4C4C; font-style: normal; font-weight: 400; }
-.slider-usquare.slider .usquare_module_wrapper h2 { font-size: 17px; font-family: 'Open Sans', sans-serif; color: #aa620d; font-style: normal; font-weight: 400; }
-.slider-usquare.slider .usquare_module_wrapper span, .slider-usquare.slider .usquare_block_extended, .slider-usquare.slider .usquare_block_extended .usquare_about { font-size: 11px; font-family: 'Open Sans', sans-serif; color: #676768; font-style: normal; font-weight: 400; }
 #maintenance_message { font-size: 15px; font-family: 'Play', sans-serif; color: #5b5b5b; font-style: normal; font-weight: 400; }
 #maintenance_newsletter .newsletter-section input.text-field, #maintenance_newsletter .newsletter-section label { font-size: 13px; font-family: 'Play', sans-serif; color: #a09b9b; font-style: normal; font-weight: 400; }
 #maintenance_newsletter .newsletter-section input.submit-field { font-size: 14px; font-family: 'Oswald', sans-serif; color: #ffffff; font-style: normal; font-weight: 400; }
 .post-title, .post-title a, .blog-big .meta .post-title a, .blog-small .meta .post-title a, .blog-big.format-quote .meta .post-title a, .blog-pinterest .format-quote .post-title, .blog-pinterest .format-quote .post-title a { font-size: 18px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
-.blog-big .meta div p, .blog-big .meta div p a, .blog-elegant .meta div p, .blog-elegant .meta div p a, .blog-pinterest .meta div p, .blog-pinterest .meta div p a, .blog-small .meta div p, .blog-small .meta div p a { font-size: 12px; font-family: 'Play', sans-serif; color: #000000; font-style: normal; font-weight: 400; }
+.blog-big .meta div p, .blog-big .meta div p a, .blog-elegant .meta div p, .blog-elegant .meta div p a, .blog-pinterest .meta div p, .blog-pinterest .meta div p a, .blog-small .meta div p, .blog-small .meta div p a { font-size: 12px; font-family: 'Play', sans-serif; color: #5F5E5E; font-style: normal; font-weight: 400; }
 .blog-big .meta a:hover, .blog-small .meta a:hover { color: #333333; }
 .blog-big-ribbon .date-comments .date .month, .blog-small-ribbon .date-comments .date .month, .section.blog .post .date .month { font-size: 22px; font-family: 'Oswald', sans-serif; color: #a5a4a4; font-style: normal; font-weight: 400; }
 .blog-big-ribbon .date-comments .date .day, .blog-small-ribbon .date-comments .date .day, .section.blog .post .date .day { font-size: 48px; font-family: 'Arbutus Slab', sans-serif; color: #a5a4a4; font-style: normal; font-weight: 400; }
@@ -42,18 +31,18 @@
 #nav ul.sub-menu, #nav ul.children { background-color: #ffffff; }
 #nav ul li a:hover, #nav ul li:hover a { background-color: #ffffff; }
 #nav .current-menu-item > a, #nav .current-menu-ancestor > a, #nav .current_page_ancestor > a,div#nav ul .current_page_item > a { background-color: #ffffff; }
-#nav .megamenu ul.sub-menu li.menu-item-custom-content p { color: #ffffff; }
-#nav .megamenu ul.sub-menu li.menu-item-custom-content span.highlight { color: #ffffff; }
+#nav .megamenu ul.sub-menu li.menu-item-custom-content p { color: #a6a3a3; }
+#nav .megamenu ul.sub-menu li.menu-item-custom-content span.highlight { color: #5b5959; }
 .error-404-text p { font-size: 18px; font-family: 'Play', sans-serif; color: #676768; font-style: normal; font-weight: 400; }
 .error-404-text p a { color: #aa620d; }
 .error-404-text p a:hover { color: #d98104; }
-#popupWrap div.popup h3.title { font-size: 25px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
+#popupWrap div.popup h3.title { font-size: 20px; font-family: 'Oswald', sans-serif; color: #3e3d3d; font-style: normal; font-weight: 400; }
 div.popup, div.popup_message, div.popup_message p, div.popup_message span { font-size: 12px; font-family: 'Play', sans-serif; color: #747373; font-style: normal; font-weight: 400; }
 #popupWrap .popup .border-1 { border-color: #DDDDDD; }
 #popupWrap .popup .border-2 { border-color: #F1C070; }
 #popupWrap .popup .popup-newsletter-section .input-prepend .submit-field { background-color: #C58408; }
 #popupWrap .popup .popup-newsletter-section .input-prepend .submit-field:hover { background-color: #e79c0c; }
-#portfolios { background: #ffffff url('http://aheadzen.com/wp-content/themes/bazar/images/backgrounds/032.jpg'); font-size: 18px; font-family: 'Abel', sans-serif; color: #000000; font-style: italic; font-weight: 700; }
+#portfolios { background: #ffffff url('http://localhost/arpit/wp-content/themes/bazar/images/backgrounds/032.jpg'); font-size: 18px; font-family: 'Abel', sans-serif; color: #000000; font-style: italic; font-weight: 700; }
 div.box.success-box { font-size: 12px; font-family: 'Play', sans-serif; color: #599847; font-style: normal; font-weight: 400; }
 div.box.arrow-box { font-size: 12px; font-family: 'Play', sans-serif; color: #599847; font-style: normal; font-weight: 400; }
 div.box.alert-box { font-size: 12px; font-family: 'Play', sans-serif; color: #CA6B1C; font-style: normal; font-weight: 400; }
@@ -73,11 +62,11 @@ div.call-three { background-color: #f8f7f7; border-color: #f2f0f0; }
 .recent-post .text > a:hover { color: #aa620d; }
 .recent-post p { font-size: 12px; font-family: 'Play', sans-serif; color: #ffffff; font-style: normal; font-weight: 400; }
 .recent-post .hentry-post p.post-date { font-size: 10px; font-family: 'Play', sans-serif; color: #585555; font-style: normal; font-weight: 400; }
-.recent-post .text > a.read-more { font-size: 13px; font-family: Arial, Helvetica; color: #585555; font-style: normal; font-weight: 700; }
+.recent-post .text > a.read-more { font-size: 13px; font-family: 'regular', sans-serif; color: #585555; font-style: normal; font-weight: 700; }
 .recent-post .text > a.read-more:hover { color: #d98104; }
 .tabs-container ul.tabs li h4 a,.woocommerce_tabs ul.tabs li a, #content .woocommerce_tabs ul.tabs li a, .woocommerce-tabs ul.tabs li a, #content .woocommerce-tabs ul.tabs li a { font-size: 18px; font-family: 'Oswald', sans-serif; color: #8d8d8d; font-style: normal; font-weight: 400; }
-.tabs-container ul.tabs li h4 a:hover,.woocommerce_tabs ul.tabs li a:hover, #content .woocommerce_tabs ul.tabs li a:hover, .woocommerce-tabs ul.tabs li a:hover, #content .woocommerce-tabs ul.tabs li a:hover { color: #000000; }
-.tabs-container ul.tabs li.current h4 a,.woocommerce_tabs ul.tabs li.active a, #content .woocommerce_tabs ul.tabs li.active a, .woocommerce-tabs ul.tabs li.active a, #content .woocommerce-tabs ul.tabs li.active a { color: #0c243d; }
+.tabs-container ul.tabs li h4 a:hover,.woocommerce_tabs ul.tabs li a:hover, #content .woocommerce_tabs ul.tabs li a:hover, .woocommerce-tabs ul.tabs li a:hover, #content .woocommerce-tabs ul.tabs li a:hover { color: #373736; }
+.tabs-container ul.tabs li.current h4 a,.woocommerce_tabs ul.tabs li.active a, #content .woocommerce_tabs ul.tabs li.active a, .woocommerce-tabs ul.tabs li.active a, #content .woocommerce-tabs ul.tabs li.active a { color: #373736; }
 .pricing_box.large .header h3 { font-size: 17px; font-family: 'Open Sans', sans-serif; color: #ffffff; font-style: normal; font-weight: 800; }
 .pricing_box .header h3 { font-size: 17px; font-family: 'Open Sans', sans-serif; color: #585555; font-style: normal; font-weight: 800; }
 .pricing_box h3 { font-size: 17px; font-family: 'Open Sans', sans-serif; color: #585555; font-style: normal; font-weight: 700; }
@@ -100,7 +89,7 @@ div.icon_list ul li a:hover { color: #d98104; }
 .testimonial .testimonial-name a.website, .testimonial .testimonial-name span.website, .testimonial-page .testimonial-name a.website, .testimonial-page .testimonial-name span.website { font-size: 12px; font-family: 'Play', sans-serif; color: #1c1c1c; font-style: normal; font-weight: 400; }
 .testimonials-slider ul.testimonials li blockquote p a, .testimonials-flexslider ul li blockquote p a { font-size: 24px; font-family: 'Play', sans-serif; color: #747373; font-style: normal; font-weight: 400; }
 .testimonials-slider ul.testimonials li p.meta, .testimonials-slider ul.testimonials li p.meta a, .testimonials-flexslider ul li p.meta a { font-size: 13px; font-family: 'Play', sans-serif; color: #aa620d; font-style: normal; font-weight: 400; }
-.testimonial blockquote { font-size: 14px; font-family: Arial, Helvetica; color: #2e2d2d; font-style: normal; font-weight: 400; }
+.testimonial blockquote { font-size: 14px; font-family: 'Arial', sans-serif; color: #2e2d2d; font-style: normal; font-weight: 400; }
 .testimonials-slider ul.testimonials li p.meta a:hover, .testimonials-flexslider ul li p.meta a:hover { color: #3e3d3d; }
 #footer, #footer p, #footer li, #footer a { font-size: 12px; font-family: 'Play', sans-serif; color: #999898; font-style: normal; font-weight: 400; }
 #footer .container a { color: #282828; }
@@ -109,7 +98,7 @@ div.icon_list ul li a:hover { color: #d98104; }
 #copyright, #copyright div p, #copyright p, #copyright a, #copyright p a, #copyright div p a { font-size: 12px; font-family: 'Play', sans-serif; color: #999898; font-style: normal; font-weight: 400; }
 #copyright a, #copyright div a, #copyright div p a { color: #282828; }
 #copyright a:hover, #copyright div a:hover, #copyright div p a:hover { color: #e3910f; }
-a, p, li, address, dd, blockquote, td, th, .paragraph-links a, a.text-color, ul.filters li a, .menu-select select, .testimonial-widget li a, .testimonial-widget li p, #search_mini, .newsletter-input input, .newsletter-submit input, .features-tab-container .features-tab-labels li, .features-tab-content, .portfolio-libra .work-projects ul.pagination_nav li a, .widget.text-image { font-size: 13px; font-family: 'Play', sans-serif; color: #747373; font-style: normal; font-weight: 400; }
+a, p, li, address, dd, blockquote, td, th, .paragraph-links a, a.text-color, ul.filters li a, .menu-select select, .testimonial-widget li a, .testimonial-widget li p, #search_mini, .newsletter-input input, .newsletter-submit input, .features-tab-container .features-tab-labels li, .features-tab-content, .portfolio-libra .work-projects ul.pagination_nav li a, .widget.text-image { font-size: 14px; font-family: 'Play', sans-serif; color: #747373; font-style: normal; font-weight: 400; }
 .error404 .error-404-text p a,.blog-bazar:first-child .blog-bazar-header .meta a,.blog-bazar .the-content p.meta span a,a, a.text-color:hover, ul.filters li a:hover, ul.filters li a.active { color: #995d08; }
 .error404 .error-404-text p a:hover,.features-tab-container ul.features-tab-labels li.current-feature,.blog-bazar:first-child .blog-bazar-header .meta a:hover,.blog-bazar .the-content p.meta span a:hover,a:hover, body .login_register a:hover, #multistep_step1 .step1_login_form form.login_checkout .lost_password:hover, .portfolio-libra .work-projects ul.pagination_nav li a:hover, a:hover .title-highlight { color: #d98104; }
 #page-meta #yit-breadcrumb, #page-meta #yit-breadcrumb a, .breadcrumbs span, .woocommerce-breadcrumb a, .woocommerce-breadcrumb { font-size: 12px; font-family: 'Play', sans-serif; color: #8d8d8d; font-style: normal; font-weight: 400; }
@@ -138,9 +127,9 @@ h1 span.title-highlight, h2 span.title-highlight, h3 span.title-highlight, h4 sp
 #nav ul li, #nav ul li a, #nav .megamenu ul.sub-menu li.menu-item-custom-content p { font-size: 18px; font-family: 'Oswald', sans-serif; color: #8d8d8d; font-style: normal; font-weight: 400; }
 #nav ul li a:hover, #nav li:hover >a { color: #cc9833; }
 #nav .current-menu-item > a, #nav .current-menu-ancestor > a, div#nav ul .current_page_item > a, #nav .current_page_ancestor > a, #nav .current-menu-ancestor > a { color: #373736; }
-#nav ul li ul li a, #nav .megamenu ul.sub-menu li li a { font-size: 14px; font-family: 'Play', sans-serif; color: #4f4d4d; font-style: normal; font-weight: 400; }
+#nav ul li ul li a, #nav .megamenu ul.sub-menu li li a { font-size: 14px; font-family: 'Play', sans-serif; color: #8d8d8d; font-style: normal; font-weight: 400; }
 #nav ul li ul li a:hover, #nav .megamenu ul.sub-menu li li a:hover { color: #cc9833; }
-#nav ul ul .current-menu-item > a, #nav ul ul .current-menu-ancestor > a, div#nav ul ul .current_page_item > a, #nav .megamenu ul.sub-menu li a, #nav .megamenu ul.sub-menu li li.current-menu-item > a { color: #000000; }
+#nav ul ul .current-menu-item > a, #nav ul ul .current-menu-ancestor > a, div#nav ul ul .current_page_item > a, #nav .megamenu ul.sub-menu li a, #nav .megamenu ul.sub-menu li li.current-menu-item > a { color: #373736; }
 #nav .megamenu ul.sub-menu li a { font-size: 16px; font-family: 'Oswald', sans-serif; color: #cc9833; font-style: normal; font-weight: 400; }
 .sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6,.sidebar .yit_quick_contact h3, .widget.widget_onsale h3, .widget.widget_best_sellers h3, .widget.widget_recent_reviews h3, .widget.widget_recent_products h3, .widget.widget_random_products h3, .widget.widget_featured_products h3, .widget.widget_top_rated_products h3, .widget.widget_recently_viewed_products h3 { font-size: 18px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
 .sidebar p, .sidebar li, .sidebar div,div.textwidget p,.yit_toggle_menu ul.menu ul li a,.widget_categories ul > li a,.widget.faq-filters .border ul li a,.last-tweets p a,.recent-comments .the-post .author a,.widget.widget_onsale li a, .widget.widget_best_sellers li a, .widget.widget_recent_reviews li a, .widget.widget_recent_products li a, .widget.widget_random_products li a, .widget.widget_featured_products li a, .widget.widget_top_rated_products li a, .widget.widget_recently_viewed_products li a { font-size: 12px; font-family: 'Play', sans-serif; color: #4f4d4d; font-style: normal; font-weight: 400; }
@@ -158,8 +147,8 @@ h1 span.title-highlight, h2 span.title-highlight, h3 span.title-highlight, h4 sp
 #header-cart-search .widget_shopping_cart .cart_wrapper .buttons .button:hover { background-color: #e79c0c; }
 ul.products li.product.grid.with-hover .product-actions .add_to_cart_button, ul.products li.product.grid.with-hover .product-actions .view-options { background-color: #333333; color: #f7f7f7; }
 ul.products li.product.grid.with-hover .product-actions .add_to_cart_button:hover, ul.products li.product.grid.with-hover .product-actions .view-options:hover { background-color: #555; color: #f7f7f7; }
-ul.products li.product.list .description .view-detail { background-color: #333333; color: ##F7F7F7; }
-ul.products li.product.list .description .view-detail:hover { background-color: #555555; color: ##F7F7F7; }
+ul.products li.product.list .description .view-detail { background-color: #333333; color: #F7F7F7; }
+ul.products li.product.list .description .view-detail:hover { background-color: #555555; color: #F7F7F7; }
 ul.products li.product.grid.classic .product-actions a.details { background-color: #6f6e6e; color: #fff; }
 ul.products li.product.grid.classic .product-actions a.details:hover { background-color: #535353; color: #fff; }
 ul.products li.product.grid.classic .product-actions a.add_to_cart_button, ul.products li.product.grid.classic .product-actions a.view-options { background-color: #dc8323; color: #fff; }
@@ -172,7 +161,7 @@ div.product form.cart .button:hover, #content div.product form.cart .button:hove
 .widget_price_filter .price_slider_wrapper .ui-widget-content { background-color: #DADADA; }
 .widget_price_filter .ui-slider .ui-slider-range, .widget_price_filter .ui-slider .ui-slider-handle { background-color: #CD8906; }
 .widget.widget_layered_nav .sizes li.chosen .size-filter { color: #c38204; border-color: #dec084; }
-ul.products li.product .product-thumbnail .thumbnail-wrapper .added { background-image: url('http://aheadzen.com/wp-content/themes/bazar/woocommerce/images/bullets/added.png'); }
+ul.products li.product .product-thumbnail .thumbnail-wrapper .added { background-image: url('http://localhost/arpit/wp-content/themes/bazar/woocommerce/images/bullets/added.png'); }
 #header-cart-search .cart_wrapper ul.cart_list li a { font-size: 14px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
 #header-cart-search .cart_wrapper ul.cart_list li a:hover { color: #995D08; }
 #header-cart-search .cart_wrapper .cart_list li a.remove_item { font-size: 10px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
@@ -187,8 +176,4 @@ ul.products li.product .price { font-size: 14px; font-family: 'Oswald', sans-ser
 .product-box .price { font-size: 24px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
 div.product-box label, .qnt_label { font-size: 18px; font-family: 'Oswald', sans-serif; color: #373736; font-style: normal; font-weight: 400; }
 .variations .select-wrapper a.sbSelector, .variations .select-wrapper select, .variations .sbHolder a.sbSelector, .variations .attribute-options select { font-size: 18px; font-family: 'Oswald', sans-serif; color: #bcbbbb; font-style: normal; font-weight: 700; }
-.variations .select-wrapper .sbOptions li a, .variations .sbHolder .sbOptions li a { font-size: 14px; font-family: 'Play', sans-serif; color: #bcbbbb; font-style: normal; font-weight: 400; }mark  {display:none;}
-.order-info mark { display: inline; }
-::-webkit-input-placeholder { color: #939292 !important; }
-:-moz-placeholder, ::-moz-placeholder { color: #939292 !important; }
-:-ms-input-placeholder { color: #939292 !important; }.blog-big .meta, .blog-small .meta { background: #ffffff; }
+.variations .select-wrapper .sbOptions li a, .variations .sbHolder .sbOptions li a { font-size: 14px; font-family: 'Play', sans-serif; color: #bcbbbb; font-style: normal; font-weight: 400; }.blog-big .meta, .blog-small .meta { background: #ffffff; }

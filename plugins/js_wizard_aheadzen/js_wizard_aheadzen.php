@@ -460,9 +460,44 @@ if(!function_exists('wpw_template_include'))
 				
 				$repeat_password = $_POST['repeat_password'];
 				
-				$errors = new WP_Error();
+				//$errors = new WP_Error();
 				
-				$errors = register_new_user($user_login, $user_email);
+				$sanitized_user_login = sanitize_user($user_login);
+				$user_email = apply_filters( 'user_registration_email', $user_email );
+				
+				// Check the username
+				if ( $sanitized_user_login == '' ) {
+					//$errors->add( 'empty_username', __( '<strong>ERROR</strong>: Please enter a username.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: Please enter a username.";
+					$_SESSION['emsg_array']=$emsg_array;
+					
+				} elseif ( ! validate_username( $user_login ) ) {
+					//$errors->add( 'invalid_username', __( '<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.";
+					$_SESSION['emsg_array']=$emsg_array;
+					$sanitized_user_login = '';
+				} elseif ( username_exists( $sanitized_user_login ) ) {
+					//$errors->add( 'username_exists', __( '<strong>ERROR</strong>: This username is already registered. Please choose another one.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: This username is already registered. Please choose another one.";
+					$_SESSION['emsg_array']=$emsg_array;
+				}
+
+				// Check the e-mail address
+				if ( $user_email == '' ) {
+					//$errors->add( 'empty_email', __( '<strong>ERROR</strong>: Please type your e-mail address.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: Please type your e-mail address.";
+					$_SESSION['emsg_array']=$emsg_array;
+					
+				} elseif ( ! is_email( $user_email ) ) {
+					//$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: The email address isn&#8217;t correct.";
+					$_SESSION['emsg_array']=$emsg_array;
+					$user_email = '';
+				} elseif ( email_exists( $user_email ) ) {
+					//$errors->add( 'email_exists', __( '<strong>ERROR</strong>: This email is already registered, please choose another one.' ) );
+					$emsg_array[] = "<strong>ERROR</strong>: This email is already registered, please choose another one.'";
+					$_SESSION['emsg_array']=$emsg_array;
+				}
 				
 				if ( $_POST['password'] !== $_POST['repeat_password'] ) {
 					$emsg_array = $_SESSION['emsg_array'];
@@ -477,12 +512,21 @@ if(!function_exists('wpw_template_include'))
 					$_SESSION['emsg_array']=$emsg_array;
 					//$errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least eight characters long" );
 				}
-
-				if ( !is_wp_error($errors) ) 
+				
+				if(!$_SESSION['emsg_array'])
 				{
+					//$errors = register_new_user($user_login, $user_email);
+					$user_id = wp_create_user( $sanitized_user_login, $password, $user_email );
+				}
+				if ( !$_SESSION['emsg_array'] && $user_id) 
+				{				
+					
 					$_POST['log'] = $user_login;
 					$_POST['pwd'] = $password;
 					$_POST['testcookie'] = 1;
+					
+					update_user_option( $user_id, 'default_password_nag', true, true ); //Set up the Password change nag.
+					wp_new_user_notification( $user_id, $password );
 					
 					$secure_cookie = '';
 					// If the user wants ssl but the session is not ssl, force a secure cookie.
@@ -552,7 +596,6 @@ if(!function_exists('wpw_template_include'))
 				}
 			}
 		}
-		$_SESSION['emsg_array']=$errors;
 		return apply_filters('wpw_add_template_page_filter',$template);
 	}
 }
@@ -570,7 +613,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 		  
 		$redirect_to = site_url().'/wp-signup.php';
 		global $current_user;
-		ob_start();
+		
 		if(!$_GET['mysitedeleting'])
 		{
 			aheadzen_register_site_process_indicator();
@@ -593,7 +636,8 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			if($_SESSION['emsg_array'])
 			{
 				$emsg_array = $_SESSION['emsg_array'];
-				if(isset($emsg_array->errors))
+				$emsg_array1 = $emsg_array;
+				/*if(isset($emsg_array->errors))
 				{
 					foreach($emsg_array->errors as $key => $val)
 					{
@@ -602,7 +646,10 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				}else{
 					$emsg_array1 = $emsg_array;
 				}
-				echo '<div class="box error-box">'.implode('<br>',$emsg_array1).'</div>';
+				*/
+				if($emsg_array1){
+					echo '<div class="box error-box">'.implode('<br>',$emsg_array1).'</div>';
+				}
 				$_SESSION['emsg_array'] = array();
 			}
 			if($_GET['emsg']=='regnewusr')

@@ -10,5 +10,6 @@
 !*themes/
 !*themes/App_Mojo*/
 !*themes/ahead_bazaar_child/
+themes/ahead_bazaar_child/cache/*
 !*plugins/
 !*plugins/js_wizard_aheadzen/

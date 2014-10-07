@@ -938,7 +938,8 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			}
 			</script>
 			<?php		
-		}else{?>		
+		}else{
+		?>
 		<h2>You are already loged in.</h2>
 		<h3>
 		Please click the link to create new site >>  <a href="<?php echo site_url('wp-signup.php'); ?>"><?php _e('Create New Site','woothemes'); ?></a>
@@ -947,7 +948,12 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 		<h3>
 		Please logout by click >>  
 		<a href="<?php echo wp_logout_url(); ?>"><?php _e('Logout','woothemes'); ?></a>
-		</h3>		
+		</h3>	
+		<?php
+		echo '<script>window.location.href="'.site_url('wp-signup.php');.'";</script>';
+		exit;?>
+	
+				
 			<?php
 		}
 		}

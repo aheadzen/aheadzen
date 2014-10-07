@@ -3,6 +3,9 @@
 !*.js
 !*.css
 !*.png
+!*.gif
+!*.jpg
+!*.svg
 !*.ico
 !*themes/
 !*themes/App_Mojo*/

@@ -2,7 +2,7 @@
 /* CSS Document */
 /*----*****---- << Desktop >> ----*****----*/	
 img{max-width:100%;height:auto;}
-.footer .container {width: auto;}
+.footer .container .container {width: auto;}
 .footer .container input[type="text"],.footer #searchform input[type="text"]{width:80%;}
 @media only screen and (min-width:1020px) and (max-width:1120px) {
 	.container { width:900px; }

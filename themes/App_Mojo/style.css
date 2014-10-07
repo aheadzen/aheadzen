@@ -345,7 +345,7 @@ ul.tabs-vertical-frame li a span  { position:relative\0/; z-index:1\0/; }
 .custom-services { position:relative; padding-left:80px; }
 .custom-services span.icons { width:65px; text-align:center; position:absolute; left:0; font-size:55px;}
 .custom-services span.[class^="icon-"]:before, .custom-services span.[class*=" icon-"]:before {margin-right: .1em !important;margin-left: .1em !important;}
-.custom-services div{line-height: 24px;}
+.custom-services div,.service div,.tabs-vertical-frame-content div,.progress-bar-content div,.contact-info .one-third.column{line-height: 24px;}
 /*----*****---- << Testimonial >> ----*****----*/
 
 .testimonial-wrapper figure.testimonial-thumb, .testimonial-wrapper figure.testimonial-thumb > .item-mask { width:180px; height:206px; }

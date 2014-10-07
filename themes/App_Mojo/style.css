@@ -792,7 +792,8 @@ box-sizing: content-box;
 
 .centeralign span{ margin-left:auto; margin-right:auto;}
 .rightalign span{ margin-left:auto;}
-.feature2img{width:100%;}
+.feature2img{width:100%;margin-bottom: 15px;}
+.custom-services div.feature2desc{text-align:justify;}
 .clearbothdiv{clear:both;width:100%;display:inline-block;margin:10px;}
 .inline_edit_success_msg span{padding: 0 10px!important; height: auto !important; background-color: #f9edbe !important;border-color: #f0c36d!important; border-radius: 2px!important;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)!important;color: #222!important;font-weight: bold!important;text-align: center!important;}
 .inline_edit_success_msg span.errormsg{color:red !important;background-color:#FCC4CC !important; border:solid 1px #F4465E;}

@@ -995,7 +995,7 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title1'));?>
 					<?php }?>
 					<?php if($image1){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image1'));?> class="feature2img" src="<?php echo $image1;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image1')); }?>
-					<div <?php echo aheadzen_inline_edit_code($this->get_field_id('desc1'));?>><?php echo $desc1;?></div>
+					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc1'));?>><?php echo $desc1;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc1'));?>
 				</div>
 			</div>
@@ -1009,7 +1009,7 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title2'));?>
 					<?php }?>
 					<?php if($image2){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image2'));?> class="feature2img" src="<?php echo $image2;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image2')); }?>
-					<div <?php echo aheadzen_inline_edit_code($this->get_field_id('desc2'));?>><?php echo $desc2;?></div>
+					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc2'));?>><?php echo $desc2;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc2'));?>
 				</div>
 			</div>
@@ -1023,7 +1023,7 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title3'));?>
 					<?php }?>
 					<?php if($image3){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image3'));?> class="feature2img" src="<?php echo $image3;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image3')); }?>
-					<div <?php echo aheadzen_inline_edit_code($this->get_field_id('desc3'));?>><?php echo $desc3;?></div>
+					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc3'));?>><?php echo $desc3;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc3'));?>
 				</div>
 			</div>

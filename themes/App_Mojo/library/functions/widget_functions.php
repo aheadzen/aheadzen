@@ -806,8 +806,8 @@ if(!class_exists('aheadzen_features1_widget')){
 	function set_selection_img_align(val,hidden_id)
 	{
 		jQuery('#'+hidden_id).val(val);
-		jQuery('.'+hidden_id).removeClass( "myselected" );
-		jQuery('.'+hidden_id+'.'+val).addClass( "myselected" );		
+		jQuery('.option_'+hidden_id).removeClass( "myselected" );
+		jQuery('.option_'+hidden_id+'.'+val).addClass( "myselected" );		
 	}
 	</script>
 	<input class="widefat" id="<?php  echo $this->get_field_id('mpos'); ?>" name="<?php echo $this->get_field_name('mpos'); ?>" type="hidden" value="<?php echo esc_attr($mpos); ?>" />
@@ -1712,7 +1712,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('round1'); ?>" name="<?php echo $this->get_field_name('round1'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($round_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($round1==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($round1==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>
@@ -1734,7 +1734,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('buttonstyle1'); ?>" name="<?php echo $this->get_field_name('buttonstyle1'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($buttonstyle_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($buttonstyle1==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($buttonstyle1==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>  
@@ -1752,7 +1752,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('round2'); ?>" name="<?php echo $this->get_field_name('round2'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($round_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($round2==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($round2==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>
@@ -1774,7 +1774,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('buttonstyle2'); ?>" name="<?php echo $this->get_field_name('buttonstyle2'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($buttonstyle_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($buttonstyle2==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($buttonstyle2==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>  
@@ -1790,7 +1790,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('round3'); ?>" name="<?php echo $this->get_field_name('round3'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($round_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($round3==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($round3==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>
@@ -1812,7 +1812,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('buttonstyle3'); ?>" name="<?php echo $this->get_field_name('buttonstyle3'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($buttonstyle_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($buttonstyle3==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($buttonstyle3==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>  
@@ -1828,7 +1828,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('round4'); ?>" name="<?php echo $this->get_field_name('round4'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($round_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($round4==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($round4==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>
@@ -1850,7 +1850,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('buttonstyle4'); ?>" name="<?php echo $this->get_field_name('buttonstyle4'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($buttonstyle_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($buttonstyle4==$key){echo 'myselected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($buttonstyle4==$key){echo 'selected';}?>> <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>  

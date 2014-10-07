@@ -1734,7 +1734,7 @@ if(!class_exists('aheadzen_specialoffers_widget')){
     <select class="widefat" id="<?php  echo $this->get_field_id('buttonstyle1'); ?>" name="<?php echo $this->get_field_name('buttonstyle1'); ?>">
     <option value=""><?php _e('Select One','aheadzen');?></option>
 	<?php foreach($buttonstyle_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($buttonstyle1==$key){echo 'selected';}?>> <?php echo $val;?></option>
+    <option value="<?php echo $key;?>" <?php if($buttonstyle1==$key){echo 'selected';}?> > <?php echo $val;?></option>
     <?php }?>
     </select>
    </label></p>  

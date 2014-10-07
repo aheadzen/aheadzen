@@ -799,8 +799,8 @@ if(!class_exists('aheadzen_features1_widget')){
 	<div class="clearboth"></div>
 	<style>
 	.myselected{border:solid 2px red;}
-	.option_leftalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
-	.option_rightalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
+	.option_left {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
+	.option_left {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
 	</style>
 	<script>
 	function set_selection_img_align(val,hidden_id)

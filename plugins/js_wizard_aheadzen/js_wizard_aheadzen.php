@@ -1223,7 +1223,10 @@ function woocommerce_before_my_account_fun_aheadzen()
 	global  $current_user;
 	
 	?>
-	<h2>My Sites <a style="float:right;margin-top: 0;" title="arrow" href="<?php echo $shop_page_url;?>" class="more-button more-button-ltr">Create New Site <span class="icon arrow">&nbsp;</span></a></h2>
+	<style>.woocommerce .myaccount_user{display:none;}</style>
+	<a style="margin-top: 0;" title="arrow" href="<?php echo $shop_page_url;?>" class="more-button more-button-ltr">Create New Site <span class="icon arrow">&nbsp;</span></a>
+	<div style="width:95%;clear:both;padding:10px;"></div>
+	<h2>My Sites</h2>
 	<?php
 	$blogs = get_blogs_of_user($current_user->ID);
 	if ( !empty($blogs) ) { ?>

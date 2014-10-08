@@ -29,7 +29,7 @@ function signup_wizard_init()
 		add_filter('show_admin_bar', '__return_false');
 	}
 	
-	if($_GET['editing'] && !current_user_can('manage_options'))
+	if(isset($_GET['editing']) && !current_user_can('manage_options'))
 	{
 		wp_redirect(site_url());exit;
 	}
@@ -289,7 +289,7 @@ ul.myaccount_sites_listing li:hover .mysite_view,ul.myaccount_sites_listing li:h
 			
 		}
 		
-		if($_GET['my_templateid'])
+		if(isset($_GET['my_templateid']))
 		{
 			$mobile_app_theme = get_post_meta($_GET['my_templateid'],'mobile_app_theme',true);
 			$_SESSION['selected_theme']=$mobile_app_theme;
@@ -347,14 +347,14 @@ if(!function_exists('wpw_template_include'))
 	{
 		global $current_user;
 		
-		if($_POST['mysitedeleting'])
+		if(isset($_POST['mysitedeleting']))
 		{
 			$mysitedeleting = $_POST['mysitedeleting'];
 			include_once(ABSPATH.'wp-admin/includes/ms.php');
 			wpmu_delete_blog( $mysitedeleting, true );
 			wp_redirect(get_permalink( get_option('woocommerce_myaccount_page_id') ));exit;
 		}else
-		if($_POST['ptyp']=='reg_fill_success' && $_SESSION['THEME_ACTIVE_URL'])
+		if(isset($_POST['ptyp']) && $_POST['ptyp']=='reg_fill_success' && $_SESSION['THEME_ACTIVE_URL'])
 		{
 			$theme_activation_url = $_SESSION['THEME_ACTIVE_URL'];			
 			wp_redirect($theme_activation_url);exit;
@@ -414,14 +414,15 @@ if(!function_exists('wpw_template_include'))
 				$slug=trim($selected_theme);
 				$blogprefix = $wpdb->get_blog_prefix(1);
 				
+				
 				$user_role_var = $blogprefix.$current_user->ID.'_user_roles';
 				$admin_role_cap = $wpdb->get_var("select option_value from ".$blogprefix."options where option_name='wp_user_roles'");
 				update_option($user_role_var,$admin_role_cap);
 				global $wpdb,$table_prefix;
 				$capalitity_arr = array();
 				$capalitity_arr = array('administrator'=>1);
-				update_usermeta($current_user->ID, $table_prefix.'capabilities',$capalitity_arr);
-				update_usermeta($current_user->ID,$table_prefix.'user_level','10');
+				update_user_meta($current_user->ID, $table_prefix.'capabilities',$capalitity_arr);
+				update_user_meta($current_user->ID,$table_prefix.'user_level','10');
 				wp_set_auth_cookie( $current_user->ID, false, is_ssl() );
 				wp_set_current_user( $current_user->ID );
 				//if($slug && current_user_can( 'switch_themes' ) )
@@ -439,7 +440,7 @@ if(!function_exists('wpw_template_include'))
 				}
 			}			
 		}else
-		if($_POST['registernewuser'])
+		if(isset($_POST['registernewuser']))
 		{
 			global $current_user,$wpdb;
 			$_SESSION['emsg_array']=array();
@@ -582,8 +583,8 @@ if(!function_exists('wpw_template_include'))
 								{
 									$slug = 'App_Mojo_Apps';
 								}
-								$activeurl = 'http://'.$domain.$path.'/?themeactivated='.base64_encode($slug);
 								
+								$activeurl = 'http://'.$domain.$path.'/?themeactivated='.base64_encode($slug);
 								global $wpdb,$current_user;
 								$current_user = $user;
 								include_once('place_order.php');

@@ -83,6 +83,7 @@ $app_themes_aheadzen_themes = array(
 				'App_Mojo_Celebrity'=>	'Celebrity Theme',
 				'App_Mojo_Jewelary'	=>	'Jewellery Theme',
 				'App_Mojo_Wedding'	=>	'Wedding Theme',
+				'dw-minion-child'	=>	'Simple Blog Theme',
 				);
 
 /************************************

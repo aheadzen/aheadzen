@@ -1222,8 +1222,9 @@ add_action('woocommerce_before_my_account','woocommerce_before_my_account_fun_ah
 function woocommerce_before_my_account_fun_aheadzen()
 {
 	global  $current_user;
-	echo $blog_id = get_current_blog_id();
-	
+	$blog_id = get_current_blog_id();
+	if($blog_id==1)
+	{
 	?>
 	<style>.woocommerce .myaccount_user{display:none;}</style>
 	<a style="margin-top: 0;" title="arrow" href="<?php echo $shop_page_url;?>" class="more-button more-button-ltr">Create New Site <span class="icon arrow">&nbsp;</span></a>
@@ -1254,4 +1255,5 @@ function woocommerce_before_my_account_fun_aheadzen()
 			?>
 			<div style="padding:15px;"></div>
 	<?php }
+	}
 }

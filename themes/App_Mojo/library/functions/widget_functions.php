@@ -799,8 +799,8 @@ if(!class_exists('aheadzen_features1_widget')){
 	<div class="clearboth"></div>
 	<style>
 	.myselected{border:solid 2px red;}
-	.option_left.leftalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
-	.option_right.rightalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
+	.left.leftalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
+	.right.rightalign {display: inline-block;height: 35px;width: 35px;text-align: center;background-position: center bottom;background-repeat: no-repeat;}
 	</style>
 	<script>
 	function set_selection_img_align(val,hidden_id)
@@ -813,7 +813,7 @@ if(!class_exists('aheadzen_features1_widget')){
 	<input class="widefat" id="<?php  echo $this->get_field_id('mpos'); ?>" name="<?php echo $this->get_field_name('mpos'); ?>" type="hidden" value="<?php echo esc_attr($mpos); ?>" />
 	
 	<?php foreach($mpos_arr as $key=>$val){?>
-    <label onclick="set_selection_img_align('<?php echo $key;?>','<?php echo $this->get_field_id('mpos'); ?>')" class="<?php echo $this->get_field_id('mpos'); ?> <?php echo 'option_'.$key;?> <?php echo $key.'align';?> <?php if($mpos==$key){echo 'myselected';}?>" style="background-image: url('<?php echo $val;?>');">
+    <label onclick="set_selection_img_align('<?php echo $key;?>','<?php echo $this->get_field_id('mpos'); ?>')" class="<?php echo 'option_'.$this->get_field_id('mpos'); ?> <?php echo $key;?> <?php echo $key.'align';?> <?php if($mpos==$key){echo 'myselected';}?>" style="background-image: url('<?php echo $val;?>');">
 	</label>
 	<?php }?>
    </p>

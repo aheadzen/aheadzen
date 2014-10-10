@@ -1222,6 +1222,7 @@ add_action('woocommerce_before_my_account','woocommerce_before_my_account_fun_ah
 function woocommerce_before_my_account_fun_aheadzen()
 {
 	global  $current_user;
+	echo $blog_id = get_current_blog_id();
 	
 	?>
 	<style>.woocommerce .myaccount_user{display:none;}</style>

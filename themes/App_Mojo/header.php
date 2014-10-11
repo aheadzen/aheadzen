@@ -25,15 +25,20 @@
 $aheadzen_pattern = get_option('aheadzen_pattern');
 $aheadzen_skin = get_option('aheadzen_skin');
 $aheadzen_layout = get_option('aheadzen_layout');
+$aheadzen_bg_color = get_option('aheadzen_bg_color');
 ?>
 <?php if($aheadzen_skin){?>
 <link id="skin-css" media="all" type="text/css" href="<?php echo get_template_directory_uri();?>/skins/<?php echo $aheadzen_skin;?>/style.css" rel="stylesheet">
 <?php }else{?>
 <link id="skin-css" href="<?php echo get_template_directory_uri();?>/skins/skyblue/style.css" rel="stylesheet" media="all" />   
 <?php }?>
-<?php if($aheadzen_layout=='boxed' && $aheadzen_pattern){?>
+<?php if($aheadzen_layout=='boxed' && ($aheadzen_pattern || $aheadzen_bg_color)){?>
 <style type="text/css">
+<?php if($aheadzen_bg_color){?>
+body{background-color:<?php echo $aheadzen_bg_color;?>;}
+<?php }elseif($aheadzen_pattern){?>
 body{background-image: url("<?php echo get_template_directory_uri();?>/images/patterns/<?php echo $aheadzen_pattern;?>.jpg");}
+<?php }?>
 </style>
 <?php }?>
 	<link href="<?php echo get_template_directory_uri();?>/css/responsive.css" rel="stylesheet" type="text/css" />    
@@ -158,7 +163,22 @@ var ajax_url = '<?php echo site_url(); ?>';
 	});
 	</script>
 	<?php }?>
-
+<style>
+<?php $heading_font = get_option('aheadzen_heading_font');
+if($heading_font){ 
+ $heading_font = explode(':dw:', $heading_font );
+?>
+<style type="text/css" media="screen">
+@font-face {
+  font-family: "<?php echo $heading_font[0]; ?>";
+  src: url('<?php echo $heading_font[1] ?>');
+} 
+h1,h2,h3,h4,h5,h6,blockquote p {
+  font-family: "<?php echo $heading_font[0]; ?>";
+}
+</style>
+ <?php }?>   
+<?php echo get_option('aheadzen_header_code');?>
 </head>
 <body <?php body_class(); ?>>
 	<div class="wrapper">

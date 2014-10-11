@@ -42,7 +42,9 @@ class Layout_Picker_Custom_control extends WP_Customize_Control {
     ?>
     <td>
       <label>
-        <img src="<?php echo get_template_directory_uri(); ?>/inc/img/layout-<?php echo esc_attr( $value ); ?>.png" alt="<?php echo esc_attr( $value ); ?>" /><br />
+	  <img src="http://ecx.images-amazon.com/images/I/51CLPe6mN6L._SL110_.jpg" width="110" alt="Return to product information" height="62" border="0">
+        <?php /*?><img src="<?php echo get_template_directory_uri(); ?>/inc/img/layout-<?php echo esc_attr( $value ); ?>.png" alt="<?php echo esc_attr( $value ); ?>" /><br />
+		<?php */?>
         <input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
       </label>
     </td>
@@ -79,6 +81,92 @@ class Color_Picker_Custom_control extends WP_Customize_Control {
   }
 }
 
+class Aheadzen_Layout_Picker_Custom_control extends WP_Customize_Control {
+
+  public function render_content() {
+
+  if ( empty( $this->choices ) ) return;
+
+  $name = $this->id;
+
+  ?>
+  <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+  <table style="margin-top: 10px; text-align: center; width: 100%;">
+    <tr>
+    <?php foreach ( $this->choices as $value => $label ) : ?>
+    <?php 
+      $checked = '';
+      if($value == 'fullwidth') $checked = 'checked';
+    ?>
+    <td>
+      <label>
+		<img src="<?php echo get_template_directory_uri(); ?>/inc/images/<?php echo esc_attr( $value ); ?>.jpg" alt="<?php echo esc_attr( $value ); ?>" /><br />
+		<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
+      </label>
+    </td>
+    <?php endforeach; ?>
+    </tr>
+  </table>
+    <?php
+  }
+}
+
+class Aheadzen_Paten_Picker_Custom_control extends WP_Customize_Control {
+
+  public function render_content() {
+
+  if ( empty( $this->choices ) ) return;
+
+  $name = $this->id;
+
+  ?>
+  <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+  <ul style="margin-top: 10px; text-align: center; width: 100%;">
+    <?php foreach ( $this->choices as $label => $value ) : ?>
+    <?php 
+      $checked = '';
+      if($value == 'pattern1') $checked = 'checked';
+    ?>
+    <li style="display:inline-block;">
+      <label>
+		<img style="width:30px; height:30px;" src="<?php echo get_template_directory_uri(); ?>/inc/images/patterns/<?php echo esc_attr( $value ); ?>.jpg" alt="<?php echo esc_attr( $value ); ?>" /><br />
+		<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
+      </label>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php
+  }
+}
+
+class Aheadzen_Color_Picker_Custom_control extends WP_Customize_Control {
+
+  public function render_content() {
+
+  if ( empty( $this->choices ) ) return;
+
+  $name = $this->id;
+
+  ?>
+  <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+  <ul style="margin-top: 10px; text-align: center; width: 100%;">
+    <?php foreach ( $this->choices as $label => $value ) : ?>
+    <?php 
+      $checked = '';
+      if($value == 'blue') $checked = 'checked';
+    ?>
+    <li style="display:inline-block;">
+      <label>
+		<img style="width:30px; height:30px;" src="<?php echo get_template_directory_uri(); ?>/inc/images/style-picker/<?php echo esc_attr( $value ); ?>.jpg" alt="<?php echo esc_attr( $value ); ?>" /><br />
+		<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
+      </label>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php
+  }
+}
+
 function dw_minion_customize_register( $wp_customize ) {
 
   // GENERAL SETTINGS --------------------------------------------------------------------------------------
@@ -87,51 +175,48 @@ function dw_minion_customize_register( $wp_customize ) {
     'priority' => 9,
   ));
   
-  $wp_customize->add_setting('aheadzen_layout', array(
-    'default'        => 'no',
-    'capability'     => 'edit_theme_options',
-    'type'           => 'option',
-  ));
-  $wp_customize->add_control( 'aheadzen_layout', array(
-    'settings' => 'aheadzen_layout',
-    'label'   => 'Disable related articles?',
+  
+	$wp_customize->add_setting('aheadzen_layout', array(
+		'capability'     => 'edit_theme_options',
+		'type'           => 'option',
+	));
+	$wp_customize->add_control( new Aheadzen_Layout_Picker_Custom_control($wp_customize, 'aheadzen_layout', array(
+    'label' => __('Choose your layout', 'dw-minion'),
     'section' => 'dw_minion_general',
-    'type'    => 'select',
+    'settings' => 'aheadzen_layout',
     'choices'    => array(
       'fullwidth' => 'Full Width',
       'boxed' => 'Boxed',
     ),
-  ));
-  
-  
-  $wp_customize->add_setting('aheadzen_pattern', array(
-    'capability' => 'edit_theme_options',
-    'type' => 'option'
-  ));
-
-  $wp_customize->add_control( new Layout_Picker_Custom_control($wp_customize, 'layout', array(
-    'label' => __('Align Left/Center', 'dw-minion'),
-    'section' => 'dw_minion_layout',
-    'settings' => 'dw_minion_theme_options[layout]',
-    'choices' => array('left', 'center')
   )));
   
-  $wp_customize->add_setting('aheadzen_pattern', array(
-    'default'        => 'no',
-    'capability'     => 'edit_theme_options',
-    'type'           => 'option',
-  ));
-  $wp_customize->add_control( 'aheadzen_pattern', array(
-    'settings' => 'aheadzen_pattern',
-    'label'   => 'Patterns for Boxed Layout',
-    'section' => 'dw_minion_general',
-    'type'    => 'select',
-    'choices'    => array(
-      'yes' => 'Yes',
-      'no' => 'No',
-    ),
-  ));
-
+  $aheadzen_layout = get_option('aheadzen_layout');
+  if($aheadzen_layout=='boxed'){
+	  $wp_customize->add_setting('aheadzen_pattern', array(
+			'capability'     => 'edit_theme_options',
+			'type'           => 'option',
+		));
+		$wp_customize->add_control( new Aheadzen_Paten_Picker_Custom_control($wp_customize, 'aheadzen_pattern', array(
+		'label' => __('Patterns for Boxed Layout', 'dw-minion'),
+		'section' => 'dw_minion_general',
+		'settings' => 'aheadzen_pattern',
+		'choices'    => array('pattern1','pattern2','pattern3','pattern4','pattern5','pattern6','pattern7','pattern8','pattern9','pattern10','pattern11','pattern12','pattern13','pattern14','pattern15'),
+	  )));
+	  
+	 
+	 $wp_customize->add_setting('aheadzen_bg_color', array(
+		'default'        => '',
+		'capability'     => 'edit_theme_options',
+		'type'           => 'option',
+	  ));
+	  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'bg_color', array(
+		'label'        => __( 'Background Color for Boxed Layout', 'dw-minion' ),
+		'section'    => 'dw_minion_general',
+		'settings'   => 'aheadzen_bg_color',
+	  )));
+  }
+?>
+  <?php /*?>
   // SITE LAYOUT --------------------------------------------------------------------------------------
   $wp_customize->add_section('dw_minion_layout', array(
     'title'    => __('Site Alignment', 'dw-minion'),
@@ -306,22 +391,25 @@ function dw_minion_customize_register( $wp_customize ) {
     'section'    => 'dw_minion_leftbar',
     'settings'   => 'dw_minion_theme_options[leftbar_bordercolor]',
   )));
+<?php */?>
 
+<?php
   // STYLE SELECTOR --------------------------------------------------------------------------------------
-  $wp_customize->add_section('dw_minion_primary_color', array(
+  $wp_customize->add_section('aheadzen_skin', array(
     'title'    => __('Style Selector', 'dw-minion'),
-    'priority' => 110,
+    'priority' => 10,
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[select-color]', array(
+  $wp_customize->add_setting('aheadzen_skin', array(
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( new Color_Picker_Custom_control($wp_customize, 'select-color', array(
+  $wp_customize->add_control( new Aheadzen_Color_Picker_Custom_control($wp_customize, 'select-color', array(
     'label' => __('Color Schemes', 'dw-minion'),
-    'section' => 'dw_minion_primary_color',
-    'settings' => 'dw_minion_theme_options[select-color]',
-    'choices' => array('#7cc576', '#38B7EA', '#fc615d', '#B39964', '#e07798')
+    'section' => 'aheadzen_skin',
+    'settings' => 'aheadzen_skin',
+    'choices' => array('blue', 'chocolate', 'coral', 'cyan', 'eggplant', 'electricblue', 'ferngreen', 'gold', 'green', 'grey', 'khaki', 'ocean', 'orange', 'palebrown', 'pink', 'purple', 'raspberry', 'red', 'skyblue', 'slateblue')
   )));
+  /*
   $wp_customize->add_setting('dw_minion_theme_options[custom-color]', array(
     'default'        => '',
     'capability'     => 'edit_theme_options',
@@ -332,9 +420,16 @@ function dw_minion_customize_register( $wp_customize ) {
     'section'    => 'dw_minion_primary_color',
     'settings'   => 'dw_minion_theme_options[custom-color]',
   )));
-
+*/
+if( ! function_exists('dw_get_gfonts') ) {
+function dw_get_gfonts(){
+$fontsSeraliazed = wp_remote_fopen( get_template_directory_uri() . '/inc/font/gfonts_v2.txt' );
+$fontArray = unserialize( $fontsSeraliazed );
+return $fontArray->items;
+}
+}
   // FONT SELECTOR --------------------------------------------------------------------------------------
-//  $fonts = dw_get_gfonts();
+  $fonts = dw_get_gfonts();
   $newarray = array();
   $newarray[] = '';
   if($fonts){
@@ -348,13 +443,13 @@ function dw_minion_customize_register( $wp_customize ) {
     'title'    => __('Font Selector', 'dw-minion'),
     'priority' => 111,
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[heading_font]', array(
+  $wp_customize->add_setting('aheadzen_heading_font', array(
     'default'        => 'Roboto Slab:dw:http://themes.googleusercontent.com/static/fonts/robotoslab/v2/3__ulTNA7unv0UtplybPiqCWcynf_cDxXwCLxiixG1c.ttf',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( 'heading_font', array(
-    'settings' => 'dw_minion_theme_options[heading_font]',
+  $wp_customize->add_control( 'aheadzen_heading_font', array(
+    'settings' => 'aheadzen_heading_font',
     'label'   => __('Select headding font', 'dw-minion'),
     'section' => 'dw_minion_typo',
     'type'    => 'select',
@@ -372,41 +467,32 @@ function dw_minion_customize_register( $wp_customize ) {
     'type'    => 'select',
     'choices'    => $newarray
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[article_font_size]', array(
-    'capability'     => 'edit_theme_options',
-    'type'           => 'option',
-    'default'        => '15'
-  ));
-  $wp_customize->add_control('article_font_size', array(
-    'label'      => __('Article font size (px)', 'dw-minion'),
-    'section'    => 'dw_minion_typo',
-    'settings'   => 'dw_minion_theme_options[article_font_size]'
-  ));
+
 
   // CUSTOM CODE --------------------------------------------------------------------------------------
   $wp_customize->add_section('dw_minion_custom_code', array(
     'title'    => __('Custom Code', 'dw-minion'),
     'priority' => 200,
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[header_code]', array(
+  $wp_customize->add_setting('aheadzen_header_code', array(
       'default' => '',
       'capability' => 'edit_theme_options',
       'type' => 'option',
   ));
-  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'header_code', array(
+  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'aheadzen_header_code', array(
     'label'    => __('Header Code (Meta tags, CSS, etc ...)', 'dw-minion'),
     'section'  => 'dw_minion_custom_code',
-    'settings' => 'dw_minion_theme_options[header_code]',
+    'settings' => 'aheadzen_header_code',
   )));
-  $wp_customize->add_setting('dw_minion_theme_options[footer_code]', array(
+  $wp_customize->add_setting('aheadzen_footer_code', array(
     'default' => '',
     'capability' => 'edit_theme_options',
     'type' => 'option',
   ));
-  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'footer_code', array(
+  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'aheadzen_footer_code', array(
     'label'    => __('Footer Code (Analytics, etc ...)', 'dw-minion'),
     'section'  => 'dw_minion_custom_code',
-    'settings' => 'dw_minion_theme_options[footer_code]'
+    'settings' => 'aheadzen_footer_code'
   )));
 }
 add_action( 'customize_register', 'dw_minion_customize_register' );

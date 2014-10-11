@@ -28,5 +28,6 @@
 	
 <?php wp_footer(); ?>
 <?php do_action('aheadzen_footer_script');?>
+<?php echo get_option('aheadzen_footer_code');?>
 </body>
 </html>

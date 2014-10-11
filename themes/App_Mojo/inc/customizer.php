@@ -83,32 +83,47 @@ function dw_minion_customize_register( $wp_customize ) {
 
   // GENERAL SETTINGS --------------------------------------------------------------------------------------
   $wp_customize->add_section('dw_minion_general', array(
-    'title'    => __('General Settings', 'dw-minion'),
+    'title'    => __('Layout Settings', 'dw-minion'),
     'priority' => 9,
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[disable_related_article]', array(
+  
+  $wp_customize->add_setting('aheadzen_layout', array(
     'default'        => 'no',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( 'disable_related_article', array(
-    'settings' => 'dw_minion_theme_options[disable_related_article]',
+  $wp_customize->add_control( 'aheadzen_layout', array(
+    'settings' => 'aheadzen_layout',
     'label'   => 'Disable related articles?',
     'section' => 'dw_minion_general',
     'type'    => 'select',
     'choices'    => array(
-      'yes' => 'Yes',
-      'no' => 'No',
+      'fullwidth' => 'Full Width',
+      'boxed' => 'Boxed',
     ),
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[remove_leftbar]', array(
+  
+  
+  $wp_customize->add_setting('aheadzen_pattern', array(
+    'capability' => 'edit_theme_options',
+    'type' => 'option'
+  ));
+
+  $wp_customize->add_control( new Layout_Picker_Custom_control($wp_customize, 'layout', array(
+    'label' => __('Align Left/Center', 'dw-minion'),
+    'section' => 'dw_minion_layout',
+    'settings' => 'dw_minion_theme_options[layout]',
+    'choices' => array('left', 'center')
+  )));
+  
+  $wp_customize->add_setting('aheadzen_pattern', array(
     'default'        => 'no',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( 'remove_leftbar', array(
-    'settings' => 'dw_minion_theme_options[remove_leftbar]',
-    'label'   => 'Remove the left bar?',
+  $wp_customize->add_control( 'aheadzen_pattern', array(
+    'settings' => 'aheadzen_pattern',
+    'label'   => 'Patterns for Boxed Layout',
     'section' => 'dw_minion_general',
     'type'    => 'select',
     'choices'    => array(

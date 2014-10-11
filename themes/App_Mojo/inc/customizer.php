@@ -1,109 +1,397 @@
 <?php
-/**
- * Twenty Fourteen Theme Customizer support
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
- */
+include_once ABSPATH . 'wp-includes/class-wp-customize-control.php';
 
-/**
- * Implement Theme Customizer additions and adjustments.
- *
- * @since Twenty Fourteen 1.0
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- */
-function twentyfourteen_customize_register( $wp_customize ) {
-	// Add custom description to Colors and Background sections.
-	$wp_customize->get_section( 'colors' )->description           = __( 'Background may only be visible on wide screens.', 'twentyfourteen' );
-	$wp_customize->get_section( 'background_image' )->description = __( 'Background may only be visible on wide screens.', 'twentyfourteen' );
+class DW_Minion_Textarea_Custom_Control extends WP_Customize_Control {
 
-	// Add postMessage support for site title and description.
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+  public $type = 'textarea';
+  public $statuses;
+  public function __construct( $manager, $id, $args = array() ) {
 
-	// Rename the label to "Site Title Color" because this only affects the site title in this theme.
-	$wp_customize->get_control( 'header_textcolor' )->label = __( 'Site Title Color', 'twentyfourteen' );
+  $this->statuses = array( '' => __( 'Default', 'dw-minion' ) );
+    parent::__construct( $manager, $id, $args );
+  }
 
-	// Rename the label to "Display Site Title & Tagline" in order to make this option extra clear.
-	$wp_customize->get_control( 'display_header_text' )->label = __( 'Display Site Title &amp; Tagline', 'twentyfourteen' );
-
-	// Add the featured content section in case it's not already there.
-	$wp_customize->add_section( 'featured_content', array(
-		'title'       => __( 'Featured Content', 'twentyfourteen' ),
-		'description' => sprintf( __( 'Use a <a href="%1$s">tag</a> to feature your posts. If no posts match the tag, <a href="%2$s">sticky posts</a> will be displayed instead.', 'twentyfourteen' ),
-			esc_url( add_query_arg( 'tag', _x( 'featured', 'featured content default tag slug', 'twentyfourteen' ), admin_url( 'edit.php' ) ) ),
-			admin_url( 'edit.php?show_sticky=1' )
-		),
-		'priority'    => 130,
-	) );
-
-	// Add the featured content layout setting and control.
-	$wp_customize->add_setting( 'featured_content_layout', array(
-		'default'           => 'grid',
-		'sanitize_callback' => 'twentyfourteen_sanitize_layout',
-	) );
-
-	$wp_customize->add_control( 'featured_content_layout', array(
-		'label'   => __( 'Layout', 'twentyfourteen' ),
-		'section' => 'featured_content',
-		'type'    => 'select',
-		'choices' => array(
-			'grid'   => __( 'Grid',   'twentyfourteen' ),
-			'slider' => __( 'Slider', 'twentyfourteen' ),
-		),
-	) );
-}
-add_action( 'customize_register', 'twentyfourteen_customize_register' );
-
-/**
- * Sanitize the Featured Content layout value.
- *
- * @since Twenty Fourteen 1.0
- *
- * @param string $layout Layout type.
- * @return string Filtered layout type (grid|slider).
- */
-function twentyfourteen_sanitize_layout( $layout ) {
-	if ( ! in_array( $layout, array( 'grid', 'slider' ) ) ) {
-		$layout = 'grid';
-	}
-
-	return $layout;
+  public function render_content() {
+    ?>
+    <label>
+      <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+      <textarea class="large-text" cols="20" rows="5" <?php $this->link(); ?>>
+        <?php echo esc_textarea( $this->value() ); ?>
+      </textarea>
+    </label>
+    <?php
+  }
 }
 
-/**
- * Bind JS handlers to make Theme Customizer preview reload changes asynchronously.
- *
- * @since Twenty Fourteen 1.0
- */
-function twentyfourteen_customize_preview_js() {
-	wp_enqueue_script( 'twentyfourteen_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20131205', true );
-}
-add_action( 'customize_preview_init', 'twentyfourteen_customize_preview_js' );
+class Layout_Picker_Custom_control extends WP_Customize_Control {
 
-/**
- * Add contextual help to the Themes and Post edit screens.
- *
- * @since Twenty Fourteen 1.0
- */
-function twentyfourteen_contextual_help() {
-	if ( 'admin_head-edit.php' === current_filter() && 'post' !== $GLOBALS['typenow'] ) {
-		return;
-	}
+  public function render_content() {
 
-	get_current_screen()->add_help_tab( array(
-		'id'      => 'twentyfourteen',
-		'title'   => __( 'Twenty Fourteen', 'twentyfourteen' ),
-		'content' =>
-			'<ul>' .
-				'<li>' . sprintf( __( 'The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by a <a href="%1$s">tag</a>; you can change the tag and layout in <a href="%2$s">Appearance &rarr; Customize</a>. If no posts match the tag, <a href="%3$s">sticky posts</a> will be displayed instead.', 'twentyfourteen' ), esc_url( add_query_arg( 'tag', _x( 'featured', 'featured content default tag slug', 'twentyfourteen' ), admin_url( 'edit.php' ) ) ), admin_url( 'customize.php' ), admin_url( 'edit.php?show_sticky=1' ) ) . '</li>' .
-				'<li>' . sprintf( __( 'Enhance your site design by using <a href="%s">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Twenty Fourteen uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page.', 'twentyfourteen' ), 'http://codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail' ) . '</li>' .
-				'<li>' . sprintf( __( 'For an in-depth tutorial, and more tips and tricks, visit the <a href="%s">Twenty Fourteen documentation</a>.', 'twentyfourteen' ), 'http://codex.wordpress.org/Twenty_Fourteen' ) . '</li>' .
-			'</ul>',
-	) );
+  if ( empty( $this->choices ) ) return;
+
+  $name = '_customize-radio-' . $this->id;
+
+  ?>
+  <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+  <table style="margin-top: 10px; text-align: center; width: 100%;">
+    <tr>
+    <?php foreach ( $this->choices as $value => $label ) : ?>
+    <?php 
+      $checked = '';
+      if($value == 0) $checked = 'checked';
+    ?>
+    <td>
+      <label>
+        <img src="<?php echo get_template_directory_uri(); ?>/inc/img/layout-<?php echo esc_attr( $value ); ?>.png" alt="<?php echo esc_attr( $value ); ?>" /><br />
+        <input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
+      </label>
+    </td>
+    <?php endforeach; ?>
+    </tr>
+  </table>
+    <?php
+  }
 }
-add_action( 'admin_head-themes.php', 'twentyfourteen_contextual_help' );
-add_action( 'admin_head-edit.php',   'twentyfourteen_contextual_help' );
+
+class Color_Picker_Custom_control extends WP_Customize_Control {
+
+  public function render_content() {
+
+    if ( empty( $this->choices ) ) return;
+    $name = '_customize-radio-' . $this->id; ?>
+    <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+    <table style="margin-top: 10px; text-align: center; width: 100%;">
+      <tr>
+        <?php foreach ( $this->choices as $value => $label ) {
+                $checked = '';
+                if($value == 0) $checked = 'checked'; ?>
+                <td>
+                  <label>
+                    <div style="width: 30px; height: 30px; margin: 0 auto; background: <?php echo esc_attr( $label )?> "></div><br />
+                    <?php if($value == 0) $label = '' ?>
+                    <input type="radio" value="<?php echo esc_attr( $label ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); echo $checked ?> />
+                  </label>
+                </td>
+          <?php } ?>
+      </tr>
+    </table><?php
+
+  }
+}
+
+function dw_minion_customize_register( $wp_customize ) {
+
+  // GENERAL SETTINGS --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_general', array(
+    'title'    => __('General Settings', 'dw-minion'),
+    'priority' => 9,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[disable_related_article]', array(
+    'default'        => 'no',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( 'disable_related_article', array(
+    'settings' => 'dw_minion_theme_options[disable_related_article]',
+    'label'   => 'Disable related articles?',
+    'section' => 'dw_minion_general',
+    'type'    => 'select',
+    'choices'    => array(
+      'yes' => 'Yes',
+      'no' => 'No',
+    ),
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[remove_leftbar]', array(
+    'default'        => 'no',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( 'remove_leftbar', array(
+    'settings' => 'dw_minion_theme_options[remove_leftbar]',
+    'label'   => 'Remove the left bar?',
+    'section' => 'dw_minion_general',
+    'type'    => 'select',
+    'choices'    => array(
+      'yes' => 'Yes',
+      'no' => 'No',
+    ),
+  ));
+
+  // SITE LAYOUT --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_layout', array(
+    'title'    => __('Site Alignment', 'dw-minion'),
+    'priority' => 10,
+  ));
+
+  $wp_customize->add_setting('dw_minion_theme_options[layout]', array(
+    'capability' => 'edit_theme_options',
+    'type' => 'option'
+  ));
+
+  $wp_customize->add_control( new Layout_Picker_Custom_control($wp_customize, 'layout', array(
+    'label' => __('Align Left/Center', 'dw-minion'),
+    'section' => 'dw_minion_layout',
+    'settings' => 'dw_minion_theme_options[layout]',
+    'choices' => array('left', 'center')
+  )));
+
+  // SITE INFO & FAVICON --------------------------------------------------------------------------------------
+  $wp_customize->add_setting('dw_minion_theme_options[about]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'about', array(
+    'label'      => __('About', 'dw-minion'),
+    'section'    => 'title_tagline',
+    'settings'   => 'dw_minion_theme_options[about]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[logo]', array(
+    'capability' => 'edit_theme_options',
+    'type' => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'logo', array(
+    'label' => __('Site Logo', 'dw-minion'),
+    'section' => 'title_tagline',
+    'settings' => 'dw_minion_theme_options[logo]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[header_display]', array(
+    'default'        => 'site_title',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( 'header_display', array(
+    'settings' => 'dw_minion_theme_options[header_display]',
+    'label'   => 'Display as',
+    'section' => 'title_tagline',
+    'type'    => 'select',
+    'choices'    => array(
+      'site_title' => 'Site Title',
+      'site_logo' => 'Site Logo',
+    ),
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[favicon]', array(
+    'capability' => 'edit_theme_options',
+    'type' => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'favicon', array(
+    'label' => __('Site Favicon', 'dw-minion'),
+    'section' => 'title_tagline',
+    'settings' => 'dw_minion_theme_options[favicon]',
+  )));
+
+  // SOCIAL LINKS --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_social_links', array(
+    'title'    => __('Social Links', 'dw-minion'),
+    'priority' => 108,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[facebook]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control('facebook', array(
+    'label'      => __('Facebook', 'dw-minion'),
+    'section'    => 'dw_minion_social_links',
+    'settings'   => 'dw_minion_theme_options[facebook]',
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[twitter]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control('twitter', array(
+    'label'      => __('Twitter', 'dw-minion'),
+    'section'    => 'dw_minion_social_links',
+    'settings'   => 'dw_minion_theme_options[twitter]',
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[google_plus]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control('google_plus', array(
+    'label'      => __('Google+', 'dw-minion'),
+    'section'    => 'dw_minion_social_links',
+    'settings'   => 'dw_minion_theme_options[google_plus]',
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[youtube]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control('youtube', array(
+    'label'      => __('YouTube', 'dw-minion'),
+    'section'    => 'dw_minion_social_links',
+    'settings'   => 'dw_minion_theme_options[youtube]',
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[linkedin]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control('linkedin', array(
+    'label'      => __('LinkedIn', 'dw-minion'),
+    'section'    => 'dw_minion_social_links',
+    'settings'   => 'dw_minion_theme_options[linkedin]',
+  ));
+
+  // LEFT SIDEBAR COLOR --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_leftbar', array(
+    'title'    => __('Left Sidebar Color', 'dw-minion'),
+    'priority' => 109,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[leftbar_bgcolor]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '#222222'
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'leftbar_bgcolor', array(
+    'label'        => __( 'Background Color', 'dw-minion' ),
+    'section'    => 'dw_minion_leftbar',
+    'settings'   => 'dw_minion_theme_options[leftbar_bgcolor]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[leftbar_bghovercolor]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '#111111'
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'leftbar_bghovercolor', array(
+    'label'        => __( 'Background Hover Color', 'dw-minion' ),
+    'section'    => 'dw_minion_leftbar',
+    'settings'   => 'dw_minion_theme_options[leftbar_bghovercolor]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[leftbar_color]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '#444444'
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'leftbar_color', array(
+    'label'        => __( 'Text Color', 'dw-minion' ),
+    'section'    => 'dw_minion_leftbar',
+    'settings'   => 'dw_minion_theme_options[leftbar_color]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[leftbar_hovercolor]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '#ffffff'
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'leftbar_hovercolor', array(
+    'label'        => __( 'Text Hover Color', 'dw-minion' ),
+    'section'    => 'dw_minion_leftbar',
+    'settings'   => 'dw_minion_theme_options[leftbar_hovercolor]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[leftbar_bordercolor]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '#333333'
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'leftbar_bordercolor', array(
+    'label'        => __( 'Border Color', 'dw-minion' ),
+    'section'    => 'dw_minion_leftbar',
+    'settings'   => 'dw_minion_theme_options[leftbar_bordercolor]',
+  )));
+
+  // STYLE SELECTOR --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_primary_color', array(
+    'title'    => __('Style Selector', 'dw-minion'),
+    'priority' => 110,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[select-color]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new Color_Picker_Custom_control($wp_customize, 'select-color', array(
+    'label' => __('Color Schemes', 'dw-minion'),
+    'section' => 'dw_minion_primary_color',
+    'settings' => 'dw_minion_theme_options[select-color]',
+    'choices' => array('#7cc576', '#38B7EA', '#fc615d', '#B39964', '#e07798')
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[custom-color]', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
+    'label'        => __( 'Custom Color', 'dw-minion' ),
+    'section'    => 'dw_minion_primary_color',
+    'settings'   => 'dw_minion_theme_options[custom-color]',
+  )));
+
+  // FONT SELECTOR --------------------------------------------------------------------------------------
+//  $fonts = dw_get_gfonts();
+  $newarray = array();
+  $newarray[] = '';
+  if($fonts){
+	  foreach ($fonts as $index => $font) {
+		foreach ($font->files as $key => $value) {
+		  $newarray[$font->family . ':dw:' . $value ] = $font->family . ' - ' . $key;
+		}
+	  }
+  }
+  $wp_customize->add_section('dw_minion_typo', array(
+    'title'    => __('Font Selector', 'dw-minion'),
+    'priority' => 111,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[heading_font]', array(
+    'default'        => 'Roboto Slab:dw:http://themes.googleusercontent.com/static/fonts/robotoslab/v2/3__ulTNA7unv0UtplybPiqCWcynf_cDxXwCLxiixG1c.ttf',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( 'heading_font', array(
+    'settings' => 'dw_minion_theme_options[heading_font]',
+    'label'   => __('Select headding font', 'dw-minion'),
+    'section' => 'dw_minion_typo',
+    'type'    => 'select',
+    'choices'    => $newarray
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[body_font]', array(
+    'default'        => 'Roboto:dw:http://themes.googleusercontent.com/static/fonts/roboto/v9/W5F8_SL0XFawnjxHGsZjJA.ttf',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( 'body_font', array(
+    'settings' => 'dw_minion_theme_options[body_font]',
+    'label'   => __('Select body font', 'dw-minion'),
+    'section' => 'dw_minion_typo',
+    'type'    => 'select',
+    'choices'    => $newarray
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[article_font_size]', array(
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+    'default'        => '15'
+  ));
+  $wp_customize->add_control('article_font_size', array(
+    'label'      => __('Article font size (px)', 'dw-minion'),
+    'section'    => 'dw_minion_typo',
+    'settings'   => 'dw_minion_theme_options[article_font_size]'
+  ));
+
+  // CUSTOM CODE --------------------------------------------------------------------------------------
+  $wp_customize->add_section('dw_minion_custom_code', array(
+    'title'    => __('Custom Code', 'dw-minion'),
+    'priority' => 200,
+  ));
+  $wp_customize->add_setting('dw_minion_theme_options[header_code]', array(
+      'default' => '',
+      'capability' => 'edit_theme_options',
+      'type' => 'option',
+  ));
+  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'header_code', array(
+    'label'    => __('Header Code (Meta tags, CSS, etc ...)', 'dw-minion'),
+    'section'  => 'dw_minion_custom_code',
+    'settings' => 'dw_minion_theme_options[header_code]',
+  )));
+  $wp_customize->add_setting('dw_minion_theme_options[footer_code]', array(
+    'default' => '',
+    'capability' => 'edit_theme_options',
+    'type' => 'option',
+  ));
+  $wp_customize->add_control( new DW_Minion_Textarea_Custom_Control($wp_customize, 'footer_code', array(
+    'label'    => __('Footer Code (Analytics, etc ...)', 'dw-minion'),
+    'section'  => 'dw_minion_custom_code',
+    'settings' => 'dw_minion_theme_options[footer_code]'
+  )));
+}
+add_action( 'customize_register', 'dw_minion_customize_register' );

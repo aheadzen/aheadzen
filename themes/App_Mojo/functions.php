@@ -80,10 +80,9 @@ function edit_body_plugin_css()
 	<?php
 	}
 
-/*Add Theme Customizer functionality -- for wp-admin customization*/
-require get_template_directory() . '/inc/template-tags.php';
-require get_template_directory() . '/inc/customizer.php';
 }
+
+require get_template_directory() . '/inc/customizer.php';
 
 
 /*

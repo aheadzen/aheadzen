@@ -321,9 +321,9 @@ if(!function_exists('signup_finished_funcode_js'))
 		$encoded_slug = urlencode( $slug );
 		//$activeurl = str_replace('&amp;','&',(wp_nonce_url( 'http://'.$domain.$path. 'wp-admin/themes.php?action=activate&stylesheet='.$encoded_slug , 'switch-theme_' . $slug )));
 		
-		//$activeurl = 'http://'.$domain.$path.'/?themeactivated='.base64_encode($slug);
 		$activeurl = 'http://'.$domain.$path.'/?themeactivated='.base64_encode($slug).'&template='.$_SESSION['my_templateid'];
 		$_SESSION['THEME_ACTIVE_URL']=$activeurl;
+		include_once('place_order.php');
 		?>
 		<h1>Your site Created successfully. <br><br>Please fill your contact details.</h1>
 		<br>
@@ -404,7 +404,9 @@ if(!function_exists('wpw_template_include'))
 		{
 			$selected_theme = base64_decode($_GET['themeactivated']);
 			//$_SESSION['my_templateid']=$_GET['template'];
+			$template = $_GET['template'];
 			$_SESSION['selected_theme']=$selected_theme;
+			$_SESSION['my_templateid']=$template;
 			
 			if($selected_theme)
 			{
@@ -665,6 +667,14 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			</style>
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
+			
+			<p class="form-row">
+			<label for="user_email">
+			<input type="checkbox" name="already_loged_in" value="1" >
+			<?php _e('Already a member? Please login in...') ?>
+			</label>
+			</p>
+			
 			<p class="form-row form-row-first">
 			<label for="user_email"><?php _e('E-mail') ?><br />
 			<input type="text" name="user_email" id="user_email" class="input-text" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" />
@@ -678,6 +688,16 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			<input type="text" name="user_login" id="user_login" class="input-text" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" /></label>
 			</p>	
 			<?php */?>
+			
+			<p class="form-row form-row-last">
+			<label for="sitename">
+			<?php _e('Sitename') ?><br />
+			<input style="width: 50%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
+			.<?php echo $_SERVER['HTTP_HOST'];?>
+			<span></span>
+			</label>
+			</p>
+			
 			<p class="form-row form-row-last">
 			<label for="sitename"><?php _e('Sitename') ?><br />
 			<input style="width: 50%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
@@ -712,6 +732,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			<p class="cart" style="text-align:right;"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
 			<span></span>
 			</p>
+			
 			</form>
 			<script>			
 			jQuery(function(){
@@ -944,7 +965,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 		?>
 		<h2>You are already loged in.</h2>
 		<h3>
-		Please click the link to create new site >>  <a href="<?php echo site_url('wp-signup.php'); ?>"><?php _e('Create New Site','woothemes'); ?></a>
+		Please click the link to create new site >>  <a href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>"><?php _e('Create New Site','woothemes'); ?></a>
 		</h3>
 
 		<h3>
@@ -952,7 +973,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 		<a href="<?php echo wp_logout_url(); ?>"><?php _e('Logout','woothemes'); ?></a>
 		</h3>	
 		<?php
-		echo '<script>window.location.href="'.site_url('wp-signup.php').'";</script>';
+		echo '<script>window.location.href="'.site_url('wp-signup.php').'/?new='.$_GET['sitename'].'";</script>';
 		exit;?>
 	
 				
@@ -1227,7 +1248,7 @@ function woocommerce_before_my_account_fun_aheadzen()
 	{
 	?>
 	<style>.woocommerce .myaccount_user{display:none;}</style>
-	<a style="margin-top: 0;" title="arrow" href="<?php echo $shop_page_url;?>" class="more-button more-button-ltr">Create New Site <span class="icon arrow">&nbsp;</span></a>
+	<a style="margin-top: 0;" title="arrow" href="<?php echo get_permalink( woocommerce_get_page_id( 'shop' ) ); ?>" class="more-button more-button-ltr">Create New Site <span class="icon arrow">&nbsp;</span></a>
 	<div style="width:95%;clear:both;padding:10px;"></div>
 	<h2>My Sites</h2>
 	<?php

@@ -21,6 +21,7 @@ $order_data = array(
 
 // create order
 $order_id = wp_insert_post( $order_data, true );
+
 if ( is_wp_error( $order_id ) ) {
 
     $order->errors = $order_id;
@@ -30,8 +31,8 @@ if ( is_wp_error( $order_id ) ) {
     $order->imported = true;
 	
 	// add a bunch of meta data
-    add_post_meta($order_id, 'transaction_id', 0, true); 
-    add_post_meta($order_id, '_payment_method_title', 'Import', true);
+   // add_post_meta($order_id, 'transaction_id', 0, true); 
+    add_post_meta($order_id, '_payment_method_title', 'Site Creation', true);
     add_post_meta($order_id, '_order_total', 0, true);
     add_post_meta($order_id, '_customer_user', $uid, true);
     add_post_meta($order_id, '_completed_date', date('Y-m-d H:i:s e'), true);
@@ -67,9 +68,9 @@ if ( is_wp_error( $order_id ) ) {
             // add item meta data
             wc_add_order_item_meta( $item_id, '_qty', 1 ); 
             //wc_add_order_item_meta( $item_id, '_tax_class', $product->get_tax_class() );
-			wc_add_order_item_meta( $item_id, '_tax_class', '' );
+			//wc_add_order_item_meta( $item_id, '_tax_class', '' );
             wc_add_order_item_meta( $item_id, '_product_id', $_SESSION['my_templateid'] );
-            wc_add_order_item_meta( $item_id, '_variation_id', '' );
+           // wc_add_order_item_meta( $item_id, '_variation_id', '' );
             wc_add_order_item_meta( $item_id, '_line_subtotal', wc_format_decimal( 0 ) );
             wc_add_order_item_meta( $item_id, '_line_total', wc_format_decimal( 0 ) );
             wc_add_order_item_meta( $item_id, '_line_tax', wc_format_decimal( 0 ) );
@@ -79,6 +80,11 @@ if ( is_wp_error( $order_id ) ) {
 
         // set order status as completed
         wp_set_object_terms( $order_id, 'completed', 'shop_order_status' );
+		
+		$order = new WC_Order($order_id);
+		$order->update_status('completed', 'order_note'); // order note is optional, if you want to  add a note to order
+		
+		wc_delete_shop_order_transients( $order_id );
 
     } else {
 

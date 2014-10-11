@@ -237,7 +237,7 @@ function dw_minion_customize_register( $wp_customize ) {
 <?php */?>
 <?php
   // SITE INFO & FAVICON --------------------------------------------------------------------------------------
-  $wp_customize->add_setting('dw_minion_theme_options[about]', array(
+/*  $wp_customize->add_setting('dw_minion_theme_options[about]', array(
     'default'        => '',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
@@ -247,7 +247,7 @@ function dw_minion_customize_register( $wp_customize ) {
     'section'    => 'title_tagline',
     'settings'   => 'dw_minion_theme_options[about]',
   )));
-  /*
+  
   $wp_customize->add_setting('dw_minion_theme_options[logo]', array(
     'capability' => 'edit_theme_options',
     'type' => 'option',

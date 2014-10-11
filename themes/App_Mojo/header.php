@@ -12,6 +12,19 @@
     <![endif]-->
 	<?php //do_action('aheadzen_seo_title');?>
 	<title><?php wp_title( '|', true, 'right' ); ?><?php echo get_bloginfo('name')?></title>
+	<?php
+	$site_description = get_bloginfo( 'description', 'display' );
+	if($site_description)
+	{
+	echo '<meta name="description" content="'.$site_description.'" />';
+	}
+	?>
+	<?php 
+	$favicon = get_option('aheadzen_favicon');
+	if($favicon){
+		echo '<link rel="shortcut icon" type="image/png" href="'.$favicon.'" />';
+	}?>
+	
 	<!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

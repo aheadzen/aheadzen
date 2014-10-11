@@ -234,7 +234,8 @@ function dw_minion_customize_register( $wp_customize ) {
     'settings' => 'dw_minion_theme_options[layout]',
     'choices' => array('left', 'center')
   )));
-
+<?php */?>
+<?php
   // SITE INFO & FAVICON --------------------------------------------------------------------------------------
   $wp_customize->add_setting('dw_minion_theme_options[about]', array(
     'default'        => '',
@@ -246,6 +247,7 @@ function dw_minion_customize_register( $wp_customize ) {
     'section'    => 'title_tagline',
     'settings'   => 'dw_minion_theme_options[about]',
   )));
+  /*
   $wp_customize->add_setting('dw_minion_theme_options[logo]', array(
     'capability' => 'edit_theme_options',
     'type' => 'option',
@@ -255,6 +257,7 @@ function dw_minion_customize_register( $wp_customize ) {
     'section' => 'title_tagline',
     'settings' => 'dw_minion_theme_options[logo]',
   )));
+ 
   $wp_customize->add_setting('dw_minion_theme_options[header_display]', array(
     'default'        => 'site_title',
     'capability'     => 'edit_theme_options',
@@ -270,16 +273,18 @@ function dw_minion_customize_register( $wp_customize ) {
       'site_logo' => 'Site Logo',
     ),
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[favicon]', array(
+   */
+  $wp_customize->add_setting('aheadzen_favicon', array(
     'capability' => 'edit_theme_options',
     'type' => 'option',
   ));
-  $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'favicon', array(
+  $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'aheadzen_favicon', array(
     'label' => __('Site Favicon', 'dw-minion'),
     'section' => 'title_tagline',
-    'settings' => 'dw_minion_theme_options[favicon]',
+    'settings' => 'aheadzen_favicon',
   )));
-
+  ?>
+<?php /*?>
   // SOCIAL LINKS --------------------------------------------------------------------------------------
   $wp_customize->add_section('dw_minion_social_links', array(
     'title'    => __('Social Links', 'dw-minion'),

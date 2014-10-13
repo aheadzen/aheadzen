@@ -107,6 +107,11 @@ var ajax_url = '<?php echo site_url(); ?>';
 	
 	if($_GET['editing']==1){
 		//wp_enqueue_script('jquery');
+		?>
+		<script>
+		var theme_custom_change_url = '<?php echo admin_url().'customize.php?url='.urlencode(site_url('/'));?>';
+		</script>
+		<?php
 		wp_enqueue_script('jquery-cookie', get_template_directory_uri().'/js/jquery.cookie.js');
 		wp_enqueue_script('jquery-controlpanel', get_template_directory_uri().'/js/controlpanel.js');
 		wp_enqueue_media();

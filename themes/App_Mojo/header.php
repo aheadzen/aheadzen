@@ -183,7 +183,7 @@ var ajax_url = '<?php echo site_url(); ?>';
 	<?php }?>
 <style>
 <?php $heading_font = get_option('aheadzen_heading_font');
-if($heading_font){ 
+if($heading_font){
  $heading_font = explode(':dw:', $heading_font );
 ?>
 <style type="text/css" media="screen">
@@ -194,9 +194,9 @@ if($heading_font){
 h1,h2,h3,h4,h5,h6,blockquote p {
   font-family: "<?php echo $heading_font[0]; ?>";
 }
-</style>
  <?php }?>   
-<?php echo get_option('aheadzen_header_code');?>
+</style>
+ <?php echo get_option('aheadzen_header_code');?>
 </head>
 <body <?php body_class(); ?>>
 	<div class="wrapper">

@@ -71,6 +71,7 @@ function edit_body_plugin_css()
 	{
 	?>
 	<style>
+	<?php if(get_option('aheadzen_layout')=='fullwidth'){echo '.style-picker-ico {left: 0;}';}?>
 	body {margin: 0 auto;width: 90%;}
 	#header {margin-top: 15px !important;}
 	#header {position: relative !important; z-index: 0!important;}

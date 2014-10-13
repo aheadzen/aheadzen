@@ -71,7 +71,7 @@ function edit_body_plugin_css()
 	{
 	?>
 	<style>
-	body {margin: 0 auto;width: 95%;}
+	body {margin: 0 auto;width: 90%;}
 	#header {margin-top: 15px !important;}
 	#header {position: relative !important; z-index: 0!important;}
 	#home{margin-top: 20px;}

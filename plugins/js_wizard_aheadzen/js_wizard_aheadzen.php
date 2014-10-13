@@ -668,13 +668,6 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
 			
-			<p class="form-row">
-			<label for="user_email">
-			<input type="checkbox" name="already_loged_in" value="1" >
-			<?php _e('Already a member? Please login in...') ?>
-			</label>
-			</p>
-			
 			<p class="form-row form-row-first">
 			<label for="user_email"><?php _e('E-mail') ?><br />
 			<input type="text" name="user_email" id="user_email" class="input-text" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" />

@@ -847,3 +847,9 @@ p.bjqs-caption{background: rgba(255,255,255,0.5);}
 .edit_image{right:50px;}
 .style-picker-ico {left: 2px !important;}
 .featured2_imgdiv{position:relative;}
+
+
+#registerform .input-text{width:70%;}
+@media only screen (max-width: 797px) {
+	#registerform .input-text{width:95%;}
+}

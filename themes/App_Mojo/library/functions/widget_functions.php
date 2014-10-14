@@ -607,15 +607,16 @@ if(!class_exists('aheadzen_features1_widget')){
             <div class="margin15"></div>
 			<?php aheadzen_inline_head_tinymce($this->get_field_id('title'));?>
             <?php }?>		
-		
-			<?php if($mpos=='left'){
-			?>
+			<?php if($mpos=='left'){?>
 			<?php if($mimg){?>
 			<div class="one-half column">
                     <img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg'));?> src="<?php echo $mimg;?>" alt="" title="" class="aligncenter rollImage animate" data-animation="fadeInLeft" />
                 </div>
-				<?php 
-				aheadzen_inline_image($this->get_field_id('mimg'));
+				<?php
+				if($mimg){
+					$attachment_id = aheadzen_get_attachment_id($mimg);
+				}
+				aheadzen_inline_image($this->get_field_id('mimg'),$attachment_id);
 				}?>
                 <div class="one-half column last">
 					<?php if($title1 || $desc1){?>
@@ -721,8 +722,11 @@ if(!class_exists('aheadzen_features1_widget')){
 				<div class="one-half column last">
                     <img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg'));?> src="<?php echo $mimg;?>" alt="" title="" class="aligncenter rollImage animate" data-animation="fadeInLeft" />
                 </div>
-				<?php 
-				aheadzen_inline_image($this->get_field_id('mimg'));
+				<?php
+				if($mimg){
+					$attachment_id = aheadzen_get_attachment_id($mimg);
+				}
+				aheadzen_inline_image($this->get_field_id('mimg'),$attachment_id);
 				}?>
 			<?php			
 			}?>
@@ -885,10 +889,9 @@ if(!class_exists('aheadzen_features1_widget')){
 	<br><small><?php _e('keep blank to hide the complete section.','aheadzen');?></small>
 	</p>
     
-	  <p><label for="<?php  echo $this->get_field_id('titlesize4'); ?>"><?php _e('Select Title Size','aheadzen');?>: 
-    </label>
-	
-	</p>
+	 <?php
+	aheadzen_title_font_size_dl_fun($this->get_field_id('titlesize4'),$this->get_field_name('titlesize4'),$titlesize4);
+	?>
    
     <p><label for="<?php  echo $this->get_field_id('desc4'); ?>"><?php _e('Description','aheadzen');?>:
     <textarea class="widefat" id="<?php  echo $this->get_field_id('desc4'); ?>" name="<?php echo $this->get_field_name('desc4'); ?>"><?php echo esc_attr($desc4); ?></textarea> 

@@ -361,6 +361,9 @@ function aheadzen_wp_head_tinymce_function()
 				jQuery('#'+id ).attr('src',attachment.url);
 				jQuery( ".inline_edit_success_msg" ).html( '<span>Loading....</span>' );
 				
+				//var img_edit_del='<div class="delete_image"><a href="#">delete</a></div><div class="edit_image"><a href="">edit</a></div>';
+				//jQuery('#'+id ).append(img_edit_del);
+				
 				var ajax_url = '<?php echo site_url(); ?>';
 				var field_userid = id;
 				var data = {
@@ -377,7 +380,8 @@ function aheadzen_wp_head_tinymce_function()
 						if(iseditpost=='editpost')
 						{
 							jQuery('#'+field_userid+' img').attr('src',attachment.url);
-						}						
+						}
+						
 						jQuery( ".inline_edit_success_msg" ).html( '<span>Updated Successfully</span>' );
 						setTimeout(function(){jQuery( ".inline_edit_success_msg" ).empty()}, 2000);
 					}else{
@@ -651,11 +655,20 @@ function aheadzen_inline_tinymce($id)
 	}
 }
 
-function aheadzen_inline_image($id)
+function aheadzen_inline_image($id,$attid='')
 {
 	if($_GET['editing']==1){
 ?>
-<script>widget_image_button_inline('<?php echo $id;?>');</script>
+<script>
+var img_edit_del2='';
+<?php 
+if($attid){
+$edit_val =  '<div class="edit_image"><a target="_blank" href="'.admin_url().'/post.php?post='.$attid.'&action=edit&image-editor">edit</a></div>';
+}?>
+var img_edit_del='<div class="delete_image"><a href="#">delete</a></div><?php echo $edit_val;?>';
+jQuery( img_edit_del ).insertAfter( '#<?php echo $id;?>' );
+widget_image_button_inline('<?php echo $id;?>');
+</script>
 <?php
 	}
 }
@@ -719,4 +732,38 @@ foreach($wp_registered_widgets as $key=>$val)
 </div>
 <?php
 	}
+}
+
+
+function aheadzen_wp_get_image_editor( $path, $args = array() ) {
+  $args['path'] = $path;
+
+  if ( ! isset( $args['mime_type'] ) ) {
+    $file_info = wp_check_filetype( $args['path'] );
+
+    // If $file_info['type'] is false, then we let the editor attempt to
+    // figure out the file type, rather than forcing a failure based on extension.
+    if ( isset( $file_info ) && $file_info['type'] )
+      $args['mime_type'] = $file_info['type'];
+  }
+
+  $implementation = _wp_image_editor_choose( $args );
+
+  if ( $implementation ) {
+    $editor = new $implementation( $path );
+    $loaded = $editor->load();
+
+    if ( is_wp_error( $loaded ) )
+      return $loaded;
+
+    return $editor;
+  }
+
+  return new WP_Error( 'image_no_editor', __('No editor could be selected.') );
+}
+
+function aheadzen_get_attachment_id($src)
+{
+	global $wpdb;
+	return $wpdb->get_var("select ID from $wpdb->posts where guid=\"$src\" and post_type='attachment'");
 }

@@ -71,7 +71,9 @@ function edit_body_plugin_css()
 	{
 	?>
 	<style>
-	<?php if(get_option('aheadzen_layout')=='fullwidth'){echo '.style-picker-ico {left: 0 !important;}';}?>
+	.edit_image,.delete_image{left: auto;position: absolute;right: 5px;top:5px;}
+	.edit_image{right:50px;}
+	.style-picker-ico {left: 2px !important;}
 	body {margin: 0 auto;width: 90%;}
 	#header {margin-top: 15px !important;}
 	#header {position: relative !important; z-index: 0!important;}

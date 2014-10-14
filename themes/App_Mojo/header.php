@@ -181,7 +181,6 @@ var ajax_url = '<?php echo site_url(); ?>';
 	});
 	</script>
 	<?php }?>
-<style>
 <?php $heading_font = get_option('aheadzen_heading_font');
 if($heading_font){
  $heading_font = explode(':dw:', $heading_font );

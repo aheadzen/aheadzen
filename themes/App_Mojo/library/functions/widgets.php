@@ -158,6 +158,15 @@ function aheadzen_title_image_select_dl_fun($varid,$varname,$mimg='',$title='')
 	<?php if(!$_GET['editing']==1){?>
 	.widget_image_button {margin-left:5px;padding:0 !important;}
 	<?php }?>
+	<?php
+	if(filter_var($mimg, FILTER_VALIDATE_URL)){ 
+	  // you're good
+	}else{
+		$attachment_id = $mimg;
+		$mimg_arr = wp_get_attachment_image_src( $mimg,'large');
+		if($mimg_arr){$mimg = $mimg_arr[0];}
+	}
+	?>
 	</style>
 	<p><label for="<?php  echo $varid; ?>"><?php echo $title;?>: </p>
 	<div class="clearboth"></div>
@@ -361,18 +370,17 @@ function aheadzen_wp_head_tinymce_function()
 				jQuery('#'+id ).attr('src',attachment.url);
 				jQuery( ".inline_edit_success_msg" ).html( '<span>Loading....</span>' );
 				
-				//var img_edit_del='<div class="delete_image"><a href="#">delete</a></div><div class="edit_image"><a href="">edit</a></div>';
-				//jQuery('#'+id ).append(img_edit_del);
-				
 				var ajax_url = '<?php echo site_url(); ?>';
 				var field_userid = id;
 				var data = {
 					'action': 'inline-save-widget',
-					'val': attachment.url,
-					'attid': attachment.id,
+					//'val': attachment.url,
+					//'attid': attachment.id,
+					'val': attachment.id,
 					'widget-id': mywidget_id,
 					'field': field_userid
-				};				
+				};
+					
 				jQuery.post(ajax_url, data, function(response) {
 					if(response=='saved_success')
 					{						
@@ -395,11 +403,37 @@ function aheadzen_wp_head_tinymce_function()
 			myuploader.open();
 		});
 	}
-
+	
+	function widget_image_delete_inline(id)
+	{
+		var mywidget_id = jQuery("#"+id).closest('.aheadzensite').attr('id');
+		
+		var ajax_url = '<?php echo site_url(); ?>';
+		var field_userid = id;
+		var data = {
+			'action': 'inline-save-widget',
+			'val': '',
+			'widget-id': mywidget_id,
+			'field': field_userid
+		};
+			
+		jQuery.post(ajax_url, data, function(response) {
+			if(response=='saved_success')
+			{						
+				jQuery('#'+field_userid).attr('src','');
+				
+				jQuery( ".inline_edit_success_msg" ).html( '<span>Updated Successfully</span>' );
+				setTimeout(function(){jQuery( ".inline_edit_success_msg" ).empty()}, 2000);
+			}else{
+				jQuery( ".inline_edit_success_msg" ).html( '<span class="errormsg">Something wrong, try again...</span>' );
+				setTimeout(function(){jQuery( ".inline_edit_success_msg" ).empty()}, 2000);
+			}
+		});
+	
+	}
+	
+	
 	jQuery(document).bind('edit_started', function(ev) { 
-		
-		//tinymce.init({selector: "textarea"});
-		
 		
 		var el = jQuery(ev.target);
 		var current_widget_id = jQuery(el).attr("data-widget_id");
@@ -665,7 +699,7 @@ var img_edit_del2='';
 if($attid){
 $edit_val =  '<div class="edit_image"><a target="_blank" href="'.admin_url().'/post.php?post='.$attid.'&action=edit&image-editor">edit</a></div>';
 }?>
-var img_edit_del='<div class="delete_image"><a href="#">delete</a></div><?php echo $edit_val;?>';
+var img_edit_del='<div class="delete_image"><a href="javascript:void(0);" onclick="widget_image_delete_inline(\'<?php echo $id;?>\')">delete</a></div><?php echo $edit_val;?>';
 jQuery( img_edit_del ).insertAfter( '#<?php echo $id;?>' );
 widget_image_button_inline('<?php echo $id;?>');
 </script>
@@ -766,4 +800,16 @@ function aheadzen_get_attachment_id($src)
 {
 	global $wpdb;
 	return $wpdb->get_var("select ID from $wpdb->posts where guid=\"$src\" and post_type='attachment'");
+}
+
+function aheadzen_get_image_name_attchment_id($mimg)
+{
+	if(filter_var($mimg, FILTER_VALIDATE_URL)){ 
+	  // you're good
+	}else{
+		$attachment_id = $mimg;
+		$mimg_arr = wp_get_attachment_image_src( $mimg,'large');
+		if($mimg_arr){$mimg = $mimg_arr[0];}
+	}
+	return array($mimg,$attachment_id);
 }

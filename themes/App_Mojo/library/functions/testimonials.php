@@ -120,6 +120,11 @@ if(!class_exists('aheadzen_testimonial_widget')){
 			{				
 				$before_widget = str_replace('content-main','content-main-none',$before_widget);
 			}
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+			}
 			echo $before_widget;
 			?>
             <?php if($title){?>
@@ -210,28 +215,13 @@ if(!class_exists('aheadzen_testimonial_widget')){
 	</label></p>    
 	
 	
-	<p><label for="<?php  echo $this->get_field_id('align'); ?>"><?php _e('Select Title Alignment','aheadzen');?>: 
-   </label>
-   <div style="width:100%;"></div>
-
-	<input class="widefat" id="<?php  echo $this->get_field_id('align'); ?>" name="<?php echo $this->get_field_name('align'); ?>" type="hidden" value="<?php echo esc_attr($align); ?>" />
-	
-	<?php foreach($title_text_align_arr as $key=>$val){?>
-    <label onclick="set_selection('<?php echo $key;?>','<?php echo $this->get_field_id('align'); ?>')" class="<?php echo $this->get_field_id('align'); ?> <?php echo $key;?> <?php if($align==$key){echo 'myselected';}?>" style="background-image: url('<?php echo $val;?>');">
-	</label>
-	<?php }?>
-   </p>
-   
-	<p><label for="<?php  echo $this->get_field_id('titlesize'); ?>"><?php _e('Select Title Size','aheadzen');?>: 
-   </label>
-   <div style="width:100%;"></div>
-	
-	<input class="widefat" id="<?php  echo $this->get_field_id('titlesize'); ?>" name="<?php echo $this->get_field_name('titlesize'); ?>" type="hidden" value="<?php echo esc_attr($titlesize); ?>" />
-	
+	<?php 
+	aheadzen_title_text_align_dl_fun($this->get_field_id('align'),$this->get_field_name('align'),$align);
+	?>	
 	<?php
 	aheadzen_title_font_size_dl_fun($this->get_field_id('titlesize'),$this->get_field_name('titlesize'),$titlesize);
 	?>
-   </p>
+	
    
 	<p><label for="<?php  echo $this->get_field_id('withoutborder'); ?>">
 	<input class="widefat" id="<?php  echo $this->get_field_id('withoutborder'); ?>" name="<?php echo $this->get_field_name('withoutborder'); ?>" type="checkbox" value="1" <?php if($withoutborder){echo 'checked';}?>  />

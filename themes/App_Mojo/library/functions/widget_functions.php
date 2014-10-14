@@ -35,6 +35,12 @@ if(!class_exists('aheadzen_content_title_widget')){
 			$arr_find = array(' ','&','`','~','!','@','#','$','%','^','*','(',')','=','+','<','>','?','\\','|','/','\'','"','{','}','[',']',':',';');
 			$arr_replace = array('','-','','','','','','','','','','','','','','','','','','','','','','','','','','','');
 			$title_id = str_replace($arr_find,$arr_replace,$title);
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+			}
+			
 			if($hide){
 			?>
 			<div id="<?php echo $title_id;?>" style="clear: both;width: 100%;">
@@ -109,18 +115,12 @@ if(!class_exists('aheadzen_purchase_now_widget')){
 			$titlesize = empty($instance['titlesize']) ? '' : $instance['titlesize'];
 			$buttons = empty($instance['buttons']) ? '' : $instance['buttons'];
 			
-			/*
-			$btitle1 = empty($instance['btitle1']) ? '' : $instance['btitle1'];
-			$blink1 = empty($instance['blink1']) ? '#' : $instance['blink1'];
-			$btitle2 = empty($instance['btitle2']) ? '' : $instance['btitle2'];
-			$blink2 = empty($instance['blink2']) ? '#' : $instance['blink2'];
-			$btitle3 = empty($instance['btitle3']) ? '' : $instance['btitle3'];
-			$blink3 = empty($instance['blink3']) ? '#' : $instance['blink3'];
-			$btitle4 = empty($instance['btitle4']) ? '' : $instance['btitle4'];
-			$blink4 = empty($instance['blink4']) ? '#' : $instance['blink4'];
-			$btitle5 = empty($instance['btitle5']) ? '' : $instance['btitle5'];
-			$blink5 = empty($instance['blink5']) ? '#' : $instance['blink5'];
-			*/
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($desc==''){$desc='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($buttons==''){$buttons='<a data-delay="100" data-animation="bounceIn" href="#" >Sample Button </a> <a data-delay="100" data-animation="bounceIn" href="#" >Sample Button </a>';}
+			}
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
 			{				
@@ -145,23 +145,6 @@ if(!class_exists('aheadzen_purchase_now_widget')){
 				<?php echo $buttons;?>
 				</div>
 				<?php aheadzen_inline_tinymce($this->get_field_id('buttons'));?>
-				<?php /*?>
-                <?php if($btitle1){?><a <?php echo aheadzen_inline_edit_code($this->get_field_id('btitle1'));?> href="<?php echo $blink1;?>" class="button small animate1" data-animation="bounceIn" data-delay="100"><?php echo $btitle1;?></a>
-				<?php aheadzen_inline_head_tinymce($this->get_field_id('btitle1'));?>
-				<?php }?>
-				<?php if($btitle2){?><a <?php echo aheadzen_inline_edit_code($this->get_field_id('btitle2'));?> href="<?php echo $blink2;?>" class="button small animate1" data-animation="bounceIn" data-delay="100"><?php echo $btitle2;?></a>
-				<?php aheadzen_inline_head_tinymce($this->get_field_id('btitle2'));?>
-				<?php }?>
-				<?php if($btitle3){?><a <?php echo aheadzen_inline_edit_code($this->get_field_id('btitle3'));?> href="<?php echo $blink3;?>" class="button small animate1" data-animation="bounceIn" data-delay="100"><?php echo $btitle3;?></a>
-				<?php aheadzen_inline_head_tinymce($this->get_field_id('btitle3'));?>
-				<?php }?>
-				<?php if($btitle4){?><a <?php echo aheadzen_inline_edit_code($this->get_field_id('btitle4'));?> href="<?php echo $blink4;?>" class="button small animate1" data-animation="bounceIn" data-delay="100"><?php echo $btitle4;?></a>
-				<?php aheadzen_inline_head_tinymce($this->get_field_id('btitle4'));?>
-				<?php }?>
-				<?php if($btitle5){?><a <?php echo aheadzen_inline_edit_code($this->get_field_id('btitle5'));?> href="<?php echo $blink5;?>" class="button small animate1" data-animation="bounceIn" data-delay="100"><?php echo $btitle5;?></a>
-				<?php aheadzen_inline_head_tinymce($this->get_field_id('btitle5'));?>
-				<?php }?>
-				<?php */?>
 				
             </div>
             </div>
@@ -187,20 +170,6 @@ if(!class_exists('aheadzen_purchase_now_widget')){
 			$desc = ($instance['desc']);
 			$buttons = ($instance['buttons']);
 			
-			/*
-			$btitle1 = ($instance['btitle1']);
-			$blink1 = strip_tags($instance['blink1']);
-			$btitle2 = ($instance['btitle2']);
-			$blink2 = strip_tags($instance['blink2']);
-			$btitle3 = ($instance['btitle3']);
-			$blink3 = strip_tags($instance['blink3']);
-			$btitle4 = ($instance['btitle4']);
-			$blink4 = strip_tags($instance['blink4']);
-			$btitle5 = ($instance['btitle5']);
-			$blink5 = strip_tags($instance['blink5']);
-			$withoutborder = ($instance['withoutborder']);
-			*/
-			
 	?>
 	<p><label for="<?php  echo $this->get_field_id('title'); ?>"><?php _e('Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />	
 	</label></p>
@@ -223,47 +192,6 @@ if(!class_exists('aheadzen_purchase_now_widget')){
 	<small><?php _e('eg:<br /> &lt;a data-delay="100" data-animation="bounceIn" href="#" &gt;Your Button Title &lt;/a&gt;','aheadzen');?></small>
 	</label></p>
 	
-	<?php /*?>
-	<div style="margin-bottom:4px;" class="clonedInput1">
-	<h4><?php _e('Button 1 Settings','aheadzen');?>
-	<a class="delrow icon-button btnDel" href="#"> - </a>
-	</h4>
-    <p><label for="<?php  echo $this->get_field_id('btitle1'); ?>"><?php _e('Button Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('btitle1'); ?>" name="<?php echo $this->get_field_name('btitle1'); ?>" type="text" value="<?php echo esc_attr($btitle1); ?>" />	
-	</label></p>
-    
-    <p><label for="<?php  echo $this->get_field_id('blink1'); ?>"><?php _e('Button Title Link','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('blink1'); ?>" name="<?php echo $this->get_field_name('blink1'); ?>" type="text" value="<?php echo esc_attr($blink1); ?>" />	
-	</label></p>
-	</div>	
-	
-	<h4><?php _e('Button 2 Settings','aheadzen');?></h4>
-    <p><label for="<?php  echo $this->get_field_id('btitle2'); ?>"><?php _e('Button Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('btitle2'); ?>" name="<?php echo $this->get_field_name('btitle2'); ?>" type="text" value="<?php echo esc_attr($btitle2); ?>" />	
-	</label></p>
-    
-    <p><label for="<?php  echo $this->get_field_id('blink2'); ?>"><?php _e('Button Title Link','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('blink2'); ?>" name="<?php echo $this->get_field_name('blink2'); ?>" type="text" value="<?php echo esc_attr($blink2); ?>" />	
-	</label></p>
-	
-	<h4><?php _e('Button 3 Settings','aheadzen');?></h4>
-    <p><label for="<?php  echo $this->get_field_id('btitle3'); ?>"><?php _e('Button Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('btitle3'); ?>" name="<?php echo $this->get_field_name('btitle3'); ?>" type="text" value="<?php echo esc_attr($btitle3); ?>" />	
-	</label></p>
-    
-    <p><label for="<?php  echo $this->get_field_id('blink3'); ?>"><?php _e('Button Title Link','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('blink3'); ?>" name="<?php echo $this->get_field_name('blink3'); ?>" type="text" value="<?php echo esc_attr($blink3); ?>" />	
-	</label></p>
-	
-	<h4><?php _e('Button 4 Settings','aheadzen');?></h4>
-    <p><label for="<?php  echo $this->get_field_id('btitle4'); ?>"><?php _e('Button Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('btitle4'); ?>" name="<?php echo $this->get_field_name('btitle4'); ?>" type="text" value="<?php echo esc_attr($btitle4); ?>" />	
-	</label></p>
-    
-    <p><label for="<?php  echo $this->get_field_id('blink4'); ?>"><?php _e('Button Title Link','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('blink4'); ?>" name="<?php echo $this->get_field_name('blink4'); ?>" type="text" value="<?php echo esc_attr($blink4); ?>" />	
-	</label></p>
-	
-	<h4><?php _e('Button 5 Settings','aheadzen');?></h4>
-    <p><label for="<?php  echo $this->get_field_id('btitle5'); ?>"><?php _e('Button Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('btitle5'); ?>" name="<?php echo $this->get_field_name('btitle5'); ?>" type="text" value="<?php echo esc_attr($btitle5); ?>" />	
-	</label></p>
-    
-    <p><label for="<?php  echo $this->get_field_id('blink5'); ?>"><?php _e('Button Title Link','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('blink5'); ?>" name="<?php echo $this->get_field_name('blink5'); ?>" type="text" value="<?php echo esc_attr($blink5); ?>" />	
-	</label></p>
-	<?php */?>
-   
 	<?php
 	}}
 	register_widget('aheadzen_purchase_now_widget');
@@ -307,6 +235,19 @@ if(!class_exists('aheadzen_services_widget')){
 			$title4 = empty($instance['title4']) ? '' : $instance['title4'];
 			$titlesize4 = empty($instance['titlesize4']) ? '' : $instance['titlesize4'];
 			$desc4 = empty($instance['desc4']) ? '' : $instance['desc4'];
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -454,6 +395,20 @@ if(!class_exists('aheadzen_services_widget')){
 			$titlesize4 = ($instance['titlesize4']);
 			$desc4 = ($instance['desc4']);
 			
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
+			
 			$withoutborder = ($instance['withoutborder']);
 
 	?>
@@ -478,14 +433,6 @@ if(!class_exists('aheadzen_services_widget')){
     
 	<?php aheadzen_widget_iconset($this->get_field_id('icon1'),$this->get_field_name('icon1'),$icon1);?>
 	
-	<!--
-	<select class="widefat" id="<?php echo $this->get_field_id('icon1'); ?>" name="<?php echo $this->get_field_name('icon1'); ?>">
-    <option value="select-one"><?php _e('Select One','aheadzen');?></option>
-	<?php foreach($icons_arr as $key=>$val){?>
-    <option value="<?php echo $key;?>" <?php if($icon1==$key){echo 'myselected';}?>> <?php echo $val;?></option>
-    <?php }?>
-    </select>
-	-->
    </label></p>
     
      <p><label for="<?php  echo $this->get_field_id('title1'); ?>"><?php _e('Title','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('title1'); ?>" name="<?php echo $this->get_field_name('title1'); ?>" type="text" value="<?php echo esc_attr($title1); ?>" />	
@@ -595,6 +542,25 @@ if(!class_exists('aheadzen_features1_widget')){
 			$titlesize4 = empty($instance['titlesize4']) ? '' : $instance['titlesize4'];
 			$desc4 = empty($instance['desc4']) ? '' : $instance['desc4'];
 			
+			
+			$mimg_arr = aheadzen_get_image_name_attchment_id($mimg);
+			$mimg=$mimg_arr[0];
+			$attachment_id=$mimg_arr[1];
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($mimg==''){$mimg = get_template_directory_uri().'/images/mobile-two.png';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
+			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
 			{				
@@ -613,7 +579,7 @@ if(!class_exists('aheadzen_features1_widget')){
                     <img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg'));?> src="<?php echo $mimg;?>" alt="" title="" class="aligncenter rollImage animate" data-animation="fadeInLeft" />
                 </div>
 				<?php
-				if($mimg){
+				if($mimg && $attachment_id==''){
 					$attachment_id = aheadzen_get_attachment_id($mimg);
 				}
 				aheadzen_inline_image($this->get_field_id('mimg'),$attachment_id);
@@ -723,7 +689,7 @@ if(!class_exists('aheadzen_features1_widget')){
                     <img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg'));?> src="<?php echo $mimg;?>" alt="" title="" class="aligncenter rollImage animate" data-animation="fadeInLeft" />
                 </div>
 				<?php
-				if($mimg){
+				if($mimg && $attachment_id==''){
 					$attachment_id = aheadzen_get_attachment_id($mimg);
 				}
 				aheadzen_inline_image($this->get_field_id('mimg'),$attachment_id);
@@ -770,6 +736,19 @@ if(!class_exists('aheadzen_features1_widget')){
 			$titlesize4 = ($instance['titlesize4']);
 			$desc4 = ($instance['desc4']);
 			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
+			
 			$withoutborder = ($instance['withoutborder']);
 			
 			$mpos_arr = array(
@@ -793,7 +772,6 @@ if(!class_exists('aheadzen_features1_widget')){
 	<input class="widefat" id="<?php  echo $this->get_field_id('withoutborder'); ?>" name="<?php echo $this->get_field_name('withoutborder'); ?>" type="checkbox" value="1" <?php if($withoutborder){echo 'checked';}?>  />
 	<?php _e('Show Data without borders (simple inner html only)?','aheadzen');?>	
 	</label></p>
-	
 	<?php
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg'),$this->get_field_name('mimg'),$mimg,__('Main Image','aheadzen'));
 	?>	
@@ -929,17 +907,43 @@ if(!class_exists('aheadzen_features2_widget')){
 			$desc1 = empty($instance['desc1']) ? '' : $instance['desc1'];
 			$image1 = empty($instance['image1']) ? '' : $instance['image1'];
 			
+			$attachment_id1=$attachment_id2=$attachment_id3='';
+			
+			$mimg_arr1 = aheadzen_get_image_name_attchment_id($image1);
+			$image1=$mimg_arr1[0];
+			$attachment_id1=$mimg_arr1[1];
+			
 			$icon2 = empty($instance['icon2']) ? 'icon-two' : $instance['icon2'];
 			$title2 = empty($instance['title2']) ? '' : $instance['title2'];
 			$titlesize2 = empty($instance['titlesize2']) ? '' : $instance['titlesize2'];
 			$desc2 = empty($instance['desc2']) ? '' : $instance['desc2'];
 			$image2 = empty($instance['image2']) ? '' : $instance['image2'];
+			$mimg_arr2 = aheadzen_get_image_name_attchment_id($image2);
+			$image2=$mimg_arr2[0];
+			$attachment_id2=$mimg_arr2[1];
 			
 			$icon3 = empty($instance['icon3']) ? 'icon-three' : $instance['icon3'];
 			$title3 = empty($instance['title3']) ? '' : $instance['title3'];
 			$titlesize3 = empty($instance['titlesize3']) ? '' : $instance['titlesize3'];
 			$desc3 = empty($instance['desc3']) ? '' : $instance['desc3'];
 			$image3 = empty($instance['image3']) ? '' : $instance['image3'];
+			$mimg_arr3 = aheadzen_get_image_name_attchment_id($image3);
+			$image3=$mimg_arr3[0];
+			$attachment_id3=$mimg_arr3[1];
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($image1==''){$image1 = get_template_directory_uri().'/images/bar-chart.png';}
+				if($image2==''){$image2 = get_template_directory_uri().'/images/bar-chart.png';}
+				if($image3==''){$image3 = get_template_directory_uri().'/images/bar-chart.png';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -997,7 +1001,9 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php if($title1){?><h3 <?php echo aheadzen_inline_edit_code($this->get_field_id('title1'));?> class="<?php echo $titlesize1;?>"><?php echo $title1;?></h3>
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title1'));?>
 					<?php }?>
-					<?php if($image1){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image1'));?> class="feature2img" src="<?php echo $image1;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image1')); }?>
+					<?php if($image1){?><div class="featured2_imgdiv"><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image1'));?> class="feature2img" src="<?php echo $image1;?>" alt=""></div>
+					<?php aheadzen_inline_image($this->get_field_id('image1'),$attachment_id1); }?>
+					
 					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc1'));?>><?php echo $desc1;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc1'));?>
 				</div>
@@ -1011,7 +1017,8 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php if($title2){?><h3 <?php echo aheadzen_inline_edit_code($this->get_field_id('title2'));?> class="<?php echo $titlesize2;?>"><?php echo $title2;?></h3>
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title2'));?>
 					<?php }?>
-					<?php if($image2){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image2'));?> class="feature2img" src="<?php echo $image2;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image2')); }?>
+					<?php if($image2){?><div class="featured2_imgdiv"><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image2'));?> class="feature2img" src="<?php echo $image2;?>" alt=""></div>
+					<?php aheadzen_inline_image($this->get_field_id('image2'),$attachment_id2); }?>
 					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc2'));?>><?php echo $desc2;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc2'));?>
 				</div>
@@ -1025,7 +1032,8 @@ if(!class_exists('aheadzen_features2_widget')){
 					<?php if($title3){?><h3 <?php echo aheadzen_inline_edit_code($this->get_field_id('title3'));?> class="<?php echo $titlesize3;?>"><?php echo $title3;?></h3>
 					<?php aheadzen_inline_head_tinymce($this->get_field_id('title3'));?>
 					<?php }?>
-					<?php if($image3){?><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image3'));?> class="feature2img" src="<?php echo $image3;?>" alt=""><?php aheadzen_inline_image($this->get_field_id('image3')); }?>
+					<?php if($image3){?><div class="featured2_imgdiv"><img <?php echo aheadzen_inline_edit_code($this->get_field_id('image3'));?> class="feature2img" src="<?php echo $image3;?>" alt=""></div>
+					<?php aheadzen_inline_image($this->get_field_id('image3'),$attachment_id3); }?>
 					<div class="feature2desc" <?php echo aheadzen_inline_edit_code($this->get_field_id('desc3'));?>><?php echo $desc3;?></div>
 					<?php aheadzen_inline_tinymce($this->get_field_id('desc3'));?>
 				</div>
@@ -1070,6 +1078,20 @@ if(!class_exists('aheadzen_features2_widget')){
 			$title4 = ($instance['title4']);
 			$titlesize4 = ($instance['titlesize4']);
 			$desc4 = ($instance['desc4']);
+			
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder  = ($instance['withoutborder']);
 	
@@ -1208,6 +1230,27 @@ if(!class_exists('aheadzen_pricetable_widget')){
 			$buttontitle3 = empty($instance['buttontitle3']) ? 'Learn More' : $instance['buttontitle3'];
 			$buttonlink3 = empty($instance['buttonlink3']) ? '#' : $instance['buttonlink3'];
 			$isactive3 = empty($instance['isactive3']) ? '' : 'active';
+			
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				
+				if($price1==''){$price1='$10';}
+				if($price2==''){$price2='$20';}
+				if($price3==''){$price3='$50';}
+				
+				if($moneyback1==''){$moneyback1='Change Money Back Gaurantee Content';}
+				if($moneyback2==''){$moneyback2='Change Money Back Gaurantee Content';}
+				if($moneyback3==''){$moneyback3='Change Money Back Gaurantee Content';}
+				
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -1540,6 +1583,31 @@ if(!class_exists('aheadzen_specialoffers_widget')){
 			$button4 = empty($instance['button4']) ? 'Select' : $instance['button4'];
 			$buttonstyle4 = empty($instance['buttonstyle4']) ? 'green' : $instance['buttonstyle4'];
 			$buttonlink4 = empty($instance['buttonlink4']) ? '#' : $instance['buttonlink4'];
+			
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				
+				if($per1==''){$per1='11';}
+				if($per2==''){$per2='21';}
+				if($per3==''){$per3='31';}
+				if($per4==''){$per4='41';}
+				
+				if($code1==''){$code1='Code: XF235';}
+				if($code2==''){$code2='Code: XF235';}
+				if($code3==''){$code3='Code: XF235';}
+				if($code4==''){$code4='Code: XF235';}
+				
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -1897,6 +1965,25 @@ if(!class_exists('aheadzen_contactus_widget')){
 			$video = empty($instance['video']) ? '' : $instance['video'];
 			$eml = empty($instance['eml']) ? '' : $instance['eml'];
 			
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($desc==''){$desc='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($location==''){$location='Edit Your Location Here';}
+				if($support1==''){$support1='Edit Your Support Content Here';}
+				if($support2==''){$support2='Edit Your Support Content Here';}
+				if($fb==''){$fb='#';}
+				if($gp==''){$gp='#';}
+				if($tw==''){$tw='#';}
+				if($ln==''){$ln='#';}
+				if($maplink==''){$maplink='#';}
+				if($video==''){$video='#';}
+				if($eml==''){$eml='#';}
+				
+			}
+			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
 			{				
@@ -2103,6 +2190,17 @@ if(!class_exists('aheadzen_social_widget')){
 			$video = empty($instance['video']) ? '' : $instance['video'];
 			$eml = empty($instance['eml']) ? '' : $instance['eml'];
 			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($fb==''){$fb='#';}
+				if($gp==''){$gp='#';}
+				if($tw==''){$tw='#';}
+				if($ln==''){$ln='#';}
+				if($maplink==''){$maplink='#';}
+				if($video==''){$video='#';}
+				if($eml==''){$eml='#';}
+			}
 			?>
 			        <?php echo $before_title.$title.$after_title;?></h4>                    
                   	
@@ -2199,6 +2297,14 @@ if(!class_exists('aheadzen_text_widget')){
 			$titlesize = empty($instance['titlesize']) ? '' : $instance['titlesize'];
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			$addparagraphs = empty($instance['addparagraphs']) ? '' : $instance['addparagraphs'];
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($desc==''){$desc='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+		
+			}
+			
 			if($withoutborder)
 			{				
 				$before_widget = str_replace('content-main','content-main-none',$before_widget);
@@ -2389,6 +2495,13 @@ if(!class_exists('aheadzen_gallery_widget')){
 			$align = empty($instance['align']) ? '' : $instance['align'];
 			$titlesize = empty($instance['titlesize']) ? '' : $instance['titlesize'];
 			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($description==''){$description='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			
+			}
+			
 			echo $before_widget;
 			?>
 			<?php if($title){?>
@@ -2538,6 +2651,34 @@ if(!class_exists('aheadzen_image_slider_widget')){
 			$mimg5 = empty($instance['mimg5']) ? '' : $instance['mimg5'];
 			$wmimg = empty($instance['wmimg']) ? '100%' : $instance['wmimg'];
 			$hmimg = empty($instance['hmimg']) ? 'auto' : $instance['hmimg'];
+			
+			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg1);
+			$mimg1=$mimg_arr1[0];
+			$attachment_id1=$mimg_arr1[1];
+			
+			$mimg_arr2 = aheadzen_get_image_name_attchment_id($mimg2);
+			$mimg2=$mimg_arr2[0];
+			$attachment_id2=$mimg_arr2[1];
+			
+			$mimg_arr3 = aheadzen_get_image_name_attchment_id($mimg3);
+			$mimg3=$mimg_arr3[0];
+			$attachment_id3=$mimg_arr3[1];
+			
+			$mimg_arr4 = aheadzen_get_image_name_attchment_id($mimg4);
+			$mimg4=$mimg_arr4[0];
+			$attachment_id4=$mimg_arr4[1];
+			
+			$mimg_arr5 = aheadzen_get_image_name_attchment_id($mimg5);
+			$mimg5=$mimg_arr5[0];
+			$attachment_id5=$mimg_arr5[1];
+			
+			if($_GET['editing']){
+				if($mimg1==''){$mimg1=get_template_directory_uri().'/images/select_image.png';}
+				if($mimg2==''){$mimg2=get_template_directory_uri().'/images/select_image.png';}
+				if($mimg3==''){$mimg3=get_template_directory_uri().'/images/select_image.png';}
+				if($mimg4==''){$mimg4=get_template_directory_uri().'/images/select_image.png';}
+				if($mimg5==''){$mimg5=get_template_directory_uri().'/images/select_image.png';}
+			}
 			echo $before_widget;		
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
@@ -2557,46 +2698,36 @@ if(!class_exists('aheadzen_image_slider_widget')){
 				  <li><?php if($mimg1){?>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg1;?>" alt="" />
 					<?php
-					}else{ ?>
-					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
-					<?php }
-					aheadzen_inline_image($this->get_field_id('mimg1'));
+					}
+					aheadzen_inline_image($this->get_field_id('mimg1'),$attachment_id1);
 					?>
 					</li>
 					<?php if($mimg2){?>
 					<li>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg2'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg2;?>" alt="" />
-					<?php aheadzen_inline_image($this->get_field_id('mimg2'));?>
+					<?php aheadzen_inline_image($this->get_field_id('mimg2'),$attachment_id2);?>
 					</li>
 					<?php
-					}else if($_GET['editing']){ ?>
-					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
-					<?php }?>
+					}?>
 					<?php if($mimg3){?>
 					<li>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg3'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg3;?>" alt="" />
-					<?php aheadzen_inline_image($this->get_field_id('mimg3'));?>
+					<?php aheadzen_inline_image($this->get_field_id('mimg3'),$attachment_id3);?>
 					</li>
-					<?php }elseif($_GET['editing']){ ?>
-					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
 					<?php }?>					
 					<?php if($mimg4){?>
 					<li><img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg4'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg4;?>" alt="" />
-					<?php aheadzen_inline_image($this->get_field_id('mimg4'));?>
+					<?php aheadzen_inline_image($this->get_field_id('mimg4'),$attachment_id4);?>
 					</li>
 					<?php
-					}elseif($_GET['editing']){ ?>
-					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
-					<?php }?>					
+					}?>					
 					<?php if($mimg5){?>
 					<li>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg5'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg5;?>" alt="" />
-					<?php aheadzen_inline_image($this->get_field_id('mimg5'));?>
+					<?php aheadzen_inline_image($this->get_field_id('mimg5'),$attachment_id5);?>
 					</li>
 					<?php
-					}elseif($_GET['editing']){ ?>
-					<img src="<?php echo get_template_directory_uri();?>/images/select_image.png" alt="" <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> /> 
-					<?php }?>					
+					}?>					
 				</ul>			
 		</div>
 <script class="secret-source">
@@ -2681,6 +2812,20 @@ if(!class_exists('aheadzen_what_provide_widget')){
 			
 			$title4 = empty($instance['title4']) ? '' : $instance['title4'];
 			$desc4 = empty($instance['desc4']) ? '' : $instance['desc4'];
+			
+			if($_GET['editing']==1)
+			{
+				if($title==''){$title='Edit The Title Here';}
+				if($title1==''){$title1='Edit Sub Title Here';}
+				if($title2==''){$title2='Edit Sub Title Here';}
+				if($title3==''){$title3='Edit Sub Title Here';}
+				if($title4==''){$title4='Edit Sub Title Here';}
+				
+				if($desc1==''){$desc1='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc2==''){$desc2='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc3==''){$desc3='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+				if($desc4==''){$desc4='Hello this is sample content for you. Your description for the content are can be editable from here.';}
+			}
 			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)

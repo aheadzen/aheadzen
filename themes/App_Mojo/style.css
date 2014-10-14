@@ -842,3 +842,8 @@ p.bjqs-caption{background: rgba(255,255,255,0.5);}
 
 .content .aheadzensite.aheadzen_image_slider{clear: both;display: inline-block;width: 100%;}
 
+.edit_image,.delete_image{left: auto;position: absolute;right: 5px;top:5px;line-height: 17px !important;}
+.edit_image:hover,.delete_image:hover{background-color:#ccc;}
+.edit_image{right:50px;}
+.style-picker-ico {left: 2px !important;}
+.featured2_imgdiv{position:relative;}

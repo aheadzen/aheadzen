@@ -2978,6 +2978,4 @@ if(!class_exists('aheadzen_what_provide_widget')){
 	}}
 	register_widget('aheadzen_what_provide_widget');
 }
-
-
 ?>

@@ -482,6 +482,8 @@ if(!function_exists('wpw_template_include'))
 					}else{
 						$emsg_array[] = "<strong>ERROR</strong>: Password is wrong, Please enter correct one.";
 						$_SESSION['emsg_array']=$emsg_array;
+						$page = aheadzen_get_registration_form_shortcode_page_detail().'/?my_templateid='.$_GET['my_templateid'].'&sitename='.$_GET['sitename'];
+						wp_redirect($page['url']);exit;
 					}
 				}
 				//$errors = new WP_Error();

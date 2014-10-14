@@ -479,6 +479,9 @@ if(!function_exists('wpw_template_include'))
 						
 						echo '<script>window.location.href="'.site_url('wp-signup.php').'?new='.$_POST['sitename'].'";</script>';
 						exit;
+					}else{
+						$emsg_array[] = "<strong>ERROR</strong>: Password is wrong, Please enter correct one.";
+						$_SESSION['emsg_array']=$emsg_array;
 					}
 				}
 				//$errors = new WP_Error();
@@ -503,22 +506,6 @@ if(!function_exists('wpw_template_include'))
 					$_SESSION['emsg_array']=$emsg_array;
 				}
 
-				// Check the e-mail address
-				if ( $user_email == '' ) {
-					//$errors->add( 'empty_email', __( '<strong>ERROR</strong>: Please type your e-mail address.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: Please type your Email.";
-					$_SESSION['emsg_array']=$emsg_array;
-					
-				} elseif ( ! is_email( $user_email ) ) {
-					//$errors->add( 'invalid_email', __( '<strong>ERROR</strong>: The email address isn&#8217;t correct.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: The email address isn&#8217;t correct.";
-					$_SESSION['emsg_array']=$emsg_array;
-					$user_email = '';
-				} elseif ( email_exists( $user_email ) ) {
-					//$errors->add( 'email_exists', __( '<strong>ERROR</strong>: This email is already registered, please choose another one.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: This email is already registered, please choose another one.'";
-					$_SESSION['emsg_array']=$emsg_array;
-				}
 				
 				if ( strlen( $_POST['password'] ) < 6 ) {
 					$emsg_array = $_SESSION['emsg_array'];

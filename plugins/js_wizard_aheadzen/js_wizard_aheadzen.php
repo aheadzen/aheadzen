@@ -482,8 +482,9 @@ if(!function_exists('wpw_template_include'))
 					}else{
 						$emsg_array[] = "<strong>ERROR</strong>: Password is wrong, Please enter correct one.";
 						$_SESSION['emsg_array']=$emsg_array;
-						$page = aheadzen_get_registration_form_shortcode_page_detail().'/?my_templateid='.$_GET['my_templateid'].'&sitename='.$_GET['sitename'];
-						wp_redirect($page['url']);exit;
+						//$page = aheadzen_get_registration_form_shortcode_page_detail().'/?my_templateid='.$_GET['my_templateid'].'&sitename='.$_GET['sitename'];
+						//print_r($page);exit;
+						//wp_redirect($page['url']);exit;
 					}
 				}
 				//$errors = new WP_Error();
@@ -701,7 +702,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			?>
 			<br class="clear" />
 			<?php /*?><input type="hidden"  name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" /> <?php */?>
-			<p class="cart" style="text-align:right;"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
+			<p class="cart"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
 			<span></span>
 			</p>
 			

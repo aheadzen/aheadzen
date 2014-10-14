@@ -449,6 +449,7 @@ if(!function_exists('wpw_template_include'))
 			$_SESSION['emsg_array']=array();
 			$user_login = '';
 			$user_email = '';
+			
 			if ( !get_option('users_can_register') ) {
 				$frm_detail = aheadzen_get_registration_form_shortcode_page_detail();
 				$contacts_url =  $frm_detail['url'].'/';
@@ -457,6 +458,7 @@ if(!function_exists('wpw_template_include'))
 			}
 			
 			if ( $_POST ) {
+			
 				$user_login = $_POST['user_email'];
 				$user_email = $_POST['user_email'];
 				$password = $_POST['password'];
@@ -464,6 +466,21 @@ if(!function_exists('wpw_template_include'))
 				
 				$repeat_password = $_POST['repeat_password'];
 				
+				if(email_exists( $user_email ))
+				{
+					$user = get_user_by( 'login', $user_email );
+					if ( $user && wp_check_password( $password, $user->data->user_pass, $user->ID) )
+					{
+					   wp_set_auth_cookie( $user->ID, false, is_ssl() );
+						if ( is_user_logged_in() )
+						{
+							$user = wp_get_current_user();
+						}
+						
+						echo '<script>window.location.href="'.site_url('wp-signup.php').'?new='.$_POST['sitename'].'";</script>';
+						exit;
+					}
+				}
 				//$errors = new WP_Error();
 				
 				$sanitized_user_login = sanitize_user($user_login);
@@ -472,24 +489,24 @@ if(!function_exists('wpw_template_include'))
 				// Check the username
 				if ( $sanitized_user_login == '' ) {
 					//$errors->add( 'empty_username', __( '<strong>ERROR</strong>: Please enter a username.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: Please enter a username.";
+					$emsg_array[] = "<strong>ERROR</strong>: Please enter a Email.";
 					$_SESSION['emsg_array']=$emsg_array;
 					
 				} elseif ( ! validate_username( $user_login ) ) {
 					//$errors->add( 'invalid_username', __( '<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.";
+					$emsg_array[] = "<strong>ERROR</strong>: This Email is invalid because it uses illegal characters. Please enter a valid username.";
 					$_SESSION['emsg_array']=$emsg_array;
 					$sanitized_user_login = '';
 				} elseif ( username_exists( $sanitized_user_login ) ) {
 					//$errors->add( 'username_exists', __( '<strong>ERROR</strong>: This username is already registered. Please choose another one.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: This username is already registered. Please choose another one.";
+					$emsg_array[] = "<strong>ERROR</strong>: This Email is already registered. Please choose another one.";
 					$_SESSION['emsg_array']=$emsg_array;
 				}
 
 				// Check the e-mail address
 				if ( $user_email == '' ) {
 					//$errors->add( 'empty_email', __( '<strong>ERROR</strong>: Please type your e-mail address.' ) );
-					$emsg_array[] = "<strong>ERROR</strong>: Please type your e-mail address.";
+					$emsg_array[] = "<strong>ERROR</strong>: Please type your Email.";
 					$_SESSION['emsg_array']=$emsg_array;
 					
 				} elseif ( ! is_email( $user_email ) ) {
@@ -501,13 +518,6 @@ if(!function_exists('wpw_template_include'))
 					//$errors->add( 'email_exists', __( '<strong>ERROR</strong>: This email is already registered, please choose another one.' ) );
 					$emsg_array[] = "<strong>ERROR</strong>: This email is already registered, please choose another one.'";
 					$_SESSION['emsg_array']=$emsg_array;
-				}
-				
-				if ( $_POST['password'] !== $_POST['repeat_password'] ) {
-					$emsg_array = $_SESSION['emsg_array'];
-					$emsg_array[] = "<strong>ERROR</strong>: Passwords must match";
-					$_SESSION['emsg_array']=$emsg_array;
-					//$errors->add( 'passwords_not_matched', "<strong>ERROR</strong>: Passwords must match" );
 				}
 				
 				if ( strlen( $_POST['password'] ) < 6 ) {
@@ -598,6 +608,7 @@ if(!function_exists('wpw_template_include'))
 						}
 					}
 				}
+				
 			}
 		}
 		return apply_filters('wpw_add_template_page_filter',$template);
@@ -668,49 +679,28 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
 			
-			<p class="form-row form-row-first">
-			<label for="user_email"><?php _e('E-mail') ?><br />
+			<p class="form-row">
+			<label for="sitename"><?php _e('Site Address') ?><br />
+			<input style="width: 70%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
+			.<?php echo $_SERVER['HTTP_HOST'];?>
+			<span></span>
+			</label>
+			</p>
+			
+			<p class="form-row">
+			<label for="user_email"><?php _e('Your Email') ?><br />
 			<input type="text" name="user_email" id="user_email" class="input-text" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" />
 			<span></span>
 			</label>			
 			</p>
 			
-			<?php /*?>
-			<p class="form-row form-row-first">
-			<label for="user_login"><?php _e('Username') ?><br />
-			<input type="text" name="user_login" id="user_login" class="input-text" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" /></label>
-			</p>	
-			<?php */?>
-			
-			<p class="form-row form-row-last">
-			<label for="sitename">
-			<?php _e('Sitename') ?><br />
-			<input style="width: 50%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
-			.<?php echo $_SERVER['HTTP_HOST'];?>
-			<span></span>
-			</label>
-			</p>
-			
-			<p class="form-row form-row-last">
-			<label for="sitename"><?php _e('Sitename') ?><br />
-			<input style="width: 50%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
-			.<?php echo $_SERVER['HTTP_HOST'];?>
-			<span></span>
-			</label>
-			</p>
-			
-			<p class="form-row form-row-first">
-			<label for="password">Password<br/>
+			<p class="form-row">
+			<label for="password"><?php _e('Your Password') ?><br/>
 			<input id="password" class="input-text" type="password" size="25" value="" name="password" />
 			<span></span>
 			</label>
 			</p>	
-			<p class="form-row form-row-last">
-			<label for="repeat_password">Repeat password<br/>
-			<input id="repeat_password" class="input-text" type="password" size="25" value="" name="repeat_password" />
-			<span></span>
-			</label>
-			</p>
+			
 			
 			<?php
 			/**
@@ -790,7 +780,8 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 								}
 								regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);								
 							}else{
-								varthisvar.next('span').html('<font class="error">you cannot use the E-mail, please try another one.</font>');
+								is_valid_email = 1;
+								varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
 							}
 						});
 					}else{
@@ -853,29 +844,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 					{
 						varthisvar.next('span').html('<font class="error">Password should be atleast 6 letters long.</font>');
 					}else{
-						is_valid_pw = regfrm_check_password();
-						regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);
-					}
-				});
-				
-				
-				jQuery("#registerform #repeat_password").focus(function(){
-					jQuery(this).next('span').html('');
-					regfrm_submit_button_hide();
-				});
-				
-				jQuery("#registerform #repeat_password").blur(function(){
-					var varthisvar = jQuery(this);
-					val = jQuery.trim(varthisvar.val());
-					if(val=='')
-					{
-						varthisvar.next('span').html('<font class="error">Repeat Please enter Password.</font>');
-					}else
-					if(val.length<6)
-					{
-						varthisvar.next('span').html('<font class="error">Repeat password should be atleast 6 letters long.</font>');
-					}else{
-						is_valid_pw = regfrm_check_password();
+						is_valid_pw = 1;
 						regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);
 					}
 				});
@@ -983,6 +952,9 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 add_action('before_signup_form','aheadzen_register_site_process_indicator');
 function aheadzen_register_site_process_indicator()
 {
+	if ( wp_is_mobile() ) {
+		return;
+	}
 	$progress_bar = 25;
 	if(strstr($_SERVER['REQUEST_URI'],'/wp-signup.php'))
 	{

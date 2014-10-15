@@ -10,6 +10,8 @@
 !*themes/
 !*themes/App_Mojo*/
 !*themes/ahead_bazaar_child/
+!*themes/dw-minion-child/
 themes/ahead_bazaar_child/cache/*
 !*plugins/
 !*plugins/js_wizard_aheadzen/
+themes/App_Mojo/.DS_Store

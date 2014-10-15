@@ -15,3 +15,5 @@ themes/ahead_bazaar_child/cache/*
 !*plugins/
 !*plugins/js_wizard_aheadzen/
 themes/App_Mojo/.DS_Store
+
+themes/.DS_Store

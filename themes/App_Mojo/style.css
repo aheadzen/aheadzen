@@ -849,7 +849,3 @@ p.bjqs-caption{background: rgba(255,255,255,0.5);}
 .featured2_imgdiv{position:relative;}
 
 
-#registerform .input-text{width:70%;}
-@media only screen (max-width: 797px) {
-	#registerform .input-text{width:95%;}
-}

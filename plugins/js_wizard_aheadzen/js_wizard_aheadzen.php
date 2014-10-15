@@ -665,31 +665,41 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			?>
 			<style>
 			.form-row span{display:inline-block; width:90%; clear:both;}
+			.email_is_username{color:orange; margin-left:7px;}
 			</style>
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
 			
+			<div>
 			<p class="form-row">
 			<label for="sitename"><?php _e('Site Address') ?><br />
-			<input style="width: 70%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
-			.<?php echo $_SERVER['HTTP_HOST'];?>
+			<input style="width: 62%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
+			.<?php echo $_SERVER['HTTP_HOST'];?> 
 			<span></span>
-			</label>
+			</label>			
 			</p>
+			<span id="sitename_icon" class="regfrm_icons "></span>
+			</div>
 			
+			<div>
 			<p class="form-row">
-			<label for="user_email"><?php _e('Your Email') ?><br />
+			<label for="user_email"><?php _e('Your Email') ?><span class="email_is_username">(Email is your username)</span><br />
 			<input type="text" name="user_email" id="user_email" class="input-text" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" />
 			<span></span>
 			</label>			
 			</p>
+			<span id="user_email_icon" class="regfrm_icons"></span>
+			</div>
 			
+			<div>
 			<p class="form-row">
 			<label for="password"><?php _e('Your Password') ?><br/>
 			<input id="password" class="input-text" type="password" size="25" value="" name="password" />
 			<span></span>
 			</label>
-			</p>	
+			</p>
+			<span id="user_pw_icon" class="regfrm_icons"></span>
+			</div>			
 			
 			
 			<?php
@@ -700,7 +710,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			 */
 			do_action( 'register_form' );
 			?>
-			<br class="clear" />
+			<div class="clear" ></div>
 			<?php /*?><input type="hidden"  name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" /> <?php */?>
 			<p class="cart"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
 			<span></span>
@@ -709,9 +719,17 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			</form>
 			<script>			
 			jQuery(function(){
+				//icon-remove  icon-ok
 				var is_valid_email = 0;
 				var is_valid_pw = 0;
 				var is_valid_sitename = 0;
+				jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
+				jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+				jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+				jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+				jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
+				jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
+				
 				regfrm_submit_button_hide();
 				jQuery("#registerform #user_email").focus(function(){
 					jQuery(this).next('span').html('');
@@ -727,10 +745,14 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				if(val.length<5)
 				{
 					varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
+					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 				}else
 				if (/^[a-zA-Z0-9-]*$/.test(val) == false)
 				{
 					varthisvar.next('span').html('<font class="error">Site name should contain only a-z and 0-9 without any space.</font>');
+					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 				}else{
 					varthisvar.next('span').html('processing, please wait...');	
 					var ajax_url = '<?php echo get_permalink(); ?>';
@@ -742,9 +764,13 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 						if(response=='site:notexists')
 						{
 							varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+							jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
+							jQuery( "#sitename_icon" ).addClass( "icon-ok" );
 							is_valid_sitename = 1;
 						}else{
 							varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
+							jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+							jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 						}
 					});						
 				}
@@ -764,6 +790,8 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 							if(response=='username:notinuse')
 							{
 								varthisvar.next('span').html('<font class="success">you can use the E-mail.</font>');
+								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
 								is_valid_email = 1;
 								if(is_valid_sitename==1){ }else{
 									is_valid_sitename = regfrm_submit_site_check();
@@ -772,10 +800,14 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 							}else{
 								is_valid_email = 1;
 								varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
+								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
 							}
 						});
 					}else{
 						varthisvar.next('span').html('<font class="error">Invalid E-mail: '+val+'</font>');
+						jQuery( "#user_email_icon" ).addClass( "icon-remove" );
+						jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
 					}					
 				});
 				
@@ -794,10 +826,14 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 					if(val.length<5)
 					{
 						varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
+						jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+						jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 					}else
 					if (/^[a-zA-Z0-9-]*$/.test(val) == false)
 					{
 						varthisvar.next('span').html('<font class="error">Site name should contain only a-z and 0-9 without any space.</font>');
+						jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+						jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 					}else{
 						varthisvar.next('span').html('processing, please wait...');	
 						var ajax_url = '<?php echo get_permalink(); ?>';
@@ -809,9 +845,13 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 							if(response=='site:notexists')
 							{
 								varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+								jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
+								jQuery( "#sitename_icon" ).addClass( "icon-ok" );
 								is_valid_sitename = 1;
 							}else{
 								varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
+								jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+								jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 							}
 						});						
 					}
@@ -833,9 +873,14 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 					if(val.length<6)
 					{
 						varthisvar.next('span').html('<font class="error">Password should be atleast 6 letters long.</font>');
+						jQuery( "#user_pw_icon" ).removeClass( "icon-ok" );
+						jQuery( "#user_pw_icon" ).addClass( "icon-remove" );
 					}else{
 						is_valid_pw = 1;
 						regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);
+						varthisvar.next('span').html('<font class="success">Good password, please continue...</font>');
+						jQuery( "#user_pw_icon" ).removeClass( "icon-remove" );
+						jQuery( "#user_pw_icon" ).addClass( "icon-ok" );
 					}
 				});
 				
@@ -853,6 +898,8 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				if(val.length<5)
 				{
 					varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
+					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 					return 0;
 				}else{
 					varthisvar.next('span').html('processing, please wait...');	
@@ -865,9 +912,13 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 						if(response=='site:notexists')
 						{
 							varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+							jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
+							jQuery( "#sitename_icon" ).addClass( "icon-ok" );
 							return 1;
 						}else{
 							varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
+							jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+							jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 							return 0;
 						}
 					});						

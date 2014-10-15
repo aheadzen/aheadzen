@@ -1191,7 +1191,7 @@ function woocommerce_short_description_fun($description)
 		<input placeholder="your site name" type="text" class="sitename" name="sitename" value="" style="width:150px;" /> <b>.'.$_SERVER['HTTP_HOST'].'</b>		<a onclick="document.prd_detail_newsite.submit();" href="javascript:void(0);" class="more-button more-button-ltr">Create New Site<span style="background-image:url(\'http://icons.iconseeker.com/png/32/reixi-set-mac/home-85.png\')" class="icon ">&nbsp;</span></a>
 		<br /></form>';
 		if($demosite){
-			$description .= '<a class="btn btn-ultraviolet-rays-1" href="'.$demosite.'" target="_blank">View Demo >></a>';
+			$description .= '<a class="btn  btn-ultraviolet-rays-1" href="'.$demosite.'" target="_blank">View Demo >></a>';
 		}
 	}	
 	return $description;

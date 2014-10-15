@@ -212,7 +212,7 @@ jQuery(function() {
 		var sidebar_id ='sidebar-1';
 		var widget_id = jQuery(this).attr("id");
 		jQuery(this).prepend( '<div class="widget_inline_del"><a class="icon-cancel-circled" href="javascript:void(0);" onclick="widget_delete_widget_inline(\''+sidebar_id+'\',\''+widget_id+'\')" title="remove this section">X</a></div>' );
-		jQuery(this).append( '<div class="widget_inline_add" widget="'+widget_id+'" sidebar="'+sidebar_id+'"><a class="icon-plus" href="javascript:void(0);" title="add new">+</a></div>' );
+		jQuery(this).append( '<div class="widget_inline_add" widget="'+widget_id+'" sidebar="'+sidebar_id+'"><a class="icon-plus" href="javascript:void(0);" title="add new"></a></div>' );
 	});
 	
 	//DELETE WIDGTS

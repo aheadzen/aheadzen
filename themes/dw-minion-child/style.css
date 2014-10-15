@@ -25,10 +25,11 @@ template: dw-minion
 
 .fip-icons-container  [class^="icon-"] {font-size: 20px !important;}
 .widget_inline_del{margin-right: 20px; margin-top: 5px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
-.widget_inline_del a{color: red;font-size: 25px; padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget_inline_del a{color: red;font-size: 20px; padding: 5px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
 .widget_inline_del a:hover{background-color:#000; text-decoration:none;}
 .widget-area .widget:hover  .widget_inline_del, .top-sidebar .widget:hover  .widget_inline_del{display: inline-block;text-decoration:none;}
 
 .widget_inline_add{position: absolute;text-align: right;width: 50%;z-index: 9999;left: 0;display:none; padding:10px;}
-.widget_inline_add a{color: red;font-size: 23px;padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget_inline_add a{font-size: 20px;padding: 5px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;color:green; background-color:#EDF9EF;}
+.widget_inline_add a:hover{text-decoration:none; background-color:#C1F4CB;}
 .widget-area .widget:hover  .widget_inline_add, .top-sidebar .widget:hover  .widget_inline_add{display: inline-block;text-decoration:none;}

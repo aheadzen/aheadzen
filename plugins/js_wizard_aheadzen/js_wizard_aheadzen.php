@@ -712,8 +712,13 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			?>
 			<div class="clear" ></div>
 			<?php /*?><input type="hidden"  name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" /> <?php */?>
-			<p class="cart"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
+			<p style="float:left;" class="cart"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
 			<span></span>
+			</p>
+			<p style="float:left;" class="cart">
+			<span class="reg_lost_pw">
+			<a  href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') );?>lost-password/">Lost Password?</a>
+			</span>
 			</p>
 			
 			</form>

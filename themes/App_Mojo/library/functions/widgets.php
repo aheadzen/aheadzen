@@ -727,6 +727,7 @@ var retval = aheadzen_icons('<?php echo $id;?>');</script>
 	}
 }
 
+
 add_action('wp_footer','aheadzen_inline_widget_select_dialog');
 function aheadzen_inline_widget_select_dialog()
 {

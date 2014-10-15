@@ -105,6 +105,7 @@ function aheadzen_woo_product_add_custom_box() {
 function woo_product_inner_custom_box() {
 global $post,$app_themes_aheadzen_themes;
 $mobile_app_theme = get_post_meta($post->ID,'mobile_app_theme',true);
+$_demosite = get_post_meta($post->ID,'_demosite',true);
 ?>
 <table border="0" cellpadding="5" cellspacing="5" width="100%">
   <tr>
@@ -125,6 +126,14 @@ $mobile_app_theme = get_post_meta($post->ID,'mobile_app_theme',true);
 	?>	
 	</select>
 	  <br />
+    </td>
+  </tr>
+  
+  <tr>
+    <td width="20%"><?php _e("Enter demo site URL",'aheadzen')?></td>
+    <td>
+	<input type="text" name="_demosite" value="<?php echo $_demosite;?>" />
+	  <br /><small>eg:http://application-demo.aheadzen.com/</small>
     </td>
   </tr>
   <tr>
@@ -151,6 +160,7 @@ function aheadzen_woo_product_save_postdata( $post_id ) {
 	  
 	   // OK, we're authenticated: we need to find and save the data
 	  update_post_meta($post_id,'mobile_app_theme',$_POST['mobile_app_theme']);
+	  update_post_meta($post_id,'_demosite',$_POST['_demosite']);
   } 
    return $mydata;
 }
@@ -1171,6 +1181,7 @@ function woocommerce_short_description_fun($description)
 	
 	$pid = get_the_id();
 	$mobile_app_theme = get_post_meta($pid,'mobile_app_theme',true);
+	$demosite = get_post_meta($pid,'_demosite',true);
 	$signup_data = aheadzen_get_registration_form_shortcode_page_detail();
 	//$link_url =  $signup_data['url'].'?my_templateid='.$pid;
 	if($mobile_app_theme){
@@ -1179,6 +1190,9 @@ function woocommerce_short_description_fun($description)
 		<input type="hidden" name="my_templateid" value="'.$pid.'" />
 		<input placeholder="your site name" type="text" class="sitename" name="sitename" value="" style="width:150px;" /> <b>.'.$_SERVER['HTTP_HOST'].'</b>		<a onclick="document.prd_detail_newsite.submit();" href="javascript:void(0);" class="more-button more-button-ltr">Create New Site<span style="background-image:url(\'http://icons.iconseeker.com/png/32/reixi-set-mac/home-85.png\')" class="icon ">&nbsp;</span></a>
 		<br /></form>';
+		if($demosite){
+			$description .= '<a class="btn btn-ultraviolet-rays-1" href="'.$demosite.'" target="_blank">View Demo >></a>';
+		}
 	}	
 	return $description;
 }

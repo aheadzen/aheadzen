@@ -1,0 +1,34 @@
+/*  
+Theme Name: Simple Blog - DW minion Child Theme
+Theme URI: http://aheadzen.com/
+Version: 1.0.0
+Description: Simple Blog Site
+Author: Aheadzen Team
+Author URI: http://aheadzen.com/
+template: dw-minion
+
+	Copyright: (c) 2012 Your Inspiration Themes.
+	License: GNU General Public License v3.0
+	License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+
+*/
+
+@import url("../dw-minion/style.css");
+
+.site-subtitle{display:none;}
+.edit_website_link a{color:red !important;}
+
+.site-nav .widget,#secondary .widget,.top-sidebar {position: relative;}
+.clearbothdiv{clear:both;width:100%;display:inline-block;margin:10px;}
+.inline_edit_success_msg span{padding: 0 10px!important; height: auto !important; background-color: #f9edbe !important;border-color: #f0c36d!important; border-radius: 2px!important;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)!important;color: #222!important;font-weight: bold!important;text-align: center!important;}
+.inline_edit_success_msg span.errormsg{color:red !important;background-color:#FCC4CC !important; border:solid 1px #F4465E;}
+
+.fip-icons-container  [class^="icon-"] {font-size: 20px !important;}
+.widget_inline_del{margin-right: 20px; margin-top: 5px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
+.widget_inline_del a{color: red;font-size: 25px; padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget_inline_del a:hover{background-color:#000; text-decoration:none;}
+.widget-area .widget:hover  .widget_inline_del, .top-sidebar .widget:hover  .widget_inline_del{display: inline-block;text-decoration:none;}
+
+.widget_inline_add{position: absolute;text-align: right;width: 50%;z-index: 9999;left: 0;display:none; padding:10px;}
+.widget_inline_add a{color: red;font-size: 23px;padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget-area .widget:hover  .widget_inline_add, .top-sidebar .widget:hover  .widget_inline_add{display: inline-block;text-decoration:none;}

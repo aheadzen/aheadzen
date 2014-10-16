@@ -897,7 +897,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				var sitename_validation = jQuery('#sitename_validation').val();
 				var email_validation = jQuery('#email_validation').val();
 				var passwd_validation = jQuery('#passwd_validation').val();
-				alert('site : '+sitename_validation+' -- email : '+email_validation+' -- pw : '+passwd_validation);
+				//alert('site : '+sitename_validation+' -- email : '+email_validation+' -- pw : '+passwd_validation);
 				if(sitename_validation==1 && email_validation==1 && passwd_validation==1)
 				{
 					return true;

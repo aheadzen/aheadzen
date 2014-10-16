@@ -155,7 +155,7 @@ function aheadzen_title_image_select_dl_fun($varid,$varname,$mimg='',$title='')
 	.widget_image_button {margin-left: 10px;float:left!important;padding: 5px !important; font-size: 14px !important;color: #000!important;}
 	input[type="text"].myimgcss{float:left!important;width:200px;}
 	.clearboth{width:100%; clear:both;}
-	<?php if(!$_GET['editing']==1){?>
+	<?php if(!aheadzen_is_editing()){?>
 	.widget_image_button {margin-left:5px;padding:0 !important;}
 	<?php }?>
 	<?php
@@ -221,7 +221,7 @@ function aheadzen_wp_head_tinymce_function()
 	<!-- Font -->
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/fontIconPicker/icons/fontello-7275ca86/css/fontello.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri();?>/fontIconPicker/icons/icomoon/style.css" />
-	<?php if($_GET['editing']==1){?>
+	<?php if(aheadzen_is_editing()){?>
 	<style>
 	font{display: inline-block;width: 100%;}
 	img{cursor: -moz-grab;}
@@ -230,7 +230,7 @@ function aheadzen_wp_head_tinymce_function()
 	</style>
 	<?php }?>
 	<?php
-	if($_GET['editing']==1 || is_admin()){
+	if(aheadzen_is_editing() || is_admin()){
 	//wp_enqueue_style (  'wp-jquery-ui-dialog');
 	?>
 	<!-- Place inside the <head> of your HTML -->
@@ -643,7 +643,7 @@ if($_POST['action']=='save-widget-front' && isset($_POST['add_widget']) && $_POS
 }
 function aheadzen_inline_edit_code($id)
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 		return ' id="'.$id.'" contenteditable="true" ';
 		//return ' id="'.$id.'" ';
 	}else{
@@ -653,7 +653,7 @@ function aheadzen_inline_edit_code($id)
 
 function aheadzen_inline_head_tinymce($id)
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 ?>
 	<script>
 	tinymce.init({
@@ -669,7 +669,7 @@ function aheadzen_inline_head_tinymce($id)
 
 function aheadzen_inline_tinymce($id)
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 ?>
 	<script>
 	tinymce.init({
@@ -691,7 +691,7 @@ function aheadzen_inline_tinymce($id)
 
 function aheadzen_inline_image($id,$attid='')
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 ?>
 <script>
 var img_edit_del2='';
@@ -717,7 +717,7 @@ function aheadzen_widget_iconset($id,$name,$val='')
 
 function aheadzen_inline_iconset($id)
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 ?>
 <div id="<?php echo $id;?>"></div>
 <script>
@@ -731,7 +731,7 @@ var retval = aheadzen_icons('<?php echo $id;?>');</script>
 add_action('wp_footer','aheadzen_inline_widget_select_dialog');
 function aheadzen_inline_widget_select_dialog()
 {
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 
 global $wp_registered_widgets, $sidebars_widgets, $wp_registered_widget_controls;
 if($wp_registered_widgets){

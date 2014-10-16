@@ -60,6 +60,17 @@ if(is_admin())
 	include_once('library/functions/itune_settings.php');
 }
 
+function aheadzen_is_editing()
+{
+	global $current_user;
+	if($current_user->ID && $_GET['editing'] == '1')
+	{
+		return true;
+	}else{
+		return false;
+	}
+}
+
 /*
 Front end editor body widht adjust in case of full width 
 To appear the editor settings properly.
@@ -67,11 +78,11 @@ To appear the editor settings properly.
 add_action('wp_head','edit_body_plugin_css');
 function edit_body_plugin_css()
 {
-	if($_GET['editing'] == '1')
+	if(aheadzen_is_editing())
 	{
 	?>
 	<style>
-	body {margin: 0 auto;width: 90%;}
+	body {margin: 0 auto;width: 85%;}
 	#header {margin-top: 15px !important;}
 	#header {position: relative !important; z-index: 0!important;}
 	#home{margin-top: 20px;}
@@ -296,7 +307,7 @@ function aheadzen_admin_bar_render() {
 		'id' => 'edit_template', // link ID, defaults to a sanitized title value
 		'meta' => array('class' => 'edit_website_link') // array of any of the following options: array( 'html' => '', 'class' => '', 'onclick' => '', target => '', title => '' );
 	);
-	if($_GET['editing'])
+	if(aheadzen_is_editing())
 	{
 		$arg['title']= __('VIEW UPDATED - click to see');
 		$arg['href']= site_url();
@@ -307,14 +318,13 @@ function aheadzen_admin_bar_render() {
 	}
 	$wp_admin_bar->add_menu($arg);
 	
-	if($_GET['editing'])
+	if(aheadzen_is_editing())
 	{
 		$wp_admin_bar->add_menu( array(
 			'parent' => false,
 			'id'    => 'inline_edit_success_msg',
 			'title' => '',
 			'meta' => array('class' => 'inline_edit_success_msg'),
-			//'href'	=> site_url('?editing=html')
 		));
 		
 	}

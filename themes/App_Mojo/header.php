@@ -82,7 +82,7 @@ var ajax_url = '<?php echo site_url(); ?>';
 	wp_enqueue_script('jquery-our-scrollTo', get_template_directory_uri().'/js/jquery.scrollTo.js');
 	wp_enqueue_script('jquery-our-inview', get_template_directory_uri().'/js/jquery.inview.js');
 	wp_enqueue_script('jquery-our-nav', get_template_directory_uri().'/js/jquery.nav.js');
-	if($_GET['editing']==1){  }else{ 
+	if(aheadzen_is_editing()){  }else{ 
 	wp_enqueue_script('jquery-our-menu', get_template_directory_uri().'/js/jquery-menu.js');
 	}
 	wp_enqueue_script('jquery-our-meanmenu', get_template_directory_uri().'/js/jquery.meanmenu.min.js');
@@ -92,7 +92,7 @@ var ajax_url = '<?php echo site_url(); ?>';
 	wp_enqueue_script('jquery-our-prettyPhoto', get_template_directory_uri().'/js/jquery.prettyPhoto.js');
 	wp_enqueue_script('jquery-our-validate', get_template_directory_uri().'/js/jquery.validate.min.js');
 	wp_enqueue_script('jquery-our-tabs', get_template_directory_uri().'/js/jquery.tabs.min.js');
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 ?>
 <style>
 .content .aheadzensite {border: 1px dashed #fff;padding-bottom: 10px; margin-bottom: 40px;}
@@ -107,7 +107,7 @@ var ajax_url = '<?php echo site_url(); ?>';
 	wp_enqueue_script('jquery-totop', get_template_directory_uri().'/js/jquery.ui.totop.min.js');
 	wp_enqueue_script('jquery-bjqs', get_template_directory_uri().'/js/bjqs-1.3.min.js');
 	
-	if($_GET['editing']==1){
+	if(aheadzen_is_editing()){
 		//wp_enqueue_script('jquery');
 		?>
 		<script>
@@ -122,10 +122,10 @@ var ajax_url = '<?php echo site_url(); ?>';
 	}
 	?>
 	<?php wp_head();?>
-	<?php if($_GET['editing']==1){  }else{ ?>
+	<?php if(aheadzen_is_editing()){  }else{ ?>
 	<script>jQuery("html").niceScroll({zindex:99999,cursorborder:"1px solid #424242"});</script>
 	<?php }?>
-	<?php if($_GET['editing']==1){?>	
+	<?php if(aheadzen_is_editing()){?>	
 	<script>
 	jQuery(function() {
 		var sidebar_id = '';
@@ -240,7 +240,7 @@ h1,h2,h3,h4,h5,h6,blockquote p {
 		<img id="site_logo_img" src="<?php echo get_stylesheet_directory_uri();?>/images/logo.png" alt="" />
 		<?php }?>
 		</a>
-		<?php if($_GET['editing']==1){?>
+		<?php if(aheadzen_is_editing()){?>
 		<div class="fee-hover-container">
 		<button id="site_logo" class="fee-hover-edit imgbutton">Edit logo</button>
 		</div>
@@ -256,7 +256,7 @@ h1,h2,h3,h4,h5,h6,blockquote p {
         <div id="menu-container">
             <nav id="main-menu">
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu group' ) ); ?>
-			<?php if($_GET['editing']==1){?>
+			<?php if(aheadzen_is_editing()){?>
 			<div class="fee-hover-container">
 			<a href="<?php echo admin_url();?>/nav-menus.php" target="_blank"><button class="fee-hover-edit">Edit menu</button></a>
 			</div>

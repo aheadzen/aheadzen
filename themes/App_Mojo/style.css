@@ -487,6 +487,7 @@ span.success-msg { color:#37a700; }
 
 /*----*****---- << Style Picker >> ----*****----*/		
 .dt-style-picker-wrapper { position:fixed; z-index:99999; left:0px; top:60px; }
+.style-picker-ico {top:25px; left:225px; }
 
 #dt-style-picker { background:#ffffff; width:225px; float:left; position:absolute; top:0px; z-index:1; margin:0px; padding:0px 0px 10px; text-align:center; box-shadow:0px 0px 10px rgba(0, 0, 0, 0.5); -moz-box-shadow:0px 0px 10px rgba(0, 0, 0, 0.5); -webkit-box-shadow:0px 0px 10px rgba(0, 0, 0, 0.5); }
 #dt-style-picker h2 { background:url(images/style-picker/title-bg.jpg) repeat-x; font:normal 12px Tahoma, Geneva, sans-serif; text-transform:uppercase; line-height:48px; width:100%; color:#848484; margin:0px 0px 15px; padding:0px;  }
@@ -500,7 +501,7 @@ span.success-msg { color:#37a700; }
 
 #dt-style-picker .hr { background:url(images/style-picker/seperator.png) no-repeat; width:100%; height:25px; margin:-10px 0px 10px; float:left; }
 
-.style-picker-ico { position:absolute; top:25px; left:225px; }
+
 .imgbutton_all.editingbutton{float:none;margin: 5px 0 0;padding: 5px 10px;font-size: 14px;color:#333;}
 button#site_logo,button.fee-hover-edit{ color: #333;font-size: 12px;margin: 0;padding: 1px 5px;}
 

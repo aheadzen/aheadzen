@@ -62,7 +62,7 @@ if(!class_exists('aheadzen_portfolio_widget')){
 			{				
 				$before_widget = str_replace('content-main','content-main-none',$before_widget);
 			}
-			if($_GET['editing']==1)
+			if(aheadzen_is_editing())
 			{
 				if($title==''){$title='Edit The Title Here';}
 			}

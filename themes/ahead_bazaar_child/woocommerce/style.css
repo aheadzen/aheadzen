@@ -19,13 +19,11 @@ template: bazar
 .mu_register p label.checkbox,.mu_register p #signupblog,.mu_register p #signupuser,#setupform #privacy{ visibility:hidden;}
 input[type="text"], input[type="password"]{ height:30px;}
 ul#noemail-tips li p{display:inline-block;}
-
 .regfrm_icons{position:absolute;font-size:25px; margin-left:20px;clear:none; left: 70%;margin-top: -60px;}
 .regfrm_icons.icon-ok{color:green;}
 .regfrm_icons.icon-remove{color:red;}
-#registerform .reg_lost_pw{float: left;margin-left: 50px;margin-top: 30px;}
+#registerform .reg_lost_pw{margin-left: 50px;margin-top: 30px;}
 #registerform .input-text{width:70%;}
-
 @media only screen (max-width: 797px) {
 	#registerform .input-text{width:95%;}
 	.regfrm_icons{left: 95%;}

@@ -522,7 +522,7 @@ if(!function_exists('wpw_template_include'))
 				
 				if ( strlen( $_POST['password'] ) < 6 ) {
 					$emsg_array = $_SESSION['emsg_array'];
-					$emsg_array[] = "<strong>ERROR</strong>: Passwords must be at least eight characters long";
+					$emsg_array[] = "<strong>ERROR</strong>: Passwords must be at least seven characters long";
 					$_SESSION['emsg_array']=$emsg_array;
 					//$errors->add( 'password_too_short', "<strong>ERROR</strong>: Passwords must be at least eight characters long" );
 				}
@@ -679,11 +679,13 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			</style>
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
-			
+			<input type="hidden" id="sitename_validation" name="sitename_validation" value="0" />
+			<input type="hidden" id="email_validation" name="email_validation" value="0" />
+			<input type="hidden" id="passwd_validation" name="passwd_validation" value="0" />
 			<div>
 			<p class="form-row">
 			<label for="sitename"><?php _e('Site Address') ?><br />
-			<input style="width: 62%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
+			<input style="width: 60%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
 			.<?php echo $_SERVER['HTTP_HOST'];?> 
 			<span></span>
 			</label>			
@@ -721,15 +723,12 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			do_action( 'register_form' );
 			?>
 			<div class="clear" ></div>
-			<?php /*?><input type="hidden"  name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" /> <?php */?>
-			<p style="float:left;" class="cart"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
-			<span></span>
-			</p>
-			<p style="float:left;" class="cart">
+			<div class="cart">
+			<input onclick="return regfrm_check_button();" type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register & Create Site'); ?>" />
 			<span class="reg_lost_pw">
 			<a  href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') );?>lost-password/">Lost Password?</a>
 			</span>
-			</p>
+			</div>
 			
 			</form>
 			<script>			
@@ -745,132 +744,24 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
 				jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
 				
-				regfrm_submit_button_hide();
 				jQuery("#registerform #user_email").focus(function(){
 					jQuery(this).next('span').html('');
-					regfrm_submit_button_hide();
 				});
+				
 				<?php if($_GET['sitename']){?>
-				var varthisvar = jQuery("#registerform #sitename");
-				val = jQuery.trim(varthisvar.val());
-				if(val=='')
-				{
-					varthisvar.next('span').html('<font class="error">Please enter Sitename.</font>');
-				}else
-				if(val.length<5)
-				{
-					varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
-					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-				}else
-				if (/^[a-zA-Z0-9-]*$/.test(val) == false)
-				{
-					varthisvar.next('span').html('<font class="error">Site name should contain only a-z and 0-9 without any space.</font>');
-					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-				}else{
-					varthisvar.next('span').html('processing, please wait...');	
-					var ajax_url = '<?php echo get_permalink(); ?>';
-					var data = {
-						'regact': 'reg_check_sitename',
-						'val': val
-					};
-					jQuery.post(ajax_url, data, function(response) {
-						if(response=='site:notexists')
-						{
-							varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
-							jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
-							jQuery( "#sitename_icon" ).addClass( "icon-ok" );
-							is_valid_sitename = 1;
-						}else{
-							varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
-							jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-							jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-						}
-					});						
-				}
+				regfrm_submit_site_check();
 				<?php }?>
+				
 				jQuery("#registerform #user_email").blur(function(){
-					var varthisvar = jQuery(this);
-					val = varthisvar.val();
-					if(validateEmail(val))
-					{
-						varthisvar.next('span').html('processing, please wait...');	
-						var ajax_url = '<?php echo get_permalink(); ?>';
-						var data = {
-							'regact': 'reg_check_email_user',
-							'val': val
-						};
-						jQuery.post(ajax_url, data, function(response) {
-							if(response=='username:notinuse')
-							{
-								varthisvar.next('span').html('<font class="success">you can use the E-mail.</font>');
-								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
-								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
-								is_valid_email = 1;
-								if(is_valid_sitename==1){ }else{
-									is_valid_sitename = regfrm_submit_site_check();
-								}
-								regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);								
-							}else{
-								is_valid_email = 1;
-								varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
-								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
-								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
-							}
-						});
-					}else{
-						varthisvar.next('span').html('<font class="error">Invalid E-mail: '+val+'</font>');
-						jQuery( "#user_email_icon" ).addClass( "icon-remove" );
-						jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
-					}					
+					aheadzen_check_email();				
 				});
 				
 				jQuery("#registerform #sitename").focus(function(){
 					jQuery(this).next('span').html('');
-					regfrm_submit_button_hide();
 				});
 				
 				jQuery("#registerform #sitename").blur(function(){
-					var varthisvar = jQuery("#registerform #sitename");
-					val = jQuery.trim(varthisvar.val());
-					if(val=='')
-					{
-						varthisvar.next('span').html('<font class="error">Please enter Sitename.</font>');
-					}else
-					if(val.length<5)
-					{
-						varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
-						jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-						jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-					}else
-					if (/^[a-zA-Z0-9-]*$/.test(val) == false)
-					{
-						varthisvar.next('span').html('<font class="error">Site name should contain only a-z and 0-9 without any space.</font>');
-						jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-						jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-					}else{
-						varthisvar.next('span').html('processing, please wait...');	
-						var ajax_url = '<?php echo get_permalink(); ?>';
-						var data = {
-							'regact': 'reg_check_sitename',
-							'val': val
-						};
-						jQuery.post(ajax_url, data, function(response) {
-							if(response=='site:notexists')
-							{
-								varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
-								jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
-								jQuery( "#sitename_icon" ).addClass( "icon-ok" );
-								is_valid_sitename = 1;
-							}else{
-								varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
-								jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-								jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-							}
-						});						
-					}
-					regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);							
+					regfrm_submit_site_check();
 				});
 				
 				
@@ -879,28 +770,77 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				});
 				
 				jQuery("#registerform #password").blur(function(){
-					var varthisvar = jQuery(this);
-					val = jQuery.trim(varthisvar.val());
-					if(val=='')
-					{
-						varthisvar.next('span').html('<font class="error">Please enter Password.</font>');
-					}else
-					if(val.length<6)
-					{
-						varthisvar.next('span').html('<font class="error">Password should be atleast 6 letters long.</font>');
-						jQuery( "#user_pw_icon" ).removeClass( "icon-ok" );
-						jQuery( "#user_pw_icon" ).addClass( "icon-remove" );
-					}else{
-						is_valid_pw = 1;
-						regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename);
-						varthisvar.next('span').html('<font class="success">Good password, please continue...</font>');
-						jQuery( "#user_pw_icon" ).removeClass( "icon-remove" );
-						jQuery( "#user_pw_icon" ).addClass( "icon-ok" );
-					}
+					aheadzen_check_pw();
 				});
 				
 			});
 			
+			function aheadzen_check_email()
+			{
+				var varthisvar = jQuery("#registerform #user_email");
+				val = varthisvar.val();
+				if(val=='')
+				{
+					varthisvar.next('span').html('<font class="error">Please enter Email.</font>');
+					jQuery('#email_validation').val('0');
+				}else
+				if(validateEmail(val))
+				{
+					varthisvar.next('span').html('processing, please wait...');	
+					var ajax_url = '<?php echo get_permalink(); ?>';
+					var data = {
+						'regact': 'reg_check_email_user',
+						'val': val
+					};
+					jQuery.post(ajax_url, data, function(response) {
+						if(response=='username:notinuse')
+						{
+							varthisvar.next('span').html('<font class="success">you can use the E-mail.</font>');
+							jQuery('#email_validation').val('1');
+							jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+							jQuery( "#user_email_icon" ).addClass( "icon-ok" );
+							is_valid_email = 1;
+							if(is_valid_sitename==1){ }else{
+								is_valid_sitename = regfrm_submit_site_check();
+							}
+						}else{
+							is_valid_email = 1;
+							varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
+							jQuery('#email_validation').val('1');
+							jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+							jQuery( "#user_email_icon" ).addClass( "icon-ok" );
+						}
+					});
+				}else{
+					varthisvar.next('span').html('<font class="error">Invalid E-mail: '+val+'</font>');
+					jQuery('#email_validation').val('0');
+					jQuery( "#user_email_icon" ).addClass( "icon-remove" );
+					jQuery( "#user_email_icon" ).removeClass( "icon-ok" );
+				}
+			}
+			function aheadzen_check_pw()
+			{
+				var varthisvar = jQuery("#registerform #password");
+				val = jQuery.trim(varthisvar.val());
+				if(val=='')
+				{
+					varthisvar.next('span').html('<font class="error">Please enter Password.</font>');
+					jQuery('#passwd_validation').val('0');
+				}else
+				if(val.length<6)
+				{
+					varthisvar.next('span').html('<font class="error">Password should be atleast 6 letters long.</font>');
+					jQuery('#passwd_validation').val('0');
+					jQuery( "#user_pw_icon" ).removeClass( "icon-ok" );
+					jQuery( "#user_pw_icon" ).addClass( "icon-remove" );
+				}else{
+					is_valid_pw = 1;
+					varthisvar.next('span').html('<font class="success">Good password, please continue...</font>');
+					jQuery('#passwd_validation').val('1');
+					jQuery( "#user_pw_icon" ).removeClass( "icon-remove" );
+					jQuery( "#user_pw_icon" ).addClass( "icon-ok" );
+				}
+			}
 			function regfrm_submit_site_check()
 			{
 				var varthisvar = jQuery("#registerform #sitename");
@@ -908,14 +848,21 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				if(val=='')
 				{
 					varthisvar.next('span').html('<font class="error">Please enter Sitename.</font>');
-					return 0;
+					jQuery('#sitename_validation').val('0');
 				}else
 				if(val.length<5)
 				{
 					varthisvar.next('span').html('<font class="error">Site name should be atleast 5 letters long.</font>');
+					jQuery('#sitename_validation').val('0');
 					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
 					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-					return 0;
+				}else
+				if (/^[a-zA-Z0-9-]*$/.test(val) == false)
+				{
+					varthisvar.next('span').html('<font class="error">Site name should contain only a-z and 0-9 without any space.</font>');
+					jQuery('#sitename_validation').val('0');
+					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 				}else{
 					varthisvar.next('span').html('processing, please wait...');	
 					var ajax_url = '<?php echo get_permalink(); ?>';
@@ -927,46 +874,37 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 						if(response=='site:notexists')
 						{
 							varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+							jQuery('#sitename_validation').val('1');
 							jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
 							jQuery( "#sitename_icon" ).addClass( "icon-ok" );
-							return 1;
+							is_valid_sitename = 1;
 						}else{
 							varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
+							jQuery('#sitename_validation').val('0');
 							jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
 							jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-							return 0;
 						}
 					});						
 				}
 			}
-			function regfrm_submit_button_hide()
+
+			function regfrm_check_button()
 			{
-				jQuery("#registerform #wp-submit").hide();
-				jQuery("#registerform #wp-submit").next('span').html('<a title="arrow" href="javascript:void(0);" class="more-button more-button-ltr">Click to Continue<span class="icon tick">&nbsp;</span></a>');
-			}
-			function regfrm_check_button(is_valid_email,is_valid_pw,is_valid_sitename)
-			{
-				if(is_valid_email==1 && is_valid_pw==1 && is_valid_sitename==1)
+				regfrm_submit_site_check();
+				aheadzen_check_email();
+				aheadzen_check_pw();
+				
+				var sitename_validation = jQuery('#sitename_validation').val();
+				var email_validation = jQuery('#email_validation').val();
+				var passwd_validation = jQuery('#passwd_validation').val();
+				alert('site : '+sitename_validation+' -- email : '+email_validation+' -- pw : '+passwd_validation);
+				if(sitename_validation==1 && email_validation==1 && passwd_validation==1)
 				{
-					jQuery("#registerform #wp-submit").next('span').html('');
-					jQuery("#registerform #wp-submit").show();
+					return true;
 				}
+				return false;
 			}
-			function regfrm_check_password()
-			{
-				var password = jQuery("#registerform #password").val();
-				var repeat_password = jQuery("#registerform #repeat_password").val();
-				if(password.length>=6 && repeat_password.length>=6 && password!=repeat_password)
-				{
-					jQuery("#registerform #repeat_password").next('span').html('<font class="error">Password and Repeat password should be same.</font>');
-				}else
-				if(password.length>=6 && repeat_password.length>=6 && password==repeat_password)
-				{
-					jQuery("#registerform #repeat_password").next('span').html('<font class="success">Good password, please continue...</font>');
-					return 1;
-				}
-				return 0;
-			}
+			
 			// Function that validates email address through a regular expression.
 			function validateEmail(sEmail) {
 				var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -1147,7 +1085,6 @@ function aheadzen_register_form_contact_details()
 		do_action( 'register_form' );
 		?>
 		<br class="clear" />
-		<p class="submit" style="float:right;"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Save & Continue'); ?>" /></p>
 	</form>
 	<?php	
 }

@@ -4,7 +4,7 @@
 h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, .sorting-container a { color:#5a6d78; }	
 
 ul.tabs-vertical-frame li.current a, ul.tabs-vertical-frame li, .pr-tb-col:hover, .pr-tb-col.active .tb-content li, .pr-tb-col.active { border-color: #53C3EF; }
-.border-title span, ul.tabs-vertical-frame li.current a, .button, .pr-tb-col .button, .demo-btn a.demo, .demo-btn a.purchase:hover, .border-title span, ul.tabs-vertical-frame li.current a, .pr-tb-col:hover, .pr-tb-col.active, .testimonial-wrapper .nav-numbers li.active a, .copyright, .mean-container .mean-nav, .mean-container a.meanmenu-reveal {  background:#35aad8; *background:#35aad8; background:#35aad8\0/; }
+.button_set a,.border-title span, ul.tabs-vertical-frame li.current a, .button, .pr-tb-col .button, .demo-btn a.demo, .demo-btn a.purchase:hover, .border-title span, ul.tabs-vertical-frame li.current a, .pr-tb-col:hover, .pr-tb-col.active, .testimonial-wrapper .nav-numbers li.active a, .copyright, .mean-container .mean-nav, .mean-container a.meanmenu-reveal {  background:#35aad8; *background:#35aad8; background:#35aad8\0/; }
 
 .copyright .social-media li a { background: #319FC9; }
 .copyright .social-media li a:hover { background:#2a92b9; }
@@ -34,8 +34,8 @@ ul.tabs-vertical-frame li.current a, ul.tabs-vertical-frame li, .pr-tb-col:hover
 }
 
 /*----*****---- << Button >> ----*****----*/		
-.button { text-shadow:1px 1px 0px rgba(0, 0, 0, 0.4); color:#ffffff; border-left:1px solid #2e93bb; border-top:1px solid #2e93bb; }
-.button:hover { background:#2a8bb1; border-left:1px solid #247899; border-top:1px solid #247899; }
+.button_set a,.button { text-shadow:1px 1px 0px rgba(0, 0, 0, 0.4); color:#ffffff; border-left:1px solid #2e93bb; border-top:1px solid #2e93bb; }
+.button_set a:hover,.button:hover { background:#2a8bb1; border-left:1px solid #247899; border-top:1px solid #247899; }
 
 .button.ico i:after { background: #2f98c0; border-right: 1px solid #3ab5e6; }
 .button.ico:hover i:after { background: #247899; border-right: 1px solid #5bb5d9; }

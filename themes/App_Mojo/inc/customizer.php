@@ -460,13 +460,13 @@ return $fontArray->items;
     'type'    => 'select',
     'choices'    => $newarray
   ));
-  $wp_customize->add_setting('dw_minion_theme_options[body_font]', array(
+  $wp_customize->add_setting('aheadzen_body_font', array(
     'default'        => 'Roboto:dw:http://themes.googleusercontent.com/static/fonts/roboto/v9/W5F8_SL0XFawnjxHGsZjJA.ttf',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( 'body_font', array(
-    'settings' => 'dw_minion_theme_options[body_font]',
+  $wp_customize->add_control( 'aheadzen_body_font', array(
+    'settings' => 'aheadzen_body_font',
     'label'   => __('Select body font', 'dw-minion'),
     'section' => 'dw_minion_typo',
     'type'    => 'select',

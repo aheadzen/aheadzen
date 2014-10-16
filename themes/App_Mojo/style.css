@@ -800,14 +800,16 @@ box-sizing: content-box;
 .inline_edit_success_msg span.errormsg{color:red !important;background-color:#FCC4CC !important; border:solid 1px #F4465E;}
 
 .fip-icons-container  [class^="icon-"] {font-size: 20px !important;}
-.widget_inline_del{margin-right: 20px; margin-top: 5px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
+.widget_inline_del{margin-right: 90px;margin-top: -30px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
 .widget_inline_del a{color: red;font-size: 25px; padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
 .widget_inline_del a:hover{background-color:#000;}
 .aheadzensite:hover  .widget_inline_del{display: inline-block;}
 
 .widget_inline_add{position: absolute;text-align: right;width: 50%;z-index: 9999;left: 0;display:none; padding:10px;}
-.widget_inline_add a{color: red;font-size: 23px;padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget_inline_add a{color:green; background-color:#EDF9EF;font-size: 23px;padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
+.widget_inline_add a:hover{text-decoration:none; background-color:#C1F4CB;color:green;}
 .aheadzensite:hover .widget_inline_add{display: inline-block;}
+
 
 /*Buttons*/
 .button_set a{padding: 10px 20px; border-left: 1px solid #2e93bb;border-top: 1px solid #2e93bb;color: #ffffff;text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);background: none repeat scroll 0 0 #35aad8; border-radius: 5px;cursor: pointer;display: inline-block !important;font-size: 15px;margin: 10px 5px;}

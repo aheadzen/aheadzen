@@ -94,7 +94,9 @@ var ajax_url = '<?php echo site_url(); ?>';
 	wp_enqueue_script('jquery-our-tabs', get_template_directory_uri().'/js/jquery.tabs.min.js');
 	if($_GET['editing']==1){
 ?>
-<style>.content .aheadzensite:hover {clear: both;border: 1px dashed #ccc;padding-bottom: 10px;}</style>
+<style>
+.content .aheadzensite {border: 1px dashed #fff;padding-bottom: 10px; margin-bottom: 40px;}
+.content .aheadzensite:hover {border: 1px dashed #ccc;clear: both;}</style>
 <?php
 	}else{ 
 	wp_enqueue_script('jquery-nicescroll', get_template_directory_uri().'/js/jquery.nicescroll.min.js');
@@ -181,11 +183,26 @@ var ajax_url = '<?php echo site_url(); ?>';
 	});
 	</script>
 	<?php }?>
-<?php $heading_font = get_option('aheadzen_heading_font');
+
+<style type="text/css" media="screen">
+ 
+ <?php $body_font = get_option('aheadzen_body_font');
+if($body_font){
+ $body_font = explode(':dw:', $body_font );
+?>
+@font-face {
+  font-family: "<?php echo $body_font[0]; ?>";
+  src: url('<?php echo $body_font[1] ?>');
+} 
+* {
+  font-family: "<?php echo $body_font[0]; ?>";
+}
+ <?php }?>  
+
+ <?php $heading_font = get_option('aheadzen_heading_font');
 if($heading_font){
  $heading_font = explode(':dw:', $heading_font );
 ?>
-<style type="text/css" media="screen">
 @font-face {
   font-family: "<?php echo $heading_font[0]; ?>";
   src: url('<?php echo $heading_font[1] ?>');
@@ -193,8 +210,9 @@ if($heading_font){
 h1,h2,h3,h4,h5,h6,blockquote p {
   font-family: "<?php echo $heading_font[0]; ?>";
 }
- <?php }?>   
-</style>
+ <?php }?>
+
+ </style>
  <?php echo get_option('aheadzen_header_code');?>
 </head>
 <body <?php body_class(); ?>>

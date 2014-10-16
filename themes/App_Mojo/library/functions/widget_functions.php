@@ -2679,7 +2679,7 @@ if(!class_exists('aheadzen_image_slider_widget')){
 				if($mimg4==''){$mimg4=get_template_directory_uri().'/images/select_image.png';}
 				if($mimg5==''){$mimg5=get_template_directory_uri().'/images/select_image.png';}
 			}
-			echo $before_widget;		
+			
 			$withoutborder = empty($instance['withoutborder']) ? '' : $instance['withoutborder'];
 			if($withoutborder)
 			{				

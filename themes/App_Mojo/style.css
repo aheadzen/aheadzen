@@ -800,7 +800,7 @@ box-sizing: content-box;
 .inline_edit_success_msg span.errormsg{color:red !important;background-color:#FCC4CC !important; border:solid 1px #F4465E;}
 
 .fip-icons-container  [class^="icon-"] {font-size: 20px !important;}
-.widget_inline_del{margin-right: 90px;margin-top: -30px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
+.widget_inline_del{margin-right: 90px;margin-top: 0px; position: absolute;right: 0;text-align: right;z-index: 999;display:none;}
 .widget_inline_del a{color: red;font-size: 25px; padding: 3px 10px; -webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;}
 .widget_inline_del a:hover{background-color:#000;}
 .aheadzensite:hover  .widget_inline_del{display: inline-block;}

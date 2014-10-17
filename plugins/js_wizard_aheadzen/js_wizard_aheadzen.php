@@ -757,6 +757,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				<?php }?>
 				
 				jQuery("#registerform #user_email").blur(function(){
+					jQuery('#sitename_validation').val('0');
 					aheadzen_check_email();				
 				});
 				
@@ -765,6 +766,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				});
 				
 				jQuery("#registerform #sitename").blur(function(){
+					jQuery('#sitename_validation').val('0');
 					regfrm_submit_site_check();
 				});
 				
@@ -774,6 +776,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				});
 				
 				jQuery("#registerform #password").blur(function(){
+					jQuery('#sitename_validation').val('0');
 					aheadzen_check_pw();
 				});
 				
@@ -896,7 +899,9 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 								jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 							}
 						});	
-					}						
+					}else{
+						varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+					}					
 				}
 			}
 

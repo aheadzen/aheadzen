@@ -2050,12 +2050,12 @@ if(!class_exists('aheadzen_contactus_widget')){
 					<ul class="social-media">
 					<?php $nw='target="_blank"';?>
 					<?php if($fb){?> <li><a <?php echo $nw;?> href="<?php echo trim($fb);?>" class="icon-facebook"></a></li><?php }?>
-					<?php if($gp){?><li><a <?php echo $nw;?> href="<?php echo trim($gp);?>" class="icon-google-plus"></a></li><?php }?>
+					<?php if($gp){?><li><a <?php echo $nw;?> href="<?php echo trim($gp);?>" class="icon-gplus"></a></li><?php }?>
 					<?php if($tw){?><li><a <?php echo $nw;?> href="<?php echo trim($tw);?>" class="icon-twitter"></a></li><?php }?>
 					<?php if($ln){?><li><a <?php echo $nw;?> href="<?php echo trim($ln);?>" class="icon-linkedin"></a></li><?php }?>
-					<?php if($maplink){?><li><a <?php echo $nw;?> href="<?php echo trim($maplink);?>" class="icon-map-marker"></a></li><?php }?>
-					<?php if($video){?><li><a <?php echo $nw;?> href="<?php echo trim($video);?>" class="icon-facetime-video"></a></li><?php }?>
-					<?php if($eml){?><li><a <?php echo $nw;?> href="mailto:<?php echo trim($eml);?>" class="icon-envelope"></a></li><?php }?>
+					<?php if($maplink){?><li><a <?php echo $nw;?> href="<?php echo trim($maplink);?>" class="icon-pin"></a></li><?php }?>
+					<?php if($video){?><li><a <?php echo $nw;?> href="<?php echo trim($video);?>" class="icon-video"></a></li><?php }?>
+					<?php if($eml){?><li><a <?php echo $nw;?> href="mailto:<?php echo trim($eml);?>" class="icon-mail"></a></li><?php }?>
 					</ul>
 					<div class="margin20"> </div>
                     </div>
@@ -2208,12 +2208,12 @@ if(!class_exists('aheadzen_social_widget')){
 					<ul class="social-media">
 					<?php $nw='target="_blank"';?>
 					<?php if($fb){?> <li><a <?php echo $nw;?> href="<?php echo trim($fb);?>" class="icon-facebook"></a></li><?php }?>
-					<?php if($gp){?><li><a <?php echo $nw;?> href="<?php echo trim($gp);?>" class="icon-google-plus"></a></li><?php }?>
+					<?php if($gp){?><li><a <?php echo $nw;?> href="<?php echo trim($gp);?>" class="icon-gplus"></a></li><?php }?>
 					<?php if($tw){?><li><a <?php echo $nw;?> href="<?php echo trim($tw);?>" class="icon-twitter"></a></li><?php }?>
 					<?php if($ln){?><li><a <?php echo $nw;?> href="<?php echo trim($ln);?>" class="icon-linkedin"></a></li><?php }?>
-					<?php if($maplink){?><li><a <?php echo $nw;?> href="<?php echo trim($maplink);?>" class="icon-map-marker"></a></li><?php }?>
-					<?php if($video){?><li><a <?php echo $nw;?> href="<?php echo trim($video);?>" class="icon-facetime-video"></a></li><?php }?>
-					<?php if($eml){?><li><a <?php echo $nw;?> href="mailto:<?php echo trim($eml);?>" class="icon-envelope"></a></li><?php }?>
+					<?php if($maplink){?><li><a <?php echo $nw;?> href="<?php echo trim($maplink);?>" class="icon-pin"></a></li><?php }?>
+					<?php if($video){?><li><a <?php echo $nw;?> href="<?php echo trim($video);?>" class="icon-video"></a></li><?php }?>
+					<?php if($eml){?><li><a <?php echo $nw;?> href="mailto:<?php echo trim($eml);?>" class="icon-mail"></a></li><?php }?>
 					</ul>
 					<div class="margin30 social-media-space2"> </div>
              <?php

@@ -273,7 +273,7 @@ embed, iframe, object, video { max-width:100%; }
 
 .container { margin:0 auto; width:940px; }
 .boxed .wrapper { width:1020px; margin:0 auto; float:none; }
-.boxed .inner-wrapper { float:left; width:100%; background:#ffffff; margin:0px; padding:0px; overflow:hidden;  }
+.boxed .inner-wrapper { float:left; width:100%; background:#ffffff; margin:0px; padding:0px; overflow:hidden; }
 .boxed #header { width:1020px; margin:0 auto; }
 
 /*----*****---- << Float >> ----*****----*/

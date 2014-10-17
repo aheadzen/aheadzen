@@ -757,7 +757,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				<?php }?>
 				
 				jQuery("#registerform #user_email").blur(function(){
-					jQuery('#sitename_validation').val('0');
+					jQuery('#email_validation').val('0');
 					aheadzen_check_email();				
 				});
 				
@@ -776,7 +776,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				});
 				
 				jQuery("#registerform #password").blur(function(){
-					jQuery('#sitename_validation').val('0');
+					jQuery('#passwd_validation').val('0');
 					aheadzen_check_pw();
 				});
 				

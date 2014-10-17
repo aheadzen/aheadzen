@@ -674,9 +674,12 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			$sitename = $_GET['sitename'];
 			?>
 			<style>
-			.form-row span{display:inline-block; width:90%; clear:both;}
+			.form-row span{display:inline-block; width:95%; clear:both;}
+			.form-row span.email_is_username{width:auto;}
 			.email_is_username{color:orange; margin-left:7px;}
+			.registerform_div{margin: 0 auto;max-width: 400px;width:100%;}
 			</style>
+			<div class="registerform_div">
 			<form name="registerform" id="registerform" action="" method="post">
 			<input type="hidden" name="registernewuser" value="1" />
 			<input type="hidden" id="sitename_validation" name="sitename_validation" value="0" />
@@ -685,7 +688,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			<div>
 			<p class="form-row">
 			<label for="sitename"><?php _e('Site Address') ?><br />
-			<input style="width: 60%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
+			<input style="width: 50%;" type="text" name="sitename" id="sitename" class="input-text" value="<?php echo esc_attr(wp_unslash($sitename)); ?>" size="25" />
 			.<?php echo $_SERVER['HTTP_HOST'];?> 
 			<span></span>
 			</label>			
@@ -731,6 +734,7 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 			</div>
 			
 			</form>
+			</div>
 			<script>			
 			jQuery(function(){
 				//icon-remove  icon-ok
@@ -786,31 +790,35 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 				}else
 				if(validateEmail(val))
 				{
-					varthisvar.next('span').html('processing, please wait...');	
-					var ajax_url = '<?php echo get_permalink(); ?>';
-					var data = {
-						'regact': 'reg_check_email_user',
-						'val': val
-					};
-					jQuery.post(ajax_url, data, function(response) {
-						if(response=='username:notinuse')
-						{
-							varthisvar.next('span').html('<font class="success">you can use the E-mail.</font>');
-							jQuery('#email_validation').val('1');
-							jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
-							jQuery( "#user_email_icon" ).addClass( "icon-ok" );
-							is_valid_email = 1;
-							if(is_valid_sitename==1){ }else{
-								is_valid_sitename = regfrm_submit_site_check();
+					var email_validation = jQuery('#email_validation').val();
+					if(email_validation==0)
+					{
+						varthisvar.next('span').html('processing, please wait...');	
+						var ajax_url = '<?php echo get_permalink(); ?>';
+						var data = {
+							'regact': 'reg_check_email_user',
+							'val': val
+						};
+						jQuery.post(ajax_url, data, function(response) {
+							if(response=='username:notinuse')
+							{
+								varthisvar.next('span').html('<font class="success">you can use the E-mail.</font>');
+								jQuery('#email_validation').val('1');
+								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
+								is_valid_email = 1;
+								if(is_valid_sitename==1){ }else{
+									is_valid_sitename = regfrm_submit_site_check();
+								}
+							}else{
+								is_valid_email = 1;
+								varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
+								jQuery('#email_validation').val('1');
+								jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
+								jQuery( "#user_email_icon" ).addClass( "icon-ok" );
 							}
-						}else{
-							is_valid_email = 1;
-							varthisvar.next('span').html('<font class="error">The Email already in use. Please enter password to login.</font>');
-							jQuery('#email_validation').val('1');
-							jQuery( "#user_email_icon" ).removeClass( "icon-remove" );
-							jQuery( "#user_email_icon" ).addClass( "icon-ok" );
-						}
-					});
+						});
+					}
 				}else{
 					varthisvar.next('span').html('<font class="error">Invalid E-mail: '+val+'</font>');
 					jQuery('#email_validation').val('0');
@@ -864,27 +872,31 @@ if(!function_exists('aheadzen_register_form_shortcode'))
 					jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
 					jQuery( "#sitename_icon" ).addClass( "icon-remove" );
 				}else{
-					varthisvar.next('span').html('processing, please wait...');	
-					var ajax_url = '<?php echo get_permalink(); ?>';
-					var data = {
-						'regact': 'reg_check_sitename',
-						'val': val
-					};
-					jQuery.post(ajax_url, data, function(response) {
-						if(response=='site:notexists')
-						{
-							varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
-							jQuery('#sitename_validation').val('1');
-							jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
-							jQuery( "#sitename_icon" ).addClass( "icon-ok" );
-							is_valid_sitename = 1;
-						}else{
-							varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
-							jQuery('#sitename_validation').val('0');
-							jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
-							jQuery( "#sitename_icon" ).addClass( "icon-remove" );
-						}
-					});						
+					var sitename_validation = jQuery('#sitename_validation').val();
+					if(sitename_validation==0)
+					{
+						varthisvar.next('span').html('processing, please wait...');	
+						var ajax_url = '<?php echo get_permalink(); ?>';
+						var data = {
+							'regact': 'reg_check_sitename',
+							'val': val
+						};
+						jQuery.post(ajax_url, data, function(response) {
+							if(response=='site:notexists')
+							{
+								varthisvar.next('span').html('<font class="success">site name is available, please continue...</font>');
+								jQuery('#sitename_validation').val('1');
+								jQuery( "#sitename_icon" ).removeClass( "icon-remove" );
+								jQuery( "#sitename_icon" ).addClass( "icon-ok" );
+								is_valid_sitename = 1;
+							}else{
+								varthisvar.next('span').html('<font class="error">the site name already exists, please try another one.</font>');
+								jQuery('#sitename_validation').val('0');
+								jQuery( "#sitename_icon" ).removeClass( "icon-ok" );
+								jQuery( "#sitename_icon" ).addClass( "icon-remove" );
+							}
+						});	
+					}						
 				}
 			}
 

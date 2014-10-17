@@ -414,18 +414,207 @@ function dw_minion_customize_register( $wp_customize ) {
     'settings' => 'aheadzen_skin',
     'choices' => array('blue', 'chocolate', 'coral', 'cyan', 'eggplant', 'electricblue', 'ferngreen', 'gold', 'green', 'grey', 'khaki', 'ocean', 'orange', 'palebrown', 'pink', 'purple', 'raspberry', 'red', 'skyblue', 'slateblue')
   )));
-  /*
-  $wp_customize->add_setting('dw_minion_theme_options[custom-color]', array(
+  
+  
+   // Custom STYLE SELECTOR --------------------------------------------------------------------------------------
+  $wp_customize->add_section('aheadzen_custom', array(
+    'title'    => __('Customize Style Selector', 'dw-minion'),
+    'priority' => 10,
+  ));
+  
+  $wp_customize->add_setting('aheadzen_logo_color', array(
     'default'        => '',
     'capability'     => 'edit_theme_options',
     'type'           => 'option',
   ));
-  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'link_color', array(
-    'label'        => __( 'Custom Color', 'dw-minion' ),
-    'section'    => 'dw_minion_primary_color',
-    'settings'   => 'dw_minion_theme_options[custom-color]',
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_logo_color', array(
+    'label'        => __( 'Logo Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_logo_color',
+	'priority' => 13, 
+)));
+  $wp_customize->add_setting('aheadzen_heading_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_heading_color', array(
+    'label'        => __( 'Title Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_heading_color',
+	'priority' => 14, 
   )));
-*/
+  
+   $wp_customize->add_setting('aheadzen_subheading_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_subheading_color', array(
+    'label'        => __( 'Sub Title Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_subheading_color',
+	'priority' => 15, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_link_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_link_color', array(
+    'label'        => __( 'Link Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_link_color',
+	'priority' => 16, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_menulink_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_menulink_color', array(
+    'label'        => __( 'Menu Link Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_menulink_color',
+	'priority' => 17, 
+  )));
+	
+$wp_customize->add_setting('aheadzen_headerbg_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_headerbg_color', array(
+    'label'        => __( 'Header Background Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_headerbg_color',
+	'priority' => 18, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_headerborder_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_headerborder_color', array(
+    'label'        => __( 'Header Bottom Border Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_headerborder_color',
+	'priority' => 19, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_footer_heading_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  
+   $wp_customize->add_setting('aheadzen_maintitle_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_1maintitle_color', array(
+    'label'        => __( 'Section Title Text Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_maintitle_color',
+	'priority' => 20, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_mainbg_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_mainbg_color', array(
+    'label'        => __( 'Section Title Background Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_mainbg_color',
+	'priority' => 21, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_mainshadow_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_mainshadow_color', array(
+    'label'        => __( 'Section Title Background Shadow Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_mainshadow_color',
+	'priority' => 22, 
+  )));  
+  
+   $wp_customize->add_setting('aheadzen_maintitle_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_1maintitle_color', array(
+    'label'        => __( 'Section Title Text Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_maintitle_color',
+	'priority' => 23, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_mainbg_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_mainbg_color', array(
+    'label'        => __( 'Section Title Background Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_mainbg_color',
+	'priority' => 24, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_mainshadow_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_mainshadow_color', array(
+    'label'        => __( 'Section Title Background Shadow Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_mainshadow_color',
+	'priority' => 25, 
+  )));
+  
+  
+  $wp_customize->add_setting('aheadzen_buttonbg_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_buttonbg_color', array(
+    'label'        => __( 'Button Background Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_buttonbg_color',
+	'priority' => 26, 
+  )));
+  
+  $wp_customize->add_setting('aheadzen_buttontext_color', array(
+    'default'        => '',
+    'capability'     => 'edit_theme_options',
+    'type'           => 'option',
+  ));
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_buttontext_color', array(
+    'label'        => __( 'Button Text Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_buttontext_color',
+	'priority' => 27, 
+  )));
+  
+  $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'aheadzen_footer_heading_color', array(
+    'label'        => __( 'Footer Title Color', 'dw-minion' ),
+    'section'    => 'aheadzen_custom',
+    'settings'   => 'aheadzen_footer_heading_color',
+	'priority' => 115, 
+  )));
+
 if( ! function_exists('dw_get_gfonts') ) {
 function dw_get_gfonts(){
 $fontsSeraliazed = wp_remote_fopen( get_template_directory_uri() . '/inc/font/gfonts_v2.txt' );

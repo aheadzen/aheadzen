@@ -211,8 +211,50 @@ h1,h2,h3,h4,h5,h6,blockquote p {
   font-family: "<?php echo $heading_font[0]; ?>";
 }
  <?php }?>
+ <?php
+$logo_color = get_option('aheadzen_logo_color');
+if($logo_color){echo '.logoarea .alogo .site-title{color:'.$logo_color.' !important;}';}
 
- </style>
+
+$headerbg_color = get_option('aheadzen_headerbg_color');
+if($headerbg_color){echo '#header{background-color:'.$headerbg_color.' !important; background-image: -moz-linear-gradient(center top , '.$headerbg_color.', '.$headerbg_color.');}';}
+
+$headerborder_color = get_option('aheadzen_headerborder_color');
+if(headerborder_color){echo '#header{border-color:'.$headerborder_color.' !important;}';}
+
+$buttonbg_color = get_option('aheadzen_buttonbg_color');
+if(buttonbg_color){echo '.button_set a{background-color:'.$buttonbg_color.' !important; border-color:'.$buttonbg_color.' !important;}';}
+
+$buttontext_color = get_option('aheadzen_buttontext_color');
+if(buttontext_color){echo '.button_set a{color:'.$buttontext_color.' !important; text-shadow: 0 0 0;}';}
+
+$heading_color = get_option('aheadzen_heading_color');
+if($heading_color){echo 'h1,h2,h1 a, h2 a{color:'.$heading_color.' !important;}';}
+
+$maintitle_color = get_option('aheadzen_maintitle_color');
+if($maintitle_color){echo '.main-title h2{color:'.$maintitle_color.' !important;}';}
+
+$mainbg_color = get_option('aheadzen_mainbg_color');
+if($mainbg_color){echo '.main-title{background-color:'.$mainbg_color.' !important;}';}
+
+$mainshadow_color = get_option('aheadzen_mainshadow_color');
+if($mainshadow_color){echo '.main-title{box-shadow: 0 -7px 6px '.$mainshadow_color.' inset !important;}';}
+
+
+$subheading_color = get_option('aheadzen_subheading_color');
+if($subheading_color){echo 'h3, h4, h5, h6, h3 a, h4 a, h5 a, h6 a{color:'.$subheading_color.' !important;}';}
+
+$link_color = get_option('aheadzen_link_color');
+if($link_color){echo 'a{color:'.$link_color.';}';}
+
+$menulink_color = get_option('aheadzen_menulink_color');
+if($menulink_color){echo '#main-menu ul a{color:'.$menulink_color.';}';}
+
+
+$footer_heading_color = get_option('aheadzen_footer_heading_color');
+if($footer_heading_color){echo '.footer h2{color:'.$footer_heading_color.' !important;}';}
+?>
+</style>
  <?php echo get_option('aheadzen_header_code');?>
 </head>
 <body <?php body_class(); ?>>

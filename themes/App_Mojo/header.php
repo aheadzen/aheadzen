@@ -252,7 +252,7 @@ if($menulink_color){echo '#main-menu ul a{color:'.$menulink_color.';}';}
 
 
 $footer_heading_color = get_option('aheadzen_footer_heading_color');
-if($footer_heading_color){echo '.footer h2{color:'.$footer_heading_color.' !important;}';}
+if($footer_heading_color){echo '.footer h2,.footer h3{color:'.$footer_heading_color.' !important;}';}
 ?>
 </style>
  <?php echo get_option('aheadzen_header_code');?>

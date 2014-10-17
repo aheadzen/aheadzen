@@ -221,7 +221,7 @@ if(!class_exists('aheadzen_services_widget')){
 			$titlesize1 = empty($instance['titlesize1']) ? '' : $instance['titlesize1'];
 			$desc1 = empty($instance['desc1']) ? '' : $instance['desc1'];
 			
-			$icon2 = empty($instance['icon2']) ? 'icon-mobile-phone' : $instance['icon2'];
+			$icon2 = empty($instance['icon2']) ? 'icon-laptop' : $instance['icon2'];
 			$title2 = empty($instance['title2']) ? '' : $instance['title2'];
 			$titlesize2 = empty($instance['titlesize2']) ? '' : $instance['titlesize2'];
 			$desc2 = empty($instance['desc2']) ? '' : $instance['desc2'];
@@ -231,7 +231,7 @@ if(!class_exists('aheadzen_services_widget')){
 			$titlesize3 = empty($instance['titlesize3']) ? '' : $instance['titlesize3'];
 			$desc3 = empty($instance['desc3']) ? '' : $instance['desc3'];
 			
-			$icon4 = empty($instance['icon4']) ? 'icon-comments' : $instance['icon4'];
+			$icon4 = empty($instance['icon4']) ? 'icon-magic' : $instance['icon4'];
 			$title4 = empty($instance['title4']) ? '' : $instance['title4'];
 			$titlesize4 = empty($instance['titlesize4']) ? '' : $instance['titlesize4'];
 			$desc4 = empty($instance['desc4']) ? '' : $instance['desc4'];
@@ -2393,6 +2393,10 @@ if(!class_exists('aheadzen_logo_widget')){
 			$titlesize = empty($instance['titlesize']) ? '' : $instance['titlesize'];
 			$description = empty($instance['description']) ? get_bloginfo( 'description' ) : $instance['description'];
 			$hide_description = empty($instance['hide_description']) ? '' : $instance['hide_description'];
+			
+			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg);
+			$mimg=$mimg_arr1[0];
+			$attachment_id1=$mimg_arr1[1];
 			
 			echo $before_widget;		
 			?>

@@ -8,9 +8,20 @@ Template Name: Ask Oracle App
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
+var d = new Date();
+var jsondt = d.toJSON();
+var ajaxurl = "http://www.ask-oracle.com/charts/api.php?dt="+jsondt;
+jQuery.get( ajaxurl, function( data ) {
+	jQuery( ".result" ).html( data );
+	alert( "Load was performed." );
+});
+
+
+/*
 $(document).ready(function(){
   $("button").click(function(){
-    $("#div1").load("http://www.ask-oracle.com/charts/api.php?dt=2014-03-01T15%3A00%3A00%2B02%3A00",function(responseTxt,statusTxt,xhr){
+	
+	$("#div1").load("http://www.ask-oracle.com/charts/api.php?dt=2014-03-01T15%3A00%3A00%2B02%3A00",function(responseTxt,statusTxt,xhr){
       if(statusTxt=="success")
         alert("External content loaded successfully!");
       if(statusTxt=="error")
@@ -18,12 +29,12 @@ $(document).ready(function(){
     });
   });
 });
+*/
 </script>
 </head>
 <body>
-
-<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
-<button>Get External Content</button>
+<h2>Result will display here</h2>
+<div class="result"></div>
 
 </body>
 </html>

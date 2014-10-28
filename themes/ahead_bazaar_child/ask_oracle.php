@@ -67,7 +67,7 @@ function show_horoscope(zodiac)
 	});
 }
 </script>
-<style>
+<style type="text/css">
 #ask-oracle-page2{display:none;}
 .dailyhoro {background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center 25px #f4f3e8;padding: 5px 5px 15px;height: 310px;width: 340px;}
 h3#title{font-size: 18px;margin: 0;text-align: center;}

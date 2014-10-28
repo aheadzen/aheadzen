@@ -53,6 +53,8 @@ jQuery(document).ready(function(){
 		*/
 		
 		var zodiac_sign = 'pisces';
+		jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
+		
 		jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
 		jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
 		jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
@@ -67,17 +69,16 @@ jQuery(document).ready(function(){
 	});
 });
 
-</script>
-<script>
-$(function() {
-	$( ".tabs" ).tabs({
+
+jQuery(function() {
+	jQuery( ".tabs" ).tabs({
 		event: "mouseover"
 	});
 });
 </script>
 </head>
 <body>
-<h3>Horoscope For Pisces</h3>
+<h2 style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2>
 <div class="horoscope tabs">
 	<ul>
 		<li><a href="#tabs-daily">Daily Horoscope</a></li>

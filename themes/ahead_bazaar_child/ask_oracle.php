@@ -29,28 +29,27 @@ function show_horoscope(zodiac)
 	echo 'var api_ajax_url="'.$jsondata_url.'";';
 	?>	
 	 jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
-		jQuery( "#ask-oracle-page2" ).show();
-		jQuery.getJSON(api_ajax_url,function(result){
-		
-		if(zodiac=='')
-		{
-			zodiac = 'pisces';
-		}
-		var zodiac_sign = zodiac; 
-		jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
-		
-		jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
-		
-		jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
-		
-		jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
-		jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
-	});
+		jQuery.getJSON(api_ajax_url,function(result){		
+			if(zodiac=='')
+			{
+				zodiac = 'pisces';
+			}
+			var zodiac_sign = zodiac; 
+			jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
+			
+			jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
+			
+			jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
+			
+			jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
+			jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
+			jQuery( "#ask-oracle-page2" ).show();
+		});
 	});
 }
 </script>
@@ -114,11 +113,11 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 				<li><a href="#tabs-daily-love">Love</a></li>
 				<li><a href="#tabs-daily-career">Career</a></li>
 			</ul>
-			<div id="tabs-daily-overview">
+			<div id="tabs-daily-overview">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-daily-love">
+			<div id="tabs-daily-love">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-daily-career">
+			<div id="tabs-daily-career">loading data, please wait for a moment please...
 			</div>
 		</div>
 	</div>
@@ -129,11 +128,11 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 				<li><a href="#tabs-weekly-love">Love</a></li>
 				<li><a href="#tabs-weekly-career">Career</a></li>
 			</ul>
-			<div id="tabs-weekly-overview">
+			<div id="tabs-weekly-overview">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-weekly-love">
+			<div id="tabs-weekly-love">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-weekly-career">
+			<div id="tabs-weekly-career">loading data, please wait for a moment please...
 			</div>
 		</div>
 	</div>
@@ -144,11 +143,11 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 				<li><a href="#tabs-monthly-love">Love</a></li>
 				<li><a href="#tabs-monthly-career">Career</a></li>
 			</ul>
-			<div id="tabs-monthly-overview">
+			<div id="tabs-monthly-overview">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-monthly-love">
+			<div id="tabs-monthly-love">loading data, please wait for a moment please...
 			</div>
-			<div id="tabs-monthly-career">
+			<div id="tabs-monthly-career">loading data, please wait for a moment please...
 			</div>
 		</div>
 	</div>

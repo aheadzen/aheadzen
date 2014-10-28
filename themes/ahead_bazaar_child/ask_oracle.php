@@ -10,49 +10,33 @@ Template Name: Ask Oracle App New
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
-<?php $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
-echo 'var api_ajax_url="'.$jsondata_url.'";';
-?>
-jQuery(document).ready(function(){
-//daily,daily-love,daily-career,weekly,weekly-career,weekly-love,monthly,monthly-love,monthly-career
-//pisces,aquarius,capricorn,sagittarius,scorpio,libra,virgo,leo,cancer,gemini,taurus,aries
-	jQuery.getJSON(api_ajax_url,function(result){
-		//jQuery(".result ul").append('<li>'+JSON.stringify(result['daily'][0].content.pisces)+'</li>');
+jQuery(function() {
+	jQuery( ".tabs" ).tabs({
+		event: "mouseover"
+	});
+});
+
+function show_horoscope_main()
+{
+	jQuery( "#ask-oracle-page2" ).hide( "slow", function() {
+		jQuery( "#ask-oracle-page1" ).show();
+	});
+}
+
+function show_horoscope(zodiac)
+{
+	<?php $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
+	echo 'var api_ajax_url="'.$jsondata_url.'";';
+	?>	
+	 jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
+		jQuery( "#ask-oracle-page2" ).show();
+		jQuery.getJSON(api_ajax_url,function(result){
 		
-		/*jQuery(".result ul").append('<h3>Daily Horoscope</h3>');
-		var daily_overview_id = 'daily_overview_pisces';
-		var daily_love_id = 'daily_love_pisces';
-		var daily_career_id = 'daily_career_pisces';
-		jQuery(".result").append('<div class="tabs">');
-		//Tabs
-		jQuery(".result").append('<ul class="daily">');
-		jQuery(".result ul.daily").append('<li><a href="#'+daily_overview_id+'">Overview</a></li>');
-		jQuery(".result ul.daily").append('<li><a href="#'+daily_love_id+'">Love</a></li>');
-		jQuery(".result ul.daily").append('<li><a href="#'+daily_career_id+'">Career</a></li>');
-		jQuery(".result").append('</ul>');
-		//Tabs Details
-		jQuery(".result").append('<div id="'+daily_overview_id+'">'+(result['daily'][0].content.pisces)+'</div>');
-		jQuery(".result").append('<div id="'+daily_love_id+'">'+(result['daily-love'][0].content.pisces)+'</div>');
-		jQuery(".result").append('<div id="'+daily_career_id+'">'+(result['daily-career'][0].content.pisces)+'</div>');
-		jQuery(".result").append('</div>');
-		
-		
-		jQuery(".result").append('<ul class="weekly">');
-		jQuery(".result").append('<li><h3>Weekly Horoscope</h3></li>');
-		jQuery(".result").append('<li>'+(result['weekly'][0].content.pisces)+'</li>');
-		jQuery(".result").append('<li>'+(result['weekly-career'][0].content.pisces)+'</li>');
-		jQuery(".result").append('<li>'+(result['weekly-love'][0].content.pisces)+'</li>');
-		jQuery(".result").append('</ul>');
-		
-		jQuery(".result").append('<ul class="monthly">');
-		jQuery(".result").append('<li><h3>Monthly Horoscope</h3></li>');
-		jQuery(".result").append('<li>'+(result['monthly'][0].content.pisces)+'</li>');
-		jQuery(".result").append('<li>'+(result['monthly-career'][0].content.pisces)+'</li>');
-		jQuery(".result").append('<li>'+(result['monthly-love'][0].content.pisces)+'</li>');
-		jQuery(".result").append('</ul>');
-		*/
-		
-		var zodiac_sign = 'pisces';
+		if(zodiac=='')
+		{
+			zodiac = 'pisces';
+		}
+		var zodiac_sign = zodiac; 
 		jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
 		
 		jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
@@ -67,18 +51,56 @@ jQuery(document).ready(function(){
 		jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
 		jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
 	});
-});
-
-
-jQuery(function() {
-	jQuery( ".tabs" ).tabs({
-		event: "mouseover"
 	});
-});
+}
 </script>
+<style>
+#ask-oracle-page2{display:none;}
+.dailyhoro {background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center 25px #f4f3e8;padding: 5px 5px 15px;height: 310px;width: 340px;}
+h3#title{font-size: 18px;margin: 0;text-align: center;}
+#zodiactable{width:100%;}
+#zodiactable ul{margin: 0;padding: 0;}
+#zodiactable ul li{ float: left;list-style: none outside none;margin: 12px 0 10px;padding: 0;text-align: center;width: 84px;}
+#zodiactable ul#firstrow li{margin-top:0; margin-bottom: 10px;}
+#zodiactable ul li a{font-size: 13px;text-decoration: none;padding-top: 62px;color: #000;display: block !important;font-weight: bold;}
+.back_to_zodiac{border: 1px dashed;font-size: 15px;margin-right: 50px;margin-top: 20px;padding: 5px;position: absolute;right: 0;text-decoration: none;text-transform: uppercase;top: 0;}
+</style>
 </head>
 <body>
-<h2 style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2>
+<div id="ask-oracle-page1">
+<div class="dailyhoro" id="zodiacnav">
+<h3 id="title">Choose A Zodiac Sign</h3>
+<table cellspacing="0" id="zodiactable">
+  <tbody><tr>
+    <td>
+<ul id="firstrow">
+<li><a href="javascript:void(0);" onclick="show_horoscope('aries');" title="Aries Horoscope">Aries</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('taurus');" title="Taurus Horoscope">Taurus</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('gemini');" title="Gemini Horoscope">Gemini</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('cancer');" title="Cancer Horoscope">Cancer</a></li>
+</ul>
+</td></tr>
+<tr><td class="zodiacrow"><ul>
+<li><a href="javascript:void(0);" onclick="show_horoscope('leo');" title="Leo Horoscope">Leo</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('virgo');" title="Virgo Horoscope">Virgo</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('libra');" title="Libra Horoscope">Libra</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('scorpio');" title="Scorpio Horoscope">Scorpio</a></li>
+</ul></td></tr>
+<tr><td class="zodiacrow"><ul>
+<li><a href="javascript:void(0);" onclick="show_horoscope('sagittarius');" title="Sagittarius Horoscope">Sagittarius</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('capricorn');" title="Capricorn Horoscope">Capricorn</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('aquarius');" title="Aquarius Horoscope">Aquarius</a></li>
+<li><a href="javascript:void(0);" onclick="show_horoscope('pisces');" title="Pisces Horoscope">Pisces</a></li>		
+</ul></td>
+  </tr>
+</tbody></table>
+</div>
+</div>
+
+
+<div id="ask-oracle-page2">
+<h2 class="main_title" style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2>
+<a class="back_to_zodiac" href="javascript:void(0);" onclick="show_horoscope_main();">Back to Zodiac</a>
 <div class="horoscope tabs">
 	<ul>
 		<li><a href="#tabs-daily">Daily Horoscope</a></li>
@@ -131,7 +153,7 @@ jQuery(function() {
 		</div>
 	</div>
 </div>
-
+</div>
 
 </body>
 </html>

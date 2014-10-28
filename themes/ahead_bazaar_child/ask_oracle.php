@@ -77,7 +77,7 @@ $(function() {
 </script>
 </head>
 <body>
-<h3>Horoscope</h3>
+<h3>Horoscope For Pisces</h3>
 <div class="horoscope tabs">
 	<ul>
 		<li><a href="#tabs-daily">Daily Horoscope</a></li>

@@ -10,11 +10,46 @@ Template Name: Ask Oracle App New
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
+var zodic_result='';
+jQuery(document).ready(function(){
+  <?php $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
+	echo 'var api_ajax_url="'.$jsondata_url.'";';
+	?>
+	jQuery.getJSON(api_ajax_url,function(result){
+		zodic_result = result;
+		set_horoscope_details('pisces');
+	});
+});
+
 jQuery(function() {
 	jQuery( ".tabs" ).tabs({
 		event: "mouseover"
 	});
 });
+
+function set_horoscope_details(zodiac)
+{
+	var result = zodic_result;
+	if(zodiac=='')
+	{
+		var zodiac_sign = 'pisces';
+	}else{
+		var zodiac_sign = zodiac;
+	}
+	jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
+		
+	jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
+	
+	jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
+	
+	jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
+	jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
+}
 
 function show_horoscope_main()
 {
@@ -24,32 +59,10 @@ function show_horoscope_main()
 }
 
 function show_horoscope(zodiac)
-{
-	<?php $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
-	echo 'var api_ajax_url="'.$jsondata_url.'";';
-	?>	
+{	
 	 jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
-		jQuery.getJSON(api_ajax_url,function(result){		
-			if(zodiac=='')
-			{
-				zodiac = 'pisces';
-			}
-			var zodiac_sign = zodiac; 
-			jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
-			
-			jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
-			
-			jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
-			
-			jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
-			jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
-			jQuery( "#ask-oracle-page2" ).show();
-		});
+		set_horoscope_details(zodiac)
+		jQuery( "#ask-oracle-page2" ).show();
 	});
 }
 </script>

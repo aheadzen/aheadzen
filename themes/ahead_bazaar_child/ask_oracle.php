@@ -17,6 +17,7 @@ jQuery(document).ready(function(){
 	?>
 	jQuery.getJSON(api_ajax_url,function(result){
 		zodic_result = result;
+		show_horoscope_main();
 		set_horoscope_details('pisces');
 	});
 });

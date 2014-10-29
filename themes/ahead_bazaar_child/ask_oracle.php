@@ -7,79 +7,25 @@ Template Name: Ask Oracle App New
 <html>
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri();?>/ask_embed.css">
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
-var zodic_result='';
-jQuery(document).ready(function(){
-  <?php $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
-	echo 'var api_ajax_url="'.$jsondata_url.'";';
-	?>
-	jQuery.getJSON(api_ajax_url,function(result){
-		zodic_result = result;
-		show_horoscope_main();
-		set_horoscope_details('pisces');
-	});
-});
-
-jQuery(function() {
-	jQuery( ".tabs" ).tabs({
-		event: "mouseover"
-	});
-});
-
-function set_horoscope_details(zodiac)
+<?php 
+if($_SERVER['HTTP_HOST']=='localhost')
 {
-	var result = zodic_result;
-	if(zodiac=='')
-	{
-		var zodiac_sign = 'pisces';
-	}else{
-		var zodiac_sign = zodiac;
-	}
-	jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign);
-		
-	jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
-	
-	jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
-	
-	jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
-	jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
+$jsondata_url =  get_stylesheet_directory_uri().'/api.php';
+echo 'var api_ajax_url="'. $jsondata_url.'";';
+}else{
+echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php";';
 }
-
-function show_horoscope_main()
-{
-	jQuery( "#ask-oracle-page2" ).hide( "slow", function() {
-		jQuery( "#ask-oracle-page1" ).show();
-	});
-}
-
-function show_horoscope(zodiac)
-{	
-	 jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
-		set_horoscope_details(zodiac)
-		jQuery( "#ask-oracle-page2" ).show();
-	});
-}
+?>
 </script>
-<style type="text/css">
-#ask-oracle-page2{display:none;}
-.dailyhoro {background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center 25px #f4f3e8;padding: 5px 5px 15px;height: 310px;width: 340px;}
-h3#title{font-size: 18px;margin: 0;text-align: center;}
-#zodiactable{width:100%;}
-#zodiactable ul{margin: 0;padding: 0;}
-#zodiactable ul li{ float: left;list-style: none outside none;margin: 12px 0 10px;padding: 0;text-align: center;width: 84px;}
-#zodiactable ul#firstrow li{margin-top:0; margin-bottom: 10px;}
-#zodiactable ul li a{font-size: 13px;text-decoration: none;padding-top: 62px;color: #000;display: block !important;font-weight: bold;}
-.back_to_zodiac{border: 1px dashed;font-size: 15px;margin-right: 50px;margin-top: 20px;padding: 5px;position: absolute;right: 0;text-decoration: none;text-transform: uppercase;top: 0;}
-</style>
+<script src="<?php echo get_stylesheet_directory_uri();?>/ask_embed.js"></script>
+
 </head>
 <body>
+<div id="ask-oracle-page0">Horoscope data loading, wait for a moment please...</div>
 <div id="ask-oracle-page1">
 <div class="dailyhoro" id="zodiacnav">
 <h3 id="title">Choose A Zodiac Sign</h3>
@@ -122,6 +68,7 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 	</ul>
 	<div id="tabs-daily">		
 		<div class="horoscope_daily tabs">
+			<h5 id="daily_tabs_title">Daily Horoscope for Today</h5>
 			<ul>
 				<li><a href="#tabs-daily-overview">Overview</a></li>
 				<li><a href="#tabs-daily-love">Love</a></li>
@@ -137,6 +84,7 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 	</div>
 	<div id="tabs-weekly">
 		<div class="horoscope_weekly tabs">
+			<h5 id="weekly_tabs_title">Weekly Horoscope for Current Week</h5>
 			<ul>
 				<li><a href="#tabs-weekly-overview">Overview</a></li>
 				<li><a href="#tabs-weekly-love">Love</a></li>
@@ -152,6 +100,7 @@ h3#title{font-size: 18px;margin: 0;text-align: center;}
 	</div>
 	<div id="tabs-monthly">
 		<div class="horoscope_monthly tabs">
+			<h5 id="monthly_tabs_title">Weekly Horoscope for Current Month</h5>
 			<ul>
 				<li><a href="#tabs-monthly-overview">Overview</a></li>
 				<li><a href="#tabs-monthly-love">Love</a></li>

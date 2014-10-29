@@ -1,0 +1,30 @@
+#ask-oracle-page1,#ask-oracle-page2{display:none;}
+.dailyhoro {background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center 25px #f4f3e8;padding: 5px 5px 15px;height: 310px;width: 340px;}
+h3#title{font-size: 18px;margin: 0;text-align: center;}
+#zodiactable{width:100%;}
+#zodiactable ul{margin: 0;padding: 0;}
+#zodiactable ul li{ float: left;list-style: none outside none;margin: 12px 0 10px;padding: 0;text-align: center;width: 84px;}
+#zodiactable ul#firstrow li{margin-top:0; margin-bottom: 10px;}
+#zodiactable ul li a{font-size: 13px;text-decoration: none;padding-top: 62px;color: #000;display: block !important;font-weight: bold;}
+.back_to_zodiac{border: 1px dashed;font-size: 15px;margin-right: 50px;margin-top: 20px;padding: 5px;position: absolute;right: 0;text-decoration: none;text-transform: uppercase;top: 0;}
+h2#horoscope_title{ display: inline-block;margin-top: 30px;}
+.zodiac_photo{margin-left: 20px;margin-top: -25px;position: absolute;border:solid 1px #ddd;display: inline-block;height: 60px;width:75px;background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center center;}
+.zodiac_photo.aries_image{background-position: 2px -3px;}
+.zodiac_photo.taurus_image{background-position: -86px -3px;}
+.zodiac_photo.gemini_image{background-position: -166px -3px;}
+.zodiac_photo.cancer_image{background-position: -254px -3px;}
+.zodiac_photo.leo_image{background-position: 5px -100px;}
+.zodiac_photo.virgo_image{background-position: -86px -105px;}
+.zodiac_photo.libra_image{background-position: -166px -105px;}
+.zodiac_photo.scorpio_image{background-position: -254px -105px;}
+.zodiac_photo.sagittarius_image{background-position: 8px -206px;}
+.zodiac_photo.capricorn_image{background-position: -86px -206px;}
+.zodiac_photo.aquarius_image{background-position: -166px -206px;}
+.zodiac_photo.pisces_image{background-position: -254px -206px;}
+
+.zodiac_dates{display:inline-block;margin-left:130px;}
+.horoscope_daily.tabs, .horoscope_weekly.tabs, .horoscope_monthly.tabs{border:0;}
+.horoscope_daily .ui-widget-header, .horoscope_weekly .ui-widget-header,.horoscope_monthly .ui-widget-header{background:none; border: none;}
+.horoscope_daily .ui-state-active, .horoscope_daily .ui-widget-content .ui-state-active, .horoscope_daily .ui-widget-header .ui-state-active,.horoscope_weekly .ui-state-active, .horoscope_weekly .ui-widget-content .ui-state-active, .horoscope_weekly .ui-widget-header .ui-state-active,.horoscope_monthly .ui-state-active, .horoscope_monthly .ui-widget-content .ui-state-active, .horoscope_monthly .ui-widget-header .ui-state-active{background:none;background-color:pink;}
+
+.ui-tabs .ui-tabs-nav li{min-width: 20%}

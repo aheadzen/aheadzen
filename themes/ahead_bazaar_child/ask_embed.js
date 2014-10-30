@@ -50,6 +50,7 @@ function set_horoscope_details(zodiac)
 	//lastDay = lastDay.getDate()+'/'+lastDay.getMonth()+'/'+lastDay.getFullYear();
 	var themonth = '';
 	
+	
 	jQuery(".horoscope.tabs #weekly_tabs_title").html('Weekly Horoscope for '+result['weekly'][0].date+'<br /> --> From '+week_firstDay+' TO '+week_lastDay);
 	jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);

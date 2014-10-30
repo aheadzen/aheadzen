@@ -36,7 +36,7 @@ function set_horoscope_details(zodiac)
 	
 	var date_str = result['weekly'][0].date;
 	var date_res = date_str.split("-"); 
-	var curr = new Date(parseInt(date_res[0]), parseInt(date_res[1]), parseInt(date_res[2])); // get current date
+	var curr = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2])); // get current date
 	var first = curr.getDate() - curr.getDay() + 2; // First day is the day of the month - the day of the week
 	var last = first + 6; // last day is the first day + 6
 	var week_firstDay = new Date(curr.setDate(first)).toUTCString();

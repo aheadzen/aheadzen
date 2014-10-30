@@ -27,5 +27,7 @@ h2#horoscope_title{ display: inline-block;margin-top: 30px;}
 .horoscope_daily .ui-widget-header, .horoscope_weekly .ui-widget-header,.horoscope_monthly .ui-widget-header{background:none; border: none;}
 .horoscope_daily .ui-state-active, .horoscope_daily .ui-widget-content .ui-state-active, .horoscope_daily .ui-widget-header .ui-state-active,.horoscope_weekly .ui-state-active, .horoscope_weekly .ui-widget-content .ui-state-active, .horoscope_weekly .ui-widget-header .ui-state-active,.horoscope_monthly .ui-state-active, .horoscope_monthly .ui-widget-content .ui-state-active, .horoscope_monthly .ui-widget-header .ui-state-active{background:none;background-color:pink;}
 
-.ui-tabs .ui-tabs-nav li{min-width: 20%}
-.ui-tabs .ui-tabs-nav li a{width:100%;}
+.ui-tabs .ui-tabs-nav{text-align:center;}
+.ui-tabs .ui-tabs-nav li{min-width: 20%;display: inline-block;float: none;text-align: center;}
+.ui-tabs .ui-tabs-nav li a{width:85%;}
+#daily_tabs_title,#weekly_tabs_title,#monthly_tabs_title{text-align:center;}

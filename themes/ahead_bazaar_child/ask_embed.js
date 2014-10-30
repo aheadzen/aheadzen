@@ -36,22 +36,27 @@ function set_horoscope_details(zodiac)
 	
 	var date_str = result['weekly'][0].date;
 	var date_res = date_str.split("-"); 
-	var week_firstDay = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2]));
-	var week_lastDay = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2])+7);
-	
+	var curr = new Date(parseInt(date_res[0]), parseInt(date_res[1]), parseInt(date_res[2])); // get current date
+	var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+	var last = first + 6; // last day is the first day + 6
+	var week_firstDay = new Date(curr.setDate(first)).toUTCString();
+	var week_lastDay = new Date(curr.setDate(last)).toUTCString();
+
 	var date_str = result['monthly'][0].date;
 	var date_res = date_str.split("-"); 
-	var firstDay = new Date(parseInt(date_res[0]), parseInt(date_res[1]), 1);
-	var lastDay = new Date(parseInt(date_res[0]), parseInt(date_res[1]) + 1, 0);
-	//firstDay = firstDay.toString("MM/dd/yyyy");
-	//lastDay = lastDay.toString("MM/dd/yyyy");
+	//var firstDay = new Date(parseInt(date_res[0]), parseInt(date_res[1]), 1);
+	//var lastDay = new Date(parseInt(date_res[0]), parseInt(date_res[1]) + 1, 0);
+	//firstDay = firstDay.getDate()+'/'+firstDay.getMonth()+'/'+firstDay.getFullYear();
+	//lastDay = lastDay.getDate()+'/'+lastDay.getMonth()+'/'+lastDay.getFullYear();
+	var themonth = '';
 	
 	jQuery(".horoscope.tabs #weekly_tabs_title").html('Weekly Horoscope for '+result['weekly'][0].date+'<br /> --> From '+week_firstDay+' TO '+week_lastDay);
 	jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
 	
-	jQuery(".horoscope.tabs #monthly_tabs_title").html('Monthly Horoscope for '+result['monthly'][0].date+'<br /> --> From '+firstDay+' TO '+lastDay);
+	//jQuery(".horoscope.tabs #monthly_tabs_title").html('Monthly Horoscope for '+result['monthly'][0].date);
+	jQuery(".horoscope.tabs #monthly_tabs_title").html('Monthly Horoscope for '+themonth);
 	jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);

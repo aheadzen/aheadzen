@@ -45,8 +45,7 @@ function set_horoscope_details(zodiac)
 	var last = first + 6; // last day is the first day + 6
 	var week_firstDay = new Date(curr.setDate(first)).toUTCString();
 	var week_lastDay = new Date(curr.setDate(last)).toUTCString();
-	//var week_firstDay = new Date(curr.setDate(first));
-	//var week_lastDay = new Date(curr.setDate(last));
+	
 	var week_firstDay_res = week_firstDay.split(" "); 
 	var week_lastDay_res = week_lastDay.split(" "); 
 	week_firstDay = week_firstDay_res[0]+' '+week_firstDay_res[1]+' '+week_firstDay_res[2]+' '+week_firstDay_res[3];

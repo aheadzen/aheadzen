@@ -12,8 +12,8 @@ Template Name: Ask Oracle App New
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
 <?php 
-//if($_SERVER['HTTP_HOST']=='localhost')
-if(1)
+if($_SERVER['HTTP_HOST']=='localhost')
+//if(1)
 {
 $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
 echo 'var api_ajax_url="'. $jsondata_url.'";';

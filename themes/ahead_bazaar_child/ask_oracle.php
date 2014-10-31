@@ -10,18 +10,20 @@ Template Name: Ask Oracle App New
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri();?>/ask_embed.css">
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
 <script type="text/javascript">
-var d = new Date();
-var n = d.toJSON();
+//var d = new Date();
+//var n = d.toJSON();
+var m = moment();    // get "now" as a moment
+var n = m.format('YYYY-MM-DDThh:mm:ss');
 <?php
-echo $_SERVER['HTTP_HOST'];
-if($_SERVER['HTTP_HOST']=='localhost')
 //if(1)
+if($_SERVER['HTTP_HOST']=='localhost')
 {
 $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
 echo 'var api_ajax_url="'. $jsondata_url.'/?dt="+n;';
 }else{
-echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php/?dt="+n;';
+echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php?dt="+n;';
 }
 ?>
 </script>

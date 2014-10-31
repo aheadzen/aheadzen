@@ -13,7 +13,8 @@ Template Name: Ask Oracle App New
 <script type="text/javascript">
 var d = new Date();
 var n = d.toJSON();
-<?php 
+<?php
+echo $_SERVER['HTTP_HOST'];
 if($_SERVER['HTTP_HOST']=='localhost')
 //if(1)
 {

@@ -30,20 +30,22 @@ function set_horoscope_details(zodiac)
 		zodiac_sign = zodiac;
 	}
 	
-	jQuery("#horoscope_title").html('Horoscope For '+zodiac_sign+'<div class="zodiac_photo '+zodiac_sign+'_image"></div><span class="zodiac_dates">'+zodiac_dates[zodiac_sign]+'</span>');
-	
-	set_daily_data_tabs();
-	set_weekly_data_tabs();
-	set_monthly_data_tabs();
+	//jQuery("#horoscope_title").html(zodiac_sign+' Horoscope<div class="zodiac_photo '+zodiac_sign+'_image"></div><span class="zodiac_dates">'+zodiac_dates[zodiac_sign]+'</span>');
+	jQuery("#horoscope_title").html(zodiac_sign+' Horoscope');
+	jQuery("#horoscope_zodiac_details").html('<div class="zodiac_photo '+zodiac_sign+'_image"></div>');
+	set_daily_data_tabs(result);
+	set_weekly_data_tabs(result);
+	set_monthly_data_tabs(result);
 	
 }
 
-function set_daily_data_tabs()
+function set_daily_data_tabs(result)
 {
-	var result = zodic_result;
 	var date_str = result['daily'][0].date;
 	var ddate_res = date_str.split("-"); 
 	var daily_date = ddate_res[2]+' '+months_full[parseInt(ddate_res[1])-1]+' '+ddate_res[0];
+	
+	var mypre_daily_date = new Date(parseInt(ddate_res[0]), parseInt(ddate_res[1])-1, parseInt(ddate_res[2]));
 	
 	var pre_daily_date = new Date(parseInt(ddate_res[0]), parseInt(ddate_res[1])-1, parseInt(ddate_res[2])).toUTCString();;
 	var next_daily_date = new Date(parseInt(ddate_res[0]), parseInt(ddate_res[1])-1, parseInt(ddate_res[2])+2).toUTCString();;
@@ -58,9 +60,8 @@ function set_daily_data_tabs()
 	jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
 }
 
-function set_weekly_data_tabs()
+function set_weekly_data_tabs(result)
 {
-	var result = zodic_result;
 	var date_str = result['weekly'][0].date;
 	var date_res = date_str.split("-");
 	var curr = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2])); // get current date
@@ -86,9 +87,8 @@ function set_weekly_data_tabs()
 	jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
 }
 
-function set_monthly_data_tabs()
+function set_monthly_data_tabs(result)
 {
-	var result = zodic_result;
 	var date_str = result['monthly'][0].date;
 	var date_res = date_str.split("-"); 
 	var themonth = months_full[parseInt(date_res[1])-1] +' '+ date_res[0];
@@ -127,23 +127,36 @@ function get_set_daily_weekly_monthly_data(dt,type)
 	var the_date = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2])+1);
 	var n = the_date.toJSON();
 	var new_api_ajax_url = api_ajax_url+'?dt='+ encodeURI(n);
-	jQuery.get(new_api_ajax_url,function(data,status){
-		zodic_result=data;
-		//alert("Data: " + data + "\nStatus: " + status);
-	});	
-	
 	if(type=='daily')
 	{
-		set_daily_data_tabs();
+		jQuery(".horoscope.tabs #daily_tabs_title").html('processing...');
 	
 	}else if(type=='weekly')
 	{
-		set_weekly_data_tabs();
+		jQuery(".horoscope.tabs #weekly_tabs_title").html('processing...');
 	
 	}else if(type=='monthly')
 	{
-		set_monthly_data_tabs();
+		jQuery(".horoscope.tabs #monthly_tabs_title").html('processing...');
 	}
+	
+	jQuery.get(new_api_ajax_url,function(data,status){
+		//alert("Data: " + data + "\nStatus: " + status);
+		if(type=='daily')
+		{
+			set_daily_data_tabs(data);
+		
+		}else if(type=='weekly')
+		{
+			set_weekly_data_tabs(data);
+		
+		}else if(type=='monthly')
+		{
+			set_monthly_data_tabs(data);
+		}
+	});	
+	
+	
 	
 }
 

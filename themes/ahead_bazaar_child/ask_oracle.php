@@ -11,14 +11,16 @@ Template Name: Ask Oracle App New
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
+var d = new Date();
+var n = d.toJSON();
 <?php 
 if($_SERVER['HTTP_HOST']=='localhost')
 //if(1)
 {
 $jsondata_url =  get_stylesheet_directory_uri().'/api.php';
-echo 'var api_ajax_url="'. $jsondata_url.'";';
+echo 'var api_ajax_url="'. $jsondata_url.'/?dt="+n;';
 }else{
-echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php";';
+echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php/?dt="+n;';
 }
 ?>
 </script>
@@ -61,8 +63,10 @@ echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php";';
 <div id="ask-oracle-page2">
 <h2 class="main_title" style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2>
 <a class="back_to_zodiac" href="javascript:void(0);" onclick="show_horoscope_main();">Back to Zodiac</a>
+<div class="clearboth"></div>
+<div id="horoscope_zodiac_details"></div>
 <div class="horoscope tabs">
-	<ul>
+	<ul class="daily_weekly_monthly_tabs">
 		<li><a href="#tabs-daily">Daily Horoscope</a></li>
 		<li><a href="#tabs-weekly">Weekly Horoscope</a></li>
 		<li><a href="#tabs-monthly">Monthly Horoscope</a></li>

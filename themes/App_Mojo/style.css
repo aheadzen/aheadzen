@@ -210,7 +210,7 @@ img.size-auto, img.size-large, img.size-full, img.size-medium { max-width:99.6%;
 .four-sixth { width:60%; }
 .five-sixth { width:75%; }		
 
-.column img { max-width:100%; height:auto; max-height:700px; }
+.column img { max-width:100%; height:auto; max-height:500px; }
 
 .one-half iframe, .one-third iframe, .one-fourth iframe, .three-fourth iframe, .two-third iframe, iframe { max-width:100%; }
 embed, iframe, object, video { max-width:100%; }
@@ -389,10 +389,10 @@ input.error { border:2px solid #ff0000 !important; border-right:none !important;
 .progress-bar-wrapper #donutchart4 div span { color:#35aad8; }
 
 /*----*****---- << Portfolio >> ----*****----*/
-.portfolio { background:#f6f6f6; margin-bottom:20px; }
+.portfolio { background:#FBFBFB; margin-bottom:20px; }
 .portfolio.one-third { width:31.2%; }
 
-.portfolio .portfolio-thumb { float: left; overflow: hidden; padding: 0; position: relative; width:100%;  min-height: 165px; height:225px;}
+.portfolio .portfolio-thumb { text-align:center; float: left; overflow: hidden; padding: 0; position: relative; width:100%;  min-height: 165px; height:225px;}
 .portfolio-thumb > img { float:left; display:block; }
 
 .portfolio.one-third .portfolio-thumb img { height:auto; }

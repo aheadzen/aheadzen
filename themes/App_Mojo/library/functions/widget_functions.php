@@ -2650,11 +2650,16 @@ if(!class_exists('aheadzen_image_slider_widget')){
 			$titlesize = empty($instance['titlesize']) ? '' : $instance['titlesize'];	
 			$align = empty($instance['align']) ? '' : $instance['align'];
 			
-			$mimg1 = empty($instance['mimg1']) ? '' : $instance['mimg1'];
+						$mimg1 = empty($instance['mimg1']) ? '' : $instance['mimg1'];
+			$link1 = empty($instance['link1']) ? '' : $instance['link1'];			
 			$mimg2 = empty($instance['mimg2']) ? '' : $instance['mimg2'];
+			$link2 = empty($instance['link2']) ? '' : $instance['link2'];
 			$mimg3 = empty($instance['mimg3']) ? '' : $instance['mimg3'];
+			$link3 = empty($instance['link3']) ? '' : $instance['link3'];
 			$mimg4 = empty($instance['mimg4']) ? '' : $instance['mimg4'];
+			$link4 = empty($instance['link4']) ? '' : $instance['link4'];
 			$mimg5 = empty($instance['mimg5']) ? '' : $instance['mimg5'];
+			$link5 = empty($instance['link5']) ? '' : $instance['link5'];
 			$wmimg = empty($instance['wmimg']) ? '100%' : $instance['wmimg'];
 			$hmimg = empty($instance['hmimg']) ? 'auto' : $instance['hmimg'];
 			
@@ -2758,10 +2763,15 @@ jQuery(document).ready(function($) {
 		//widgetform in backend
 			$instance = wp_parse_args( (array) $instance, array() );	
 			$mimg1 = ($instance['mimg1']);
+			$link1 = ($instance['link1']);
 			$mimg2 = ($instance['mimg2']);
+			$link2 = ($instance['link2']);
 			$mimg3 = ($instance['mimg3']);
+			$link3 = ($instance['link3']);
 			$mimg4 = ($instance['mimg4']);
+			$link4 = ($instance['link4']);
 			$mimg5 = ($instance['mimg5']);
+			$link5 = ($instance['link5']);
 			$wmimg = ($instance['wmim']);
 			$hmimg = ($instance['hmimg']);
 			
@@ -2777,11 +2787,31 @@ jQuery(document).ready(function($) {
 	<?php 
 	aheadzen_title_text_align_dl_fun($this->get_field_id('align'),$this->get_field_name('align'),$align);
 	aheadzen_title_font_size_dl_fun($this->get_field_id('titlesize'),$this->get_field_name('titlesize'),$titlesize);
-	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg1'),$this->get_field_name('mimg1'),$mimg1,__('Select Image','aheadzen'));
+	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg1'),$this->get_field_name('mimg1'),$mimg1,__('Select Image 1','aheadzen'));
+	?>
+	<p><label for="<?php  echo $this->get_field_id('link1'); ?>"><?php _e('Enter Link URL 1','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('link1'); ?>" name="<?php echo $this->get_field_name('link1'); ?>" type="text" value="<?php echo esc_attr($link1); ?>" />	
+	</label></p>
+	<?php
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg2'),$this->get_field_name('mimg2'),$mimg2,__('Select Image','aheadzen'));
+	?>
+	<p><label for="<?php  echo $this->get_field_id('link2'); ?>"><?php _e('Enter Link URL 2','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('link2'); ?>" name="<?php echo $this->get_field_name('link2'); ?>" type="text" value="<?php echo esc_attr($link2); ?>" />	
+	</label></p>
+	<?php
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg3'),$this->get_field_name('mimg3'),$mimg3,__('Select Image','aheadzen'));
+	?>
+	<p><label for="<?php  echo $this->get_field_id('link3'); ?>"><?php _e('Enter Link URL 3','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('link3'); ?>" name="<?php echo $this->get_field_name('link3'); ?>" type="text" value="<?php echo esc_attr($link3); ?>" />	
+	</label></p>
+	<?php
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg4'),$this->get_field_name('mimg4'),$mimg4,__('Select Image','aheadzen'));
+	?>
+<p><label for="<?php  echo $this->get_field_id('link4'); ?>"><?php _e('Enter Link URL 4','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('link4'); ?>" name="<?php echo $this->get_field_name('link4'); ?>" type="text" value="<?php echo esc_attr($link4); ?>" />	
+	</label></p>
+	<?php
 	aheadzen_title_image_select_dl_fun($this->get_field_id('mimg5'),$this->get_field_name('mimg5'),$mimg5,__('Select Image','aheadzen'));
+	?>
+<p><label for="<?php  echo $this->get_field_id('link5'); ?>"><?php _e('Enter Link URL 5','aheadzen');?>: <input class="widefat" id="<?php  echo $this->get_field_id('link5'); ?>" name="<?php echo $this->get_field_name('link5'); ?>" type="text" value="<?php echo esc_attr($link5); ?>" />	
+	</label></p>
+	<?php
 
 	}}
 	register_widget('aheadzen_image_slider_widget');

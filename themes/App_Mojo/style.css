@@ -777,7 +777,7 @@ box-sizing: content-box;
 
 .edit_website_link a{color:red !important;margin-left: 20px !important;font-weight: bold !important;}
 #logo .alogo img{max-height:72px; float:left;margin-right: 10px;}
-.logoarea .alogo .site-title {max-width:250px;line-height: 35px;margin-top: 5px;color: #fff;font-size: 50px;margin-bottom: 0; float:left;}
+.logoarea .alogo .site-title {max-width:250px;line-height: 36px;margin-top: 5px;color: #fff;font-size: 50px;margin-bottom: 0; float:left;}
 .logoarea  .site-description{color:#EDEAEA;font-size: 14px;margin-bottom: 0;clear: both;}
 
 .hugefonts{ font-size:50px !important;}
@@ -837,7 +837,7 @@ ol.bjqs-markers.h-centered{text-align: center;}
 ol.bjqs-markers li{display:inline;}
 ol.bjqs-markers li a{display:inline-block;}
 p.bjqs-caption{display:block;width:96%;margin:0;padding:2%;position:absolute;bottom:0;}
-
+ul.bjqs,li.bjqs-slide,li.bjqs-slide img{min-height:200px;height:auto !important;}
 
 
 ul.bjqs-controls.v-centered li a{display:block;padding:10px;background:#fff;color:#000;text-decoration: none;}

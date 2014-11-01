@@ -809,7 +809,7 @@ function aheadzen_get_image_name_attchment_id($mimg)
 	  // you're good
 	}else{
 		$attachment_id = $mimg;
-		$mimg_arr = wp_get_attachment_image_src( $mimg,array(300,300));
+		$mimg_arr = wp_get_attachment_image_src( $mimg,array(250,250));
 		//$mimg_arr2 = wp_get_attachment_link($image2, 'medium');
 		if($mimg_arr){$mimg = $mimg_arr[0];}
 	}

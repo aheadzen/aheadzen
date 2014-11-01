@@ -6,17 +6,29 @@ var months_short = {Jan:"01", Feb:"02", Mar:'03', Apr:'04', May:'05', Jun:'06', 
 	
 jQuery(document).ready(function(){
   jQuery( "#ask-oracle-page0" ).show();
-	jQuery.getJSON(api_ajax_url,function(result){
+	var m = moment();    // get "now" as a moment
+	var n = encodeURIComponent( m.format() ).replace(/'/g,"%27").replace(/"/g,"%22");
+	my_api_ajax_url = api_ajax_url+'?dt='+n;
+	jQuery.getJSON(my_api_ajax_url,function(result){
 		zodic_result = result;
 		jQuery( "#ask-oracle-page0" ).hide();
 		show_horoscope_main();
 		set_horoscope_details('pisces');
 	});
+	
+	jQuery( "#zodiacnav a" ).click(function() {
+		var getSign = jQuery( this ).html();
+		var zodiac=getSign.toLowerCase();
+		jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
+			set_horoscope_details(zodiac)
+			jQuery( "#ask-oracle-page2" ).show();
+		});
+	});
 });
 
 jQuery(function() {
 	jQuery( ".tabs" ).tabs({
-		event: "mouseover"
+		//event: "mouseover"
 	});
 });
 
@@ -31,8 +43,8 @@ function set_horoscope_details(zodiac)
 	}
 	
 	//jQuery("#horoscope_title").html(zodiac_sign+' Horoscope<div class="zodiac_photo '+zodiac_sign+'_image"></div><span class="zodiac_dates">'+zodiac_dates[zodiac_sign]+'</span>');
-	jQuery("#horoscope_title").html(zodiac_sign+' Horoscope');
-	jQuery("#horoscope_zodiac_details").html('<div class="zodiac_photo '+zodiac_sign+'_image"></div>');
+	//jQuery("#horoscope_title").html(zodiac_sign+' Horoscope');
+	jQuery("#horoscope_zodiac_details").html('<div class="zodiac_photo '+zodiac_sign+'_image"><span>'+zodiac_sign+'</span></div><a class="back_to_zodiac" href="javascript:void(0);" onclick="show_horoscope_main();">Back to Zodiac</a>');
 	set_daily_data_tabs(result);
 	set_weekly_data_tabs(result);
 	set_monthly_data_tabs(result);
@@ -54,7 +66,7 @@ function set_daily_data_tabs(result)
 	var next_daily_date_res = next_daily_date.split(" "); 
 	next_daily_date = next_daily_date_res[3]+'-'+months_short[next_daily_date_res[2]]+'-'+next_daily_date_res[1];
 	
-	jQuery(".horoscope.tabs #daily_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="daily_get_next_data(\''+pre_daily_date+'\');"><< previous</a> '+'Daily Horoscope for :: '+daily_date+' <a class="right" href="javascript:void(0);" onclick="daily_get_next_data(\''+next_daily_date+'\');">next >></a>');
+	jQuery(".horoscope.tabs #daily_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="daily_get_next_data(\''+pre_daily_date+'\');"><< previous</a> '+'Daily Horoscope for <br />'+daily_date+' <a class="right" href="javascript:void(0);" onclick="daily_get_next_data(\''+next_daily_date+'\');">next >></a>');
 	jQuery(".horoscope.tabs #tabs-daily-overview").html(result['daily'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-daily-love").html(result['daily-love'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-daily-career").html(result['daily-career'][0].content[zodiac_sign]);
@@ -81,7 +93,7 @@ function set_weekly_data_tabs(result)
 	var next_weekly_date_res = next_weekly_date.split(" "); 
 	next_weekly_date = next_weekly_date_res[3]+'-'+months_short[next_weekly_date_res[2]]+'-'+next_weekly_date_res[1];
 	
-	jQuery(".horoscope.tabs #weekly_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="weekly_get_next_data(\''+pre_weekly_date+'\');"><< previous</a> '+'Weekly Horoscope for :: '+week_firstDay+' to '+week_lastDay +' <a class="right" href="javascript:void(0);" onclick="weekly_get_next_data(\''+next_weekly_date+'\');">next >></a>');
+	jQuery(".horoscope.tabs #weekly_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="weekly_get_next_data(\''+pre_weekly_date+'\');"><< previous</a> '+'Weekly Horoscope for<br />'+week_firstDay+' to '+week_lastDay +' <a class="right" href="javascript:void(0);" onclick="weekly_get_next_data(\''+next_weekly_date+'\');">next >></a>');
 	jQuery(".horoscope.tabs #tabs-weekly-overview").html(result['weekly'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-weekly-love").html(result['weekly-love'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-weekly-career").html(result['weekly-career'][0].content[zodiac_sign]);
@@ -99,7 +111,7 @@ function set_monthly_data_tabs(result)
 	var next_monthly_date_res = next_monthly_date.split(" "); 
 	next_monthly_date = next_monthly_date_res[3]+'-'+months_short[next_monthly_date_res[2]]+'-'+next_monthly_date_res[1];
 	
-	jQuery(".horoscope.tabs #monthly_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="monthly_get_next_data(\''+pre_monthly_date+'\');"><< previous</a> '+'Monthly Horoscope for :: '+themonth+'<a class="right" href="javascript:void(0);" onclick="monthly_get_next_data(\''+next_monthly_date+'\');">next >></a> ');
+	jQuery(".horoscope.tabs #monthly_tabs_title").html('<a class="left" href="javascript:void(0);" onclick="monthly_get_next_data(\''+pre_monthly_date+'\');"><< previous</a> '+'Monthly Horoscope for <br /> '+themonth+'<a class="right" href="javascript:void(0);" onclick="monthly_get_next_data(\''+next_monthly_date+'\');">next >></a> ');
 	jQuery(".horoscope.tabs #tabs-monthly-overview").html(result['monthly'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-monthly-love").html(result['monthly-love'][0].content[zodiac_sign]);
 	jQuery(".horoscope.tabs #tabs-monthly-career").html(result['monthly-career'][0].content[zodiac_sign]);
@@ -126,18 +138,20 @@ function get_set_daily_weekly_monthly_data(dt,type)
 	var date_res = dt.split("-"); 
 	var the_date = new Date(parseInt(date_res[0]), parseInt(date_res[1])-1, parseInt(date_res[2])+1);
 	var n = the_date.toJSON();
-	var new_api_ajax_url = api_ajax_url+'?dt='+ encodeURI(n);
+	//var m = moment();
+	//var n = encodeURIComponent( m.format() ).replace(/'/g,"%27").replace(/"/g,"%22");
+	var new_api_ajax_url = api_ajax_url+'?dt='+ n;
 	if(type=='daily')
 	{
-		jQuery(".horoscope.tabs #daily_tabs_title").html('processing...');
+		jQuery(".horoscope.tabs #daily_tabs_title").html('<span class="loading_ajax">Loading ...</span>');
 	
 	}else if(type=='weekly')
 	{
-		jQuery(".horoscope.tabs #weekly_tabs_title").html('processing...');
+		jQuery(".horoscope.tabs #weekly_tabs_title").html('<span class="loading_ajax">Loading ...</span>');
 	
 	}else if(type=='monthly')
 	{
-		jQuery(".horoscope.tabs #monthly_tabs_title").html('processing...');
+		jQuery(".horoscope.tabs #monthly_tabs_title").html('<span class="loading_ajax">Loading ...</span>');
 	}
 	
 	jQuery.get(new_api_ajax_url,function(data,status){
@@ -167,6 +181,7 @@ function show_horoscope_main()
 	});
 }
 
+/*
 function show_horoscope(zodiac)
 {	
 	 jQuery( "#ask-oracle-page1" ).hide( "slow", function() {
@@ -174,3 +189,4 @@ function show_horoscope(zodiac)
 		jQuery( "#ask-oracle-page2" ).show();
 	});
 }
+*/

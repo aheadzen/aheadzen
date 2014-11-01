@@ -1,26 +1,31 @@
-#ask-oracle-page1,#ask-oracle-page2{display:none;}
+#ask-oracle-page1,#ask-oracle-page2{display:none; min-height: 400px;}
+body{border:solid 1px red;}
+body{margin: 0px auto;max-width:600px;min-width:300px; border: none;}
 .dailyhoro {background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center 25px #f4f3e8;padding: 5px 5px 15px;height: 310px;width: 340px;}
 h3#title{font-size: 18px;margin: 0;text-align: center;}
 #zodiactable{width:100%;}
 #zodiactable ul{margin: 0;padding: 0;}
 #zodiactable ul li{ float: left;list-style: none outside none;margin: 12px 0 10px;padding: 0;text-align: center;width: 84px;}
 #zodiactable ul#firstrow li{margin-top:0; margin-bottom: 10px;}
-#zodiactable ul li a{font-size: 13px;text-decoration: none;padding-top: 62px;color: #000;display: block !important;font-weight: bold;}
-.back_to_zodiac{border: 1px dashed;font-size: 15px;margin-right: 50px;margin-top: 20px;padding: 5px;position: absolute;right: 0;text-decoration: none;text-transform: uppercase;top: 0;}
+#zodiactable ul li a{font-size: 13px;text-decoration: none;padding-top: 65px;color: #000;display: block !important;font-weight: bold;}
+.back_to_zodiac{background-color: #aaaaaa;width: 50px;padding: 10px;border: 1px dashed #aaaaaa;display: inline-block;font-size: 12px;margin-top: 20px;text-decoration: none;text-transform: uppercase;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;color: #fff;}
+.back_to_zodiac:hover{color:#000;}
 h2#horoscope_title{ display: inline-block;}
-.zodiac_photo{display: inline-block;height:100px;width:80px;background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center center;}
+.zodiac_photo{display: inline-block;height:100px;width:83px;background: url("http://www.ask-oracle.com/wp-content/themes/WP_Premium/images/daily.png") no-repeat scroll center center;}
+.zodiac_photo span{font-size: 14px;text-transform: capitalize; display: inline-block;margin-top: 62px;text-align: center;width: 100%;font-weight: bold;}
+.zodiac_photo.leo_image span{margin-top: 65px;}
 .zodiac_photo.aries_image{background-position: 2px -3px;}
-.zodiac_photo.taurus_image{background-position: -86px -3px;}
+.zodiac_photo.taurus_image{background-position: -86px 0;}
 .zodiac_photo.gemini_image{background-position: -166px -3px;}
 .zodiac_photo.cancer_image{background-position: -254px -3px;}
 .zodiac_photo.leo_image{background-position: 5px -100px;}
-.zodiac_photo.virgo_image{background-position: -86px -105px;}
+.zodiac_photo.virgo_image{background-position: -85px -105px;}
 .zodiac_photo.libra_image{background-position: -166px -105px;}
 .zodiac_photo.scorpio_image{background-position: -254px -105px;}
-.zodiac_photo.sagittarius_image{background-position: 8px -206px;}
+.zodiac_photo.sagittarius_image{background-position: 4px -206px;}
 .zodiac_photo.capricorn_image{background-position: -86px -206px;}
 .zodiac_photo.aquarius_image{background-position: -166px -206px;}
-.zodiac_photo.pisces_image{background-position: -254px -206px;}
+.zodiac_photo.pisces_image{background-position: -250px -206px;}
 
 .zodiac_dates{display:inline-block;margin-left:100px;}
 .horoscope_daily.tabs, .horoscope_weekly.tabs, .horoscope_monthly.tabs{border:0;}
@@ -28,14 +33,33 @@ h2#horoscope_title{ display: inline-block;}
 .horoscope_daily .ui-state-active, .horoscope_daily .ui-widget-content .ui-state-active, .horoscope_daily .ui-widget-header .ui-state-active,.horoscope_weekly .ui-state-active, .horoscope_weekly .ui-widget-content .ui-state-active, .horoscope_weekly .ui-widget-header .ui-state-active,.horoscope_monthly .ui-state-active, .horoscope_monthly .ui-widget-content .ui-state-active, .horoscope_monthly .ui-widget-header .ui-state-active{background:none;background-color:pink;}
 
 .ui-tabs .ui-tabs-nav{text-align:center;}
-.ui-tabs .ui-tabs-nav li{min-width: 20%;display: inline-block;float: none;text-align: center;}
-.ui-tabs .ui-tabs-nav li a{width:85%;}
-#daily_tabs_title,#weekly_tabs_title,#monthly_tabs_title{text-align:center;}
+.ui-tabs .ui-tabs-nav li{min-width: 25%;margin:0;display: inline-block;float: none;text-align: center;}
+.ui-tabs .ui-tabs-nav li a{margin: 0; padding-left: 10px !important;padding-right: 10px !important;text-align: center;width: 70%;}
+#daily_tabs_title,#weekly_tabs_title,#monthly_tabs_title{text-align:center;margin: 15px 0;}
 #daily_tabs_title a,#weekly_tabs_title a,#monthly_tabs_title a{text-decoration:none;}
 #daily_tabs_title a:hover,#weekly_tabs_title a:hover,#monthly_tabs_title a:hover{text-decoration:underline;}
-#daily_tabs_title a.left,#weekly_tabs_title a.left,#monthly_tabs_title a.left{margin-right:50px;}
-#daily_tabs_title a.right,#weekly_tabs_title a.right,#monthly_tabs_title a.right{margin-left:50px;}
+#daily_tabs_title a.left,#weekly_tabs_title a.left,#monthly_tabs_title a.left{font-size:0;padding: 13px;background: url("images/left.png") no-repeat scroll center center #fff;left:0;position: absolute;top:20px;}
+#daily_tabs_title a.right,#weekly_tabs_title a.right,#monthly_tabs_title a.right{font-size:0;padding: 13px;background: url("images/right.png") no-repeat scroll center center #fff;right:0;position: absolute;top:20px;}
 .clearboth{clear:both: width:100%;}
 #horoscope_zodiac_details{float:left;width:10%;text-align: center; min-width:100px;}
-.horoscope.tabs{float:left;width:89%;}
+.horoscope.tabs{float:left;width:80%;}
 .daily_weekly_monthly_tabs{text-align:left !important;}
+.ui-tabs .ui-tabs-nav li a {font-size: 75%;}
+.ui-tabs .ui-tabs-panel {padding: 5px;text-align: justify;}
+.ui-widget .ui-widget p{font-size: 14px;}
+.horoscope_daily .ui-state-default,.horoscope_weekly .ui-state-default,.horoscope_monthly .ui-state-default{border:1px solid #aaaaaa !important;-webkit-border-radius: 5px !important;-moz-border-radius: 5px !important;border-radius: 5px !important;}
+.loading_ajax{background: url("images/ajax-loader.gif") no-repeat scroll left center #fff;padding:10px 10px 10px 40px;}
+#footer{clear:both;}
+#footer-wrap{text-align:center; font-size:12px;margin-top:10px;color:#999;}
+
+@media only screen and (max-width: 570px) {
+#horoscope_zodiac_details{width: 97%;}
+.zodiac_photo{float: left;margin-left: 6%;}
+.back_to_zodiac{float:right; margin-top: 10px;margin-right: 5%;}
+.horoscope.tabs {display: inline-block;float: none;width: 97%;}
+}
+
+@media only screen and (max-width: 470px) {
+	.ui-tabs .ui-tabs-nav li a{width:85%;}
+	.daily_weekly_monthly_tabs  li{min-width: 99% !important;}
+}

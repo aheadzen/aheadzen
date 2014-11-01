@@ -6,31 +6,13 @@ Template Name: Ask Oracle App New
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri();?>/ask_embed.css">
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-<script type="text/javascript">
-//var d = new Date();
-//var n = d.toJSON();
-var m = moment();    // get "now" as a moment
-var n = m.format('YYYY-MM-DDThh:mm:ss');
-<?php
-//if(1)
-if($_SERVER['HTTP_HOST']=='localhost')
-{
-$jsondata_url =  get_stylesheet_directory_uri().'/api.php';
-echo 'var api_ajax_url="'. $jsondata_url.'/?dt="+n;';
-}else{
-echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php?dt="+n;';
-}
-?>
-</script>
-<script src="<?php echo get_stylesheet_directory_uri();?>/ask_embed.js"></script>
-
 </head>
 <body>
+<div class="ask_wrap">
 <div id="ask-oracle-page0">Horoscope data loading, wait for a moment please...</div>
 <div id="ask-oracle-page1">
 <div class="dailyhoro" id="zodiacnav">
@@ -39,23 +21,23 @@ echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php?dt="+n;';
   <tbody><tr>
     <td>
 <ul id="firstrow">
-<li><a href="javascript:void(0);" onclick="show_horoscope('aries');" title="Aries Horoscope">Aries</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('taurus');" title="Taurus Horoscope">Taurus</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('gemini');" title="Gemini Horoscope">Gemini</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('cancer');" title="Cancer Horoscope">Cancer</a></li>
+<li><a href="#" title="Aries Horoscope">Aries</a></li>
+<li><a href="#" title="Taurus Horoscope">Taurus</a></li>
+<li><a href="#" title="Gemini Horoscope">Gemini</a></li>
+<li><a href="#" title="Cancer Horoscope">Cancer</a></li>
 </ul>
 </td></tr>
 <tr><td class="zodiacrow"><ul>
-<li><a href="javascript:void(0);" onclick="show_horoscope('leo');" title="Leo Horoscope">Leo</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('virgo');" title="Virgo Horoscope">Virgo</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('libra');" title="Libra Horoscope">Libra</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('scorpio');" title="Scorpio Horoscope">Scorpio</a></li>
+<li><a href="#" title="Leo Horoscope">Leo</a></li>
+<li><a href="#" title="Virgo Horoscope">Virgo</a></li>
+<li><a href="#" title="Libra Horoscope">Libra</a></li>
+<li><a href="#" title="Scorpio Horoscope">Scorpio</a></li>
 </ul></td></tr>
 <tr><td class="zodiacrow"><ul>
-<li><a href="javascript:void(0);" onclick="show_horoscope('sagittarius');" title="Sagittarius Horoscope">Sagittarius</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('capricorn');" title="Capricorn Horoscope">Capricorn</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('aquarius');" title="Aquarius Horoscope">Aquarius</a></li>
-<li><a href="javascript:void(0);" onclick="show_horoscope('pisces');" title="Pisces Horoscope">Pisces</a></li>		
+<li><a href="#" title="Sagittarius Horoscope">Sagittarius</a></li>
+<li><a href="#" title="Capricorn Horoscope">Capricorn</a></li>
+<li><a href="#" title="Aquarius Horoscope">Aquarius</a></li>
+<li><a href="#" title="Pisces Horoscope">Pisces</a></li>		
 </ul></td>
   </tr>
 </tbody></table>
@@ -64,8 +46,8 @@ echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php?dt="+n;';
 
 
 <div id="ask-oracle-page2">
-<h2 class="main_title" style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2>
-<a class="back_to_zodiac" href="javascript:void(0);" onclick="show_horoscope_main();">Back to Zodiac</a>
+<?php /*?><h2 class="main_title" style="text-transform: uppercase;" id="horoscope_title">Horoscope</h2><?php */?>
+
 <div class="clearboth"></div>
 <div id="horoscope_zodiac_details"></div>
 <div class="horoscope tabs">
@@ -124,6 +106,42 @@ echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php?dt="+n;';
 	</div>
 </div>
 </div>
+<div class="clearboth"></div>
+<div id="footer">
+<div id="footer-wrap">
+Copyright &copy; 2015 Ask Oracle. All rights reserved.
+<?php  wp_footer(); ?>
+</div>
+</div>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
+<script type="text/javascript">
+<?php
+if($_SERVER['HTTP_HOST']=='localhost')
+{
+$jsondata_url =  get_stylesheet_directory_uri().'/api.php';
+echo 'var api_ajax_url="'. $jsondata_url.'/";';
+}else{
+echo 'var api_ajax_url="http://www.ask-oracle.com/charts/api.php";';
+}
+?>
+</script>
+<script src="<?php echo get_stylesheet_directory_uri();?>/ask_embed.js"></script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1945662-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
 
 </body>
 </html>

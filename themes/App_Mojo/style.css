@@ -777,7 +777,7 @@ box-sizing: content-box;
 
 .edit_website_link a{color:red !important;margin-left: 20px !important;font-weight: bold !important;}
 #logo .alogo img{max-height:72px; float:left;margin-right: 10px;}
-.logoarea .alogo .site-title {width:250px;line-height: 35px;margin-top: 5px;color: #fff;font-size: 50px;margin-bottom: 0; float:left;line-height: 30px;}
+.logoarea .alogo .site-title {width:250px;line-height: 35px;margin-top: 5px;color: #fff;font-size: 50px;margin-bottom: 0; float:left;}
 .logoarea  .site-description{color:#EDEAEA;font-size: 14px;margin-bottom: 0;clear: both;}
 
 .hugefonts{ font-size:50px !important;}

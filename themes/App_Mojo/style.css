@@ -392,10 +392,10 @@ input.error { border:2px solid #ff0000 !important; border-right:none !important;
 .portfolio { background:#f6f6f6; margin-bottom:20px; }
 .portfolio.one-third { width:31.2%; }
 
-.portfolio .portfolio-thumb { float: left; overflow: hidden; padding: 0; position: relative; width:100%;  min-height: 165px;}
+.portfolio .portfolio-thumb { float: left; overflow: hidden; padding: 0; position: relative; width:100%;  min-height: 165px; height:225px;}
 .portfolio-thumb > img { float:left; display:block; }
 
-.portfolio.one-third .portfolio-thumb img { height:225px; }
+.portfolio.one-third .portfolio-thumb img { height:auto; }
 
 .portfolio-title { float:left; width:70.2%; margin-top:3px; padding:0 10px; }
 .portfolio-title h4 { font-size:20px; }

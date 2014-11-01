@@ -97,7 +97,7 @@ if(!class_exists('aheadzen_portfolio_widget')){
 						$post_data['cat']=$category;
 						$post_data['bimage']=$big_image;
 						$post_data['link']=get_permalink();
-						$post_data['image']=get_the_post_thumbnail($pid, array(510,400));
+						$post_data['image']=get_the_post_thumbnail($pid, array(300,300));
 						$post_data_arr[] = $post_data;
 					}
 				}

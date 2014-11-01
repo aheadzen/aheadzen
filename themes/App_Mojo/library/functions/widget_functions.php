@@ -2526,10 +2526,12 @@ if(!class_exists('aheadzen_gallery_widget')){
 					for($i=0;$i<count($images_arr);$i++)
 					{
 						$big_image = wp_get_attachment_url($images_arr[$i]);
+						$small_image = wp_get_attachment_link($images_arr[$i], 'medium');
 				?>
 				<div class="portfolio one-third column imagegallery">
 					<div class="portfolio-thumb">
-					<img width="463" height="400" src="<?php echo $big_image;?>">
+					<?php /*?><img width="463" height="400" src="<?php echo $small_image;?>"><?php */?>
+					<?php echo $small_image;?>>
 					<div class="image-overlay">
 						<a data-gal="prettyPhoto[<?php echo $this->get_field_id('images');?>]" class="zoom" href="<?php echo $big_image;?>"><span class="icon-search"></span></a>
 					</div>

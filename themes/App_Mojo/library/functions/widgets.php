@@ -528,7 +528,7 @@ if($_POST['action']=='inline-save-widget' && isset($_POST['widget-id']) && $_POS
 				wp_update_post( $the_post );
 			}elseif($field_name=='image')
 			{
-				$attid = $_POST['attid'];
+				$attid = $val;
 				update_post_meta($pid,'_thumbnail_id',$attid);
 			}
 			elseif(strstr($field_name,'custom'))

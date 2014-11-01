@@ -63,7 +63,7 @@ img{max-width:100%;height:auto;}
 	
 	.aligncenter { width:100%; height:auto; }
 	
-	ul.bjqs,li.bjqs-slide,li.bjqs-slide img{min-height:300px; height:auto !important;}
+	li.bjqs-slide,li.bjqs-slide img{height:auto !important;}
 	
 	
 }

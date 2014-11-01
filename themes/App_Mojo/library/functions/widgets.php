@@ -432,6 +432,14 @@ function aheadzen_wp_head_tinymce_function()
 	
 	}
 	
+	function toggle_edit_link_imgslider(id)
+	{
+		jQuery( ".editlink" ).click(function() {
+			jQuery( "#"+id ).toggle( "slow", function() {
+			// Animation complete.
+			});
+		});
+	}
 	
 	jQuery(document).bind('edit_started', function(ev) { 
 		
@@ -803,15 +811,32 @@ function aheadzen_get_attachment_id($src)
 	return $wpdb->get_var("select ID from $wpdb->posts where guid=\"$src\" and post_type='attachment'");
 }
 
-function aheadzen_get_image_name_attchment_id($mimg)
+function aheadzen_get_image_name_attchment_id($mimg,$size='')
 {
 	if(filter_var($mimg, FILTER_VALIDATE_URL)){ 
 	  // you're good
 	}else{
 		$attachment_id = $mimg;
-		$mimg_arr = wp_get_attachment_image_src( $mimg,array(250,250));
+		if($size==''){$size=array(300,250);}
+		$mimg_arr = wp_get_attachment_image_src( $mimg,$size);
 		//$mimg_arr2 = wp_get_attachment_link($image2, 'medium');
 		if($mimg_arr){$mimg = $mimg_arr[0];}
 	}
 	return array($mimg,$attachment_id);
+}
+
+function aheadzen_edit_link_inline($id,$val)
+{
+	if($_GET['editing']==1){
+	if($val==''){$val='Enter your URL HERE';}
+?>
+<div class="editlink">
+<?php /*?>
+<p onclick="toggle_edit_link_imgslider('<?php echo $id;?>');">edit link</p>
+<div style="display:none;" id="<?php echo $id;?>" <?php echo aheadzen_inline_edit_code($id);?>><?php echo $val;?></div>
+<?php */?>
+<div id="<?php echo $id;?>" <?php echo aheadzen_inline_edit_code($id);?>><?php echo $val;?></div>
+</div>
+<?php
+	}
 }

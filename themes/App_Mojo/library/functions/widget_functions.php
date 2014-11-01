@@ -543,7 +543,7 @@ if(!class_exists('aheadzen_features1_widget')){
 			$desc4 = empty($instance['desc4']) ? '' : $instance['desc4'];
 			
 			
-			$mimg_arr = aheadzen_get_image_name_attchment_id($mimg);
+			$mimg_arr = aheadzen_get_image_name_attchment_id($mimg,'large');
 			$mimg=$mimg_arr[0];
 			$attachment_id=$mimg_arr[1];
 			
@@ -2394,7 +2394,7 @@ if(!class_exists('aheadzen_logo_widget')){
 			$description = empty($instance['description']) ? get_bloginfo( 'description' ) : $instance['description'];
 			$hide_description = empty($instance['hide_description']) ? '' : $instance['hide_description'];
 			
-			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg);
+			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg,'thumbnail');
 			$mimg=$mimg_arr1[0];
 			$attachment_id1=$mimg_arr1[1];
 			
@@ -2651,6 +2651,12 @@ if(!class_exists('aheadzen_image_slider_widget')){
 			$align = empty($instance['align']) ? '' : $instance['align'];
 			
 						$mimg1 = empty($instance['mimg1']) ? '' : $instance['mimg1'];
+			$instance['link1'] = strip_tags($instance['link1']);
+			$instance['link2'] = strip_tags($instance['link2']);
+			$instance['link3'] = strip_tags($instance['link3']);
+			$instance['link4'] = strip_tags($instance['link4']);
+			$instance['link5'] = strip_tags($instance['link5']);
+			
 			$link1 = empty($instance['link1']) ? '' : $instance['link1'];			
 			$mimg2 = empty($instance['mimg2']) ? '' : $instance['mimg2'];
 			$link2 = empty($instance['link2']) ? '' : $instance['link2'];
@@ -2663,23 +2669,23 @@ if(!class_exists('aheadzen_image_slider_widget')){
 			$wmimg = empty($instance['wmimg']) ? '100%' : $instance['wmimg'];
 			$hmimg = empty($instance['hmimg']) ? 'auto' : $instance['hmimg'];
 			
-			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg1);
+			$mimg_arr1 = aheadzen_get_image_name_attchment_id($mimg1,'large');
 			$mimg1=$mimg_arr1[0];
 			$attachment_id1=$mimg_arr1[1];
 			
-			$mimg_arr2 = aheadzen_get_image_name_attchment_id($mimg2);
+			$mimg_arr2 = aheadzen_get_image_name_attchment_id($mimg2,'large');
 			$mimg2=$mimg_arr2[0];
 			$attachment_id2=$mimg_arr2[1];
 			
-			$mimg_arr3 = aheadzen_get_image_name_attchment_id($mimg3);
+			$mimg_arr3 = aheadzen_get_image_name_attchment_id($mimg3,'large');
 			$mimg3=$mimg_arr3[0];
 			$attachment_id3=$mimg_arr3[1];
 			
-			$mimg_arr4 = aheadzen_get_image_name_attchment_id($mimg4);
+			$mimg_arr4 = aheadzen_get_image_name_attchment_id($mimg4,'large');
 			$mimg4=$mimg_arr4[0];
 			$attachment_id4=$mimg_arr4[1];
 			
-			$mimg_arr5 = aheadzen_get_image_name_attchment_id($mimg5);
+			$mimg_arr5 = aheadzen_get_image_name_attchment_id($mimg5,'large');
 			$mimg5=$mimg_arr5[0];
 			$attachment_id5=$mimg_arr5[1];
 			
@@ -2706,36 +2712,82 @@ if(!class_exists('aheadzen_image_slider_widget')){
 		
 			<div id="<?php echo $this->get_field_id('id');?>" class="slideshow">
 				<ul class="bjqs">
-				  <li><?php if($mimg1){?>
+
+				  <li>
+				  <?php if($_GET['editing']==1){
+					aheadzen_edit_link_inline($this->get_field_id('link1'),$link1);
+					}else {?>
+					<a href="<?php echo $link1;?>">
+					<?php }?>
+				  <?php if($mimg1){?>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg1'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg1;?>" alt="" />
 					<?php
 					}
 					aheadzen_inline_image($this->get_field_id('mimg1'),$attachment_id1);
 					?>
+					<?php if($_GET['editing']!=1){?></a><?php }?>
+					<?php aheadzen_inline_head_tinymce($this->get_field_id('link1'));?>
 					</li>
+					
+					
 					<?php if($mimg2){?>
 					<li>
+					<?php if($_GET['editing']==1){
+					aheadzen_edit_link_inline($this->get_field_id('link2'),$link2);
+					}else {?>
+					<a href="<?php echo $link2;?>">
+					<?php }?>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg2'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg2;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg2'),$attachment_id2);?>
+					<?php if($_GET['editing']!=1){?></a><?php }?>
+					<?php aheadzen_inline_head_tinymce($this->get_field_id('link2'));?>
 					</li>
 					<?php
 					}?>
+					
+					
 					<?php if($mimg3){?>
 					<li>
+					<?php if($_GET['editing']==1){
+					aheadzen_edit_link_inline($this->get_field_id('link3'),$link3);
+					}else {?>
+					<a href="<?php echo $link3;?>">
+					<?php }?>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg3'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg3;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg3'),$attachment_id3);?>
+					<?php if($_GET['editing']!=1){?></a><?php }?>
+					<?php aheadzen_inline_head_tinymce($this->get_field_id('link3'));?>
 					</li>
-					<?php }?>					
+					<?php }?>
+
+					
 					<?php if($mimg4){?>
-					<li><img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg4'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg4;?>" alt="" />
+					<li>
+					<?php if($_GET['editing']==1){
+					aheadzen_edit_link_inline($this->get_field_id('link4'),$link4);
+					}else {?>
+					<a href="<?php echo $link4;?>">
+					<?php }?>
+					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg4'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg4;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg4'),$attachment_id4);?>
+					<?php if($_GET['editing']!=1){?></a><?php }?>
+					<?php aheadzen_inline_head_tinymce($this->get_field_id('link4'));?>
 					</li>
 					<?php
 					}?>					
+					
+					
 					<?php if($mimg5){?>
 					<li>
+					<?php if($_GET['editing']==1){
+					aheadzen_edit_link_inline($this->get_field_id('link5'),$link5);
+					}else {?>
+					<a href="<?php echo $link5;?>">
+					<?php }?>
 					<img <?php echo aheadzen_inline_edit_code($this->get_field_id('mimg5'));?> style="<?php if($hmimg){echo 'max-height:'.$hmimg.';';}?> <?php if($wmimg){echo 'max-width:'.$wmimg.';';}?>" src="<?php echo $mimg5;?>" alt="" />
 					<?php aheadzen_inline_image($this->get_field_id('mimg5'),$attachment_id5);?>
+					<?php if($_GET['editing']!=1){?></a><?php }?>
+					<?php aheadzen_inline_head_tinymce($this->get_field_id('link5'));?>
 					</li>
 					<?php
 					}?>					

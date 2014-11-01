@@ -828,7 +828,7 @@ function aheadzen_get_image_name_attchment_id($mimg,$size='')
 function aheadzen_edit_link_inline($id,$val)
 {
 	if($_GET['editing']==1){
-	if($val==''){$val='Enter your URL HERE';}
+	if($val==''){$val='Enter your URL eg: http://mysite.com/';}
 ?>
 <div class="editlink">
 <?php /*?>

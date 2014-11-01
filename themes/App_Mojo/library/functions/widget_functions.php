@@ -2531,7 +2531,7 @@ if(!class_exists('aheadzen_gallery_widget')){
 				<div class="portfolio one-third column imagegallery">
 					<div class="portfolio-thumb">
 					<?php /*?><img width="463" height="400" src="<?php echo $small_image;?>"><?php */?>
-					<?php echo $small_image;?>>
+					<?php echo $small_image;?>
 					<div class="image-overlay">
 						<a data-gal="prettyPhoto[<?php echo $this->get_field_id('images');?>]" class="zoom" href="<?php echo $big_image;?>"><span class="icon-search"></span></a>
 					</div>
